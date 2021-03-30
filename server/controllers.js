@@ -16,7 +16,6 @@ const generateRandomString = function(length) {
 };
 
 
-
 module.exports = {
   // Initial redirect for spotify account auth
   login: (req, res) => {
@@ -25,7 +24,7 @@ module.exports = {
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
-        client_id: config.client_id,
+        client_id: config.client,
         redirect_uri: config.redirect_uri,
         state: state
       }));
@@ -51,7 +50,8 @@ module.exports = {
           grant_type: 'authorization_code'
         },
         headers: {
-          'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+          'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')),
+          'Access-Control-Allow-Origin': true
         },
         json: true
       };
@@ -64,7 +64,8 @@ module.exports = {
 
           var options = {
             url: 'https://api.spotify.com/v1/me',
-            headers: { 'Authorization': 'Bearer ' + access_token },
+            headers: { 'Authorization': 'Bearer ' + access_token,
+            'Access-Control-Allow-Origin': true },
             json: true
           };
 
