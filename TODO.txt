@@ -1,6 +1,6 @@
-Reddit API
-- Set up api calls to specific subreddits
-- Set up title cleaning
+Reddit (EC)
+- Add in alert if not a valid subreddit
+- Gives users ability to search subreddits
 
 Spotify
 - Set up oauth2
