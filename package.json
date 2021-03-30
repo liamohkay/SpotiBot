@@ -1,0 +1,22 @@
+{
+  "name": "MVP",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liamohkay/hr-lax42-mvp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liamohkay/hr-lax42-mvp/issues"
+  },
+  "homepage": "https://github.com/liamohkay/hr-lax42-mvp#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "nodemon": "^2.0.7"
+  }
+}

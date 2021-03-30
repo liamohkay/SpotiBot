@@ -1,5 +1,8 @@
 ### node etc ###
 
+# Init Files
+package-lock.json
+
 # Logs
 logs
 *.log
