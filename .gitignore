@@ -1,4 +1,4 @@
-# Init Files
-node_modules/
+/node_modules/
 package-lock.json
-config.js
+server/config.js
+client/dist/

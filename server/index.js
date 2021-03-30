@@ -11,6 +11,6 @@ const server = express()
   .use(cors())
   .use(morgan('dev'))
   .use(bodyParser.json())
-  .use(express.static(path.join(__dirname + '../dist/')))
+  .use(express.static(path.join(__dirname, '../client/dist/')))
 
 server.listen(port, () => console.log(`Listening on port: ${port}`));
