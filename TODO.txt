@@ -1,0 +1,20 @@
+Reddit API
+- Set up api calls to specific subreddits
+- Set up title cleaning
+
+Spotify
+- Set up oauth2
+- Set up add to playlist by song uri
+- EC: Set up create new playlist
+
+Front End
+- 'Dev Key / Login' portal
+  - save to file in project dir
+- Home page
+  - sidebar with playlist names
+  - main section listining selected playlist + subreddits
+- Functions
+  - Delete playlist
+  - Add/remove subreddits
+  - Set time period for which to search top posts (day, week, month)
+  - EC: set automatic script frequency
