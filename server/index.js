@@ -115,22 +115,3 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
-
-
-
-// // Express server + middleware + controllers
-// const server = express()
-//   .use(cors())
-//   .use(morgan('dev'))
-//   .use(bodyParser.json())
-//   .use(bodyParser.urlencoded({ extended: true }))
-//   // Routes
-//   .get('/login', controllers.login)
-//   .get('/callback', controllers.callback)
-//   .get('/refresh', controllers.refresh)
-//   .get('/playlist', controllers.playlist)
-//   .use(express.static(path.join(__dirname, '../client/dist/')))
-
-// server.listen(port, () => console.log(`Listening on port: ${port}`));
-
-

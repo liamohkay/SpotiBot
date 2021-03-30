@@ -12,17 +12,13 @@ const App = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    const token = qs.parse(window.location.search, { ignoreQueryPrefix: true }).access_token
-    setToken(token);
-    SpotifyAPI.setAccessToken(token);
-  }, [qs.parse(window.location.search, { ignoreQueryPrefix: true }).access_token])
-
-  const handlePlaylist = () => {
-    axios.get('/playlist', { headers: { authorization: token } })
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }
-
+    let url = window.location.href;
+    if (url.match(/\#access_token/)) {
+      const token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+      setToken(token);
+      SpotifyAPI.setAccessToken(token);
+    }
+  }, [loaded]);
 
   return (
     <div id="app">
@@ -43,8 +39,6 @@ const App = () => {
           <UserInfo token={token}/>
         </div>
       ) }
-      <button onClick={handlePlaylist}>Get Playlist</button>
-      <h1>DATA {data}</h1>
     </div>
   );
 };
