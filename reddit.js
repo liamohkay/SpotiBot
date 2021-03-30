@@ -1,5 +1,5 @@
 
-/*
+/* -------------------------------------------------------------------------------------------------
 Some ex cases that these functions handle & why removing tags improves spotify serchability
 - (ft | feat. <artist name>)
 - (moodyman's mix)
@@ -14,20 +14,16 @@ Some ex cases that these functions handle & why removing tags improves spotify s
 3. Edits, mixes (people will post 1hr long mixes), dubs are usually almost never on Spotify.
    Therefore removing these tags as well improve searchability
 
-These mesausres and their sepcificity are necessary b/c in subreddits w/out strict [artist] - [name] posting rules,
-important / relevant info can sometimes be included insdie brackets or parentheses. Therefore doing a regex to remove all
-text included inside brackets / parentheses could hinder / remove possible search matches in Spotify.
-*/
+These mesausres and their sepcificity are necessary b/c in subreddits w/out strict [artist] - [name]
+posting rules, important / relevant info can sometimes be included insdie brackets or parentheses.
+Therefore doing a regex to remove all text included inside brackets / parentheses could hinder
+possible search matches in Spotify. Also, it will be much easier later on to edit / remove / add
+any rules that negate reddit user posting patterns that are negatively impacting Spotify search
+success.
+------------------------------------------------------------------------------------------------- */
 
 // Libraries
 const axios = require('axios');
-
-// Retreives top posts from user specified subreddit. n & time default to 10 & 'week'
-const getTopPosts = (subreddit, callback, n=10, time='week') => {
-  axios.get(`https://www.reddit.com/r/${subreddit}/top/.json?t=${time}`)
-    .then(resp => callback(resp.data.data.children))
-    .catch(err => console.log(err))
-};
 
 // Removes tags (ft <artist>) and [feat <artist>] from title (these kill search result accuracy)
 const removeFeatures = title => title.replace(/[([](FEAT|FT).*[\)\]]/i, '');
@@ -37,7 +33,7 @@ const removeExtended = title => title.replace(/[([](EXTENDED).*[\)\]]/i, '');
 const removeVersion = title => title.replace(/[([](VERSION).*[\)\]]/i, '');
 // Removes years with similar format to (19yy) or [20yy] from titles
 const removeYears = title => title.replace(/[([](19\d{2}|20\d{2})[\)\]]/i, '');
-// Removes tags with "mix" enclosed by () or [] - note the mandatory space char b/c we do not want to remove remixes
+// Removes tags with "mix" enclosed by () or [] - note space char do not want to remove remixes
 const removeMix = title => title.replace(/[([].*\s{1,5}MIX.*[\)\]]/i, '');
 // Removes tags with "edit" enclosed by () or []
 const removeEdit = title => title.replace(/[([].*\s{1,5}(VIP|DUB|EDIT)[\)\]]/i, '');
@@ -47,13 +43,17 @@ const removeText = title => title.replace(/[([][A-z+&?!./\s]*[\)\]]/i, '');
 const removePunc = title => title.replace(/['"\\]/g, '');
 
 // Wrapper helpfunction that combines applies all helper functions above in one fn
-const cleanPostTitle => title => {
-  return title
-    .removeFeatures()
-    .removeExtended()
-    .removeVersion()
-}
-
+const cleanPostTitle = title => {
+  title = removeFeatures(title)
+  title = removeExtended(title);
+  title = removeVersion(title);
+  title = removeYears(title);
+  title = removeMix(title);
+  title = removeEdit(title);
+  title = removeText(title);
+  title = removePunc(title);
+  return title; // removeText & removePunc at the end is intentional
+};
 
 // Splits post titles in format [artist] - [track] and return an object
 const getArtistTrackObj = title => {
@@ -65,22 +65,19 @@ const getArtistTrackObj = title => {
   }
 };
 
+// Retreives top posts from user specified subreddit. n & time default to 10 & 'week'
+const getTopPosts = (subreddit, n=10, time='week') => {
+  let topPosts = [];
 
-getTopPosts('lofihouse', resp => {
-  let arr = [];
-  for (post in resp) {
-    let title = resp[post].data.title;
-    title = removeFeatures(title);
-    title = removeExtended(title);
-    title = removeYears(title);
-    title = removeMix(title);
-    title = removeEdit(title);
-    title = removeText(title);
-    title = removePunc(title);
-    console.log(JSON.stringify(getArtistTrackObj(title)));
-    arr.push(title);
-  }
-  console.log(arr);
-  // let test = resp['0'].data.title;
-  // console.log(test);
-});
+  axios.get(`https://www.reddit.com/r/${subreddit}/top/.json?t=${time}`)
+    .catch(err => console.log(err))
+    .then(resp => resp.data.data.children)
+    .then(resp => {
+      // Iterate through all posts in response
+      for (post in resp) {
+        let title = cleanPostTitle(resp[post].data.title);
+      }
+    });
+};
+
+getTopPosts('lofihouse');
