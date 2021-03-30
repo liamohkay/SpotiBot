@@ -1,9 +1,9 @@
 // Libraries, dependencies, components
 import qs from 'qs';
 import axios from 'axios';
-import Spotify from 'spotify-web-api-js';
 import React, { useState, useEffect } from 'react';
 import UserInfo from './UserInfo.jsx';
+import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
 
 const App = () => {
@@ -14,11 +14,17 @@ const App = () => {
   useEffect(() => {
     let url = window.location.href;
     if (url.match(/\#access_token/)) {
-      const token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-      setToken(token);
-      SpotifyAPI.setAccessToken(token);
+      const tokenStr = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+      SpotifyAPI.setAccessToken(tokenStr);
+      setToken(tokenStr);
     }
   }, [loaded]);
+
+  const handlePlaylist = () => {
+    SpotifyAPI.getUserPlaylists('liamohkay')
+      .catch(err => console.log(err))
+      .then(data => console.log(data))
+  }
 
   return (
     <div id="app">
@@ -39,6 +45,7 @@ const App = () => {
           <UserInfo token={token}/>
         </div>
       ) }
+      <button onClick={handlePlaylist}>Get Playlists</button>
     </div>
   );
 };
