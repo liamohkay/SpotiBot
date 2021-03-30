@@ -10,12 +10,13 @@ const getTopPosts = (subreddit, callback, n=10, time='week') => {
 
 // Removes tags (ft <artist>) and [feat <artist>] from title
 const removeFeatures = title => title.replace(/[([](FEAT|FT).*[\)\]]/i, '');
-
 // Removes tags with "extended" enclosed by () or []
 const removeExtended = title => title.replace(/[([](EXTENDED).*[\)\]]/i, '');
-
 // Removes years in format (yyyy) or [yyyy] from titles
 const removeYears = title => title.replace(/[([]\d{4}[\)\]]/i, '');
+// Removes enclosed () [] tags that contain the word mix
+const removeMix = title => title.replace(/[([].*\s{1,5}.*[\)\]]/i, '');
+
 
 
 getTopPosts('lofihouse', resp => {
@@ -23,7 +24,9 @@ getTopPosts('lofihouse', resp => {
   for (post in resp) {
     let title = resp[post].data.title;
     title = removeFeatures(title);
+    title = removeExtended(title);
     title = removeYears(title);
+    title = removeMix(title);
     arr.push(title);
   }
   console.log(arr);
