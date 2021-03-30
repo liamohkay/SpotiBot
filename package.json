@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "nodemon server/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liamohkay/hr-lax42-mvp.git"
