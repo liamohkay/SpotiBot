@@ -17,6 +17,7 @@
   "homepage": "https://github.com/liamohkay/hr-lax42-mvp#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "spotify-web-api-js": "^1.5.1"
   }
 }

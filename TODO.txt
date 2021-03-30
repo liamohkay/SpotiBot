@@ -3,6 +3,9 @@ Reddit (EC)
 - Gives users ability to search subreddits
 
 Spotify
+Do i cheat and use a library for auth? LOLOL
+- MVP = library
+- Full app = vv
 - Set up oauth2
 - Set up add to playlist by song uri
 - EC: Set up create new playlist
