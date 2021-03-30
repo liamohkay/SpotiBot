@@ -15,9 +15,8 @@ const server = express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   // Routes
-  .use('/login', controllers.login)
+  .get('/login', controllers.login)
+  .get('/callback', controllers.callback)
   .use(express.static(path.join(__dirname, '../client/dist/')))
-
-
 
 server.listen(port, () => console.log(`Listening on port: ${port}`));
