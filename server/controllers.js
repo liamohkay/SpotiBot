@@ -26,7 +26,8 @@ module.exports = {
         response_type: 'code',
         client_id: config.client,
         redirect_uri: config.redirect_uri,
-        state: state
+        state: state,
+        scope: 'playlist-modify-public'
       }));
   },
 
@@ -37,9 +38,7 @@ module.exports = {
     var storedState = req.cookies ? req.cookies[stateKey] : null;
 
     if (state === null || state !== storedState) {
-      res.redirect('/#' +querystring.stringify({
-          error: 'state_mismatch'
-        }));
+      res.redirect('/#' + querystring.stringify({ error: 'state_mismatch' }));
     } else {
       res.clearCookie(stateKey);
       var authOptions = {
@@ -88,5 +87,34 @@ module.exports = {
         }
       });
     }
+  },
+
+  refresh: (req, res) => {
+    // requesting access token from refresh token
+    var refresh_token = req.query.refresh_token;
+    var authOptions = {
+      url: 'https://accounts.spotify.com/api/token',
+      headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+      form: {
+        grant_type: 'refresh_token',
+        refresh_token: refresh_token
+      },
+      json: true
+    };
+
+    axios.post(authOptions, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+        var access_token = body.access_token;
+        res.send({
+          'access_token': access_token
+        });
+      }
+    })
+  },
+
+  playlist: (req, res) => {
+    axios.get('https://api.spotify.com/v1/me/playlists', req.headers)
+      .catch(err => console.log(err))
+      .then(resp => resp)
   }
 }
