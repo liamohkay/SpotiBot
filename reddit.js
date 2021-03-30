@@ -76,8 +76,14 @@ const getTopPosts = (subreddit, n=10, time='week') => {
       // Iterate through all posts in response
       for (post in resp) {
         let title = cleanPostTitle(resp[post].data.title);
+        let artistTrackObj = getArtistTrackObj(title);
+        if (!artistTrackObj) continue;
+        topPosts.push(artistTrackObj);
       }
+      console.log(topPosts);
     });
 };
 
-getTopPosts('lofihouse');
+module.exports = {
+  getTopPosts
+}
