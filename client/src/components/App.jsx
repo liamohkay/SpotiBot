@@ -13,13 +13,15 @@ const App = () => {
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState(SpotiBotData);
   const [playlists, setPlaylists] = useState();
+  const [selected, setSelected] = useState();
 
   // Creates list of stored playlist names
   useEffect(() => {
     let names = [];
     if (data) Object.keys(data).map(name => names.push(name));
     setPlaylists(names);
-    console.log(names);
+    // setSelected(data[names[0]]);
+    setSelected(data[names[1]]);
   }, [data]);
 
   // Sets API token upon authorization
@@ -31,6 +33,9 @@ const App = () => {
       setToken(tokenStr);
     }
   }, [loaded]);
+
+  // Event listener that updates "selected" to the clicked playlist
+  const handleSelect = (e) => setSelected(data[e.target.value]);
 
   const handlePlaylist = () => {
     console.log(data);
@@ -53,6 +58,7 @@ const App = () => {
 
   return (
     <div id="app">
+      {JSON.stringify(selected)}
       {/* Conditional login screen if client has not authorized */}
       { token ? null : (
         <div id="login-container">
@@ -67,14 +73,19 @@ const App = () => {
       { !token ? null : (
 
         <div id="app-container">
-          <h1>SpotiBot</h1>
-
           <div id="sidebar-container">
             <UserInfo token={token}/>
-            <Playlists playlists={playlists} />
+            <Playlists playlists={playlists} handleSelect={handleSelect}/>
           </div>
 
-          <SubredditList data={data} setData={setData}/>
+          <div id="main-container">
+            <h1>SpotiBot</h1>
+            <SubredditList
+              selected={selected}
+              data={data}
+              setData={setData}
+            />
+          </div>
 
         </div>
       ) }
