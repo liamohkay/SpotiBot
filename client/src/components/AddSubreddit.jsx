@@ -1,3 +1,5 @@
+// Libraries & dependencies
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const AddSubreddit = ({ selected, data, setData, setClick }) => {
@@ -13,6 +15,12 @@ const AddSubreddit = ({ selected, data, setData, setClick }) => {
     newData[selected].subreddits.push(newSub);
     setData(newData);
     setClick(prev => !prev);
+
+    // Save new data for persistence
+    axios.post('/save', {
+      dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
+      data: newData
+    }).catch(err => console.log(err))
   }
 
   return (

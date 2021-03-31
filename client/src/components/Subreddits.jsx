@@ -16,10 +16,7 @@ const SubredditList = ({ token, selected, data, setData }) => {
     setSubreddits(data[selected].subreddits);
     SpotifyAPI.getPlaylist(data[selected].id)
       .catch(err => console.log(err))
-      .then(resp => {
-        console.log(resp);
-        setSelectedInfo(resp);
-      })
+      .then(resp => setSelectedInfo(resp))
   }, [selected, clicked]);
 
   return (

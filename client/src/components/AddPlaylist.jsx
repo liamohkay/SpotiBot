@@ -50,7 +50,7 @@ const AddPlaylist = (props) => {
                 newData[newPlaylist.name] = playlistInfo;
                 setData(newData);
                 setLoaded(prev => !prev);
-                console.log('data', data);
+
                 // Save new data for persistence
                 axios.post('/save', {
                   dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
