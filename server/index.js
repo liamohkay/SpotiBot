@@ -36,7 +36,7 @@ var generateRandomString = function(length) {
 
 // Login route to auth spotify account
 app.get('/login', function(req, res) {
-  let scope = 'user-read-private user-read-email';
+  let scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
   let state = generateRandomString(16);
   res.cookie(stateKey, state);
 

@@ -18,7 +18,7 @@ const SubredditList = ({ token, selected, data, setData }) => {
 
       <RunBot
         token={token}
-        playlist={data[selected].id}
+        playlistID={data[selected].id}
         subreddits={subreddits}
       />
 

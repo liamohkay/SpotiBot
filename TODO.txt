@@ -24,3 +24,23 @@ Front End
   - EC: set automatic script frequency
 
 
+  Constr.prototype.createPlaylist = function (userId, options, callback) {
+    var requestData = {
+      url: _baseUri + '/users/' + encodeURIComponent(userId) + '/playlists',
+      type: 'POST',
+      postData: options
+    };
+    return _checkParamsAndPerformRequest(requestData, options, callback);
+  };
+
+"disco",
+"giegling",
+"house",
+"idm",
+"lofihouse",
+"minimal",
+"theoverload",
+"slavhouse",
+"techno",
+"tech_house",
+"truehouse"
