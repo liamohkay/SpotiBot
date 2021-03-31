@@ -22,3 +22,18 @@ Front End
   - Add/remove subreddits
   - Set time period for which to search top posts (day, week, month)
   - EC: set automatic script frequency
+
+
+// "dubtechno",
+//       "disco",
+//       "giegling",
+//       "house",
+//       "idm",
+//       "lofihouse",
+//       "minimal",
+//       "theoverload",
+//       "slavhouse",
+//       "techno",
+//       "tech_house",
+//       "truehouse"
+//     ]

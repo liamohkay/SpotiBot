@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 const AddSubreddit = ({ selected, data, setData, setClick }) => {
-  const [newSub, setNewSub] = useState('');
+  const [newSub, setNewSub] = useState();
+
   const handleChange = (e) => setNewSub(e.target.value);
   const handleAdd = (e) => {
     e.preventDefault();
@@ -10,6 +11,7 @@ const AddSubreddit = ({ selected, data, setData, setClick }) => {
     setData(newData);
     setClick(prev => !prev);
   }
+
   return (
     <form>
       <input type="text" name="newSub" onChange={handleChange}></input>

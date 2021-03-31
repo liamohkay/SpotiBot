@@ -65,7 +65,7 @@ const getArtistTrackObj = title => {
 };
 
 // Retreives top posts from user specified subreddit. n & time default to 10 & 'week'
-const getTopPosts = (subreddit, n=10, time='week') => {
+const getTopPosts = (subreddit, callback, n=10, time='week') => {
   let topPosts = [];
 
   axios.get(`https://www.reddit.com/r/${subreddit}/top/.json?t=${time}`)
@@ -79,8 +79,10 @@ const getTopPosts = (subreddit, n=10, time='week') => {
         if (!artistTrackObj) continue;
         topPosts.push(artistTrackObj);
       }
-      console.log(topPosts);
+
+      callback(topPosts)
     });
+
 };
 
 module.exports = {

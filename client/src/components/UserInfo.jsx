@@ -9,11 +9,7 @@ const UserInfo = ({ token }) => {
   useEffect(() => {
     axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
       .catch(err => console.log(err))
-      .then(resp => {
-        setUser(resp.data)
-        console.log(resp.data);
-        console.log(resp.data.images[0].url);
-        })
+      .then(resp => setUser(resp.data))
   }, [token])
 
   return (

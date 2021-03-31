@@ -21,7 +21,6 @@ const App = () => {
     if (data) Object.keys(data).map(name => names.push(name));
     setPlaylists(names);
     setSelected(names[1]);
-    console.log('chaning')
   }, [data]);
 
   // Sets API token upon authorization
@@ -81,6 +80,7 @@ const App = () => {
           <div id="main-container">
             <h1>SpotiBot</h1>
             <SubredditList
+              token={token}
               selected={selected}
               data={data}
               setData={setData}
