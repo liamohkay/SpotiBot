@@ -66,10 +66,7 @@ const App = () => {
       { !token || !user ? null : (
         <div id="app-container">
           <div id="sidebar-container">
-            <UserInfo
-              token={token}
-              user={user}
-            />
+            <UserInfo user={user} />
             <Playlists
               playlists={playlists}
               handleSelect={handleSelect}

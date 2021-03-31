@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React from 'react';
 
-const UserInfo = ({ token, user }) => {
+const UserInfo = ({ user }) => {
   return (
     <>
       { !user ? null : (
