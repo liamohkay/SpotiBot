@@ -8,7 +8,12 @@ const SubredditList = ({ selected, data, setData }) => {
       <ul>
         { Object.keys(subreddits).map(sub => <li key={sub}>{sub}</li>) }
       </ul>
-      <AddSubreddit data={data} setData={setData}/>
+
+      <AddSubreddit
+        subreddits={subreddits}
+        data={data}
+        setData={setData}
+      />
     </div>
   );
 }

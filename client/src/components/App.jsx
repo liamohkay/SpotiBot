@@ -35,7 +35,7 @@ const App = () => {
   }, [loaded]);
 
   // Event listener that updates "selected" to the clicked playlist
-  const handleSelect = (e) => setSelected(data[e.target.value]);
+  const handleSelect = (e) => setSelected(data[e.target.innerText]);
 
   const handlePlaylist = () => {
     console.log(data);
@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <div id="app">
-      {JSON.stringify(selected)}
+
       {/* Conditional login screen if client has not authorized */}
       { token ? null : (
         <div id="login-container">
@@ -69,13 +69,13 @@ const App = () => {
         </div>
       ) }
 
-      {/* App after authorization from Spotify */}
+      {/* App after Spotify authorization */}
       { !token ? null : (
 
         <div id="app-container">
           <div id="sidebar-container">
-            <UserInfo token={token}/>
-            <Playlists playlists={playlists} handleSelect={handleSelect}/>
+            <UserInfo token={token} />
+            <Playlists playlists={playlists} handleSelect={handleSelect} />
           </div>
 
           <div id="main-container">
