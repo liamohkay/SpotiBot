@@ -1,19 +1,10 @@
 // Libraries & dependencies
 import axios from 'axios';
-import React, { useState,  useEffect } from 'react';
+import React from 'react';
 
-
-const UserInfo = ({ token }) => {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
-      .catch(err => console.log(err))
-      .then(resp => setUser(resp.data))
-  }, [token])
-
+const UserInfo = ({ token, user }) => {
   return (
-    <div>
+    <>
       { !user ? null : (
         <div id="user-container">
           <img id="profile-pic" src={user.images[0].url}/>
@@ -22,7 +13,7 @@ const UserInfo = ({ token }) => {
           <div id="followers">followers {user.followers.total}</div>
         </div>
       ) }
-    </div>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ const SubredditList = ({ token, selected, data, setData }) => {
   const [subreddits, setSubreddits] = useState(data[selected].subreddits);
   const [clicked, setClick] = useState(true);
 
+  // Updates displayed subreddits for currently selected playlist
   useEffect(() => {
     setSubreddits(data[selected].subreddits);
   }, [selected, clicked]);

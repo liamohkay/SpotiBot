@@ -49,7 +49,7 @@ const RunBot = ({ token, playlistID, subreddits }) => {
             .catch(err => console.log(err))
             .then(resp => {
               let trackResults = resp.tracks.items;
-              // If there is a match & track i snot already in playlist, add to playlist
+              // If there is a match & track is not already in playlist, add to playlist
               trackResults.map(track => {
                 if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
                   setTracksToAdd(prev => [...prev, track.uri]);

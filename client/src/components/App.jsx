@@ -1,17 +1,21 @@
 // Libraries, dependencies, components
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Playlists from './Playlists.jsx';
-import UserInfo from './UserInfo.jsx';
-import SubredditList from './SubredditList.jsx';
-import Spotify from 'spotify-web-api-js';
 import SpotiBotData from '../../../spotibot.json';
+import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
+// Sidebar components
+import UserInfo from './UserInfo.jsx';
+import Playlists from './Playlists.jsx';
+import CreatePlaylist from './CreatePlaylist.jsx';
+// Main app components
+import SubredditList from './SubredditList.jsx';
 
 const App = () => {
-  const [token, setToken] = useState()
-  const [loaded, setLoaded] = useState(false)
+  const [token, setToken] = useState();
+  const [loaded, setLoaded] = useState(false);
   const [data, setData] = useState(SpotiBotData);
+  const [user, setUser] = useState();
   const [playlists, setPlaylists] = useState();
   const [selected, setSelected] = useState();
 
@@ -33,27 +37,17 @@ const App = () => {
     }
   }, [loaded]);
 
-  // Event listener that updates "selected" to the clicked playlist
+  // Gets user info upon authorization
+  useEffect(() => {
+    if (token) {
+      axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
+        .catch(err => console.log(err))
+        .then(resp => setUser(resp.data))
+    }
+  }, [token])
+
+  // Updates "selected" to the user-clicked playlist
   const handleSelect = (e) => setSelected(e.target.innerText);
-
-  const handlePlaylist = () => {
-    console.log(data);
-    // fetch('../../../spotibot.json', { headers: {
-    //   'Content-Type': 'application/json'
-    // }})
-    //   .then(data => console.log(data))
-    //   .catch(err => console.log(err))
-    // SpotifyAPI.getUserPlaylists('liamohkay')
-    //   .catch(err => console.log(err))
-    //   .then(data => console.log(data))
-
-    /// get single playlist
-    // SpotifyAPI.getPlaylist('37i9dQZEVXcCwTwHgx6kYA')
-    //   .catch(err => console.log(err))
-    //   .then(data => console.log(data))
-
-    // data.name: data.id
-  }
 
   return (
     <div id="app">
@@ -69,16 +63,27 @@ const App = () => {
       ) }
 
       {/* App after Spotify authorization */}
-      { !token ? null : (
-
+      { !token || !user ? null : (
         <div id="app-container">
           <div id="sidebar-container">
-            <UserInfo token={token} />
-            <Playlists playlists={playlists} handleSelect={handleSelect} />
+            <UserInfo
+              token={token}
+              user={user}
+            />
+            <Playlists
+              playlists={playlists}
+              handleSelect={handleSelect}
+            />
+            <CreatePlaylist
+              token={token}
+              userID={user.id}
+              data={data}
+              setData={setData}
+              setSelected={setSelected}
+            />
           </div>
 
           <div id="main-container">
-            <h1>SpotiBot</h1>
             <SubredditList
               token={token}
               selected={selected}
@@ -90,7 +95,6 @@ const App = () => {
         </div>
       ) }
 
-      <button onClick={handlePlaylist}>Get Playlists</button>
     </div>
   );
 };
