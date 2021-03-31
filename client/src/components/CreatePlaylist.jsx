@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
 
-const CreatePlaylist = ({ token, userID, data, setData, setSelected }) => {
+const CreatePlaylist = (props) => {
+  const { token, userID, data, setData, setSelected, setLoaded } = props;
   const [clicked, setClicked] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState({
     name: '',
@@ -38,14 +39,12 @@ const CreatePlaylist = ({ token, userID, data, setData, setSelected }) => {
                 };
                 newData[newPlaylist.name] = playlistInfo;
                 setData(newData);
-                setSelected(newPlaylist.name);
-                console.log(data);
+                setLoaded(prev => !prev);
                 alert(`Created your playlist ${newPlaylist.name}`);
             }
           });
         })
-      });
-
+      })
     setClicked(false);
   }
 

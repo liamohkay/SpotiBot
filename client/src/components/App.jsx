@@ -25,7 +25,7 @@ const App = () => {
     if (data) Object.keys(data).map(name => names.push(name));
     setPlaylists(names);
     setSelected(names[1]);
-  }, [data]);
+  }, [data, loaded]);
 
   // Sets API token upon authorization
   useEffect(() => {
@@ -77,6 +77,7 @@ const App = () => {
               data={data}
               setData={setData}
               setSelected={setSelected}
+              setLoaded={setLoaded}
             />
           </div>
 
