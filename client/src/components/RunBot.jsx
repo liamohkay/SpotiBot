@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import reddit from '../../../server/reddit.js';
 import Spotify from 'spotify-web-api-js';
-import DataFrame from 'dataframe-js';
 const SpotifyAPI = new Spotify();
 
 const RunBot = ({ token, playlistID, subreddits }) => {
   const [currentTracks, setCurrentTracks] = useState([]);
   const [tracksToAdd, setTracksToAdd] = useState([]);
-  const [searching, setSearching] = useState(null);
+  const [foundCount, setFoundCount] = useState(0);
   const [render, setRender] = useState(true);
   SpotifyAPI.setAccessToken(token);
+
+  useEffect(() => setFoundCount(tracksToAdd.length), [tracksToAdd])
 
   // useEffect(() => {
   //   SpotifyAPI.getPlaylistTracks(playlistID)
@@ -19,21 +20,27 @@ const RunBot = ({ token, playlistID, subreddits }) => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    if (tracksToAdd.length === 0) alert('Press "Run SpotiBot" first!');
+
+    if (tracksToAdd.length === 0) {
+      alert('🤖 Press "Run SpotiBot" first!');
+      return;
+    }
     if (tracksToAdd.length <= 100) {
       SpotifyAPI.addTracksToPlaylist(playlistID, tracksToAdd)
         .catch(err => console.log(err))
-        .then(() => alert(`Done! Added ${tracksToAdd.length} songs <3!`))
+        .then(() => alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`))
+        .then(() => setTracksToAdd([]))
     }
     if (tracksToAdd.length > 100) {
       let multiplier = 0;
       while ((tracksToAdd.length / (100 * multiplier) >= 1)) {
         let trackSlice = tracksToAdd.slice(100 * multiplier, 100 * (multiplier + 1));
-        SpotifyAPI.addTracksToPlaylist('5NyvUjVlYwozPzVD91Pwhg', trackSlice)
-          .catch(err => console.log(err))
-          .then(() => alert(`Done! Added ${tracksToAdd.length} songs <3!`))
         multiplier++;
+        SpotifyAPI.addTracksToPlaylist(playlistID, trackSlice)
+          .catch(err => console.log(err))
+          .then(() => setTracksToAdd([]))
       }
+      alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`);
     }
   }
 
@@ -56,16 +63,6 @@ const RunBot = ({ token, playlistID, subreddits }) => {
                 }
               });
             })
-            .then(() => {
-              setSearching(`${post.artist} - ${post.track}`);
-              setRender(prev => !prev);
-            })
-            .then(() => {
-              if (postIndex === subPosts.length - 1) {
-                setSearching(null);
-                setRender(prev => !prev);
-              }
-            })
         });
       });
     });
@@ -73,7 +70,7 @@ const RunBot = ({ token, playlistID, subreddits }) => {
 
   return (
     <div>
-      { !searching ? null : <div>Searching for: { searching }</div> }
+      { foundCount === 0 ? null : `🤖 found ${foundCount} songs to add!`}
       <button id="run-bot" onClick={handleRun}>Run SpotiBot</button>
       <button id="add-songs" onClick={handleAdd}>Add Songs</button>
     </div>

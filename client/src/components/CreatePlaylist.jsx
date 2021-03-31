@@ -26,8 +26,10 @@ const CreatePlaylist = (props) => {
 
   // Saves playlist to spotify + returns ID for persistence
   const handleSave = (e) => {
+    e.preventDefault();
+
     SpotifyAPI.createPlaylist(userID, newPlaylist)
-      .catch(err => alert(`Failed to create your playlist ${newPlaylist.name}`))
+      .catch(err => alert(`🤖 Failed to create your playlist ${newPlaylist.name}`))
       .then(() => {
         SpotifyAPI.getUserPlaylists(userID)
         .catch(err => console.log(err))
@@ -46,7 +48,7 @@ const CreatePlaylist = (props) => {
                 newData[newPlaylist.name] = playlistInfo;
                 setData(newData);
                 setLoaded(prev => !prev);
-                alert(`Created your playlist ${newPlaylist.name}`);
+                alert(`🤖 Created your playlist ${newPlaylist.name}!`);
             }
           });
         })
