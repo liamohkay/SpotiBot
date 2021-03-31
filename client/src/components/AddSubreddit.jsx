@@ -13,6 +13,7 @@ const AddSubreddit = ({ selected, data, setData, setClick }) => {
     newData[selected].subreddits.push(newSub);
     setData(newData);
     setClick(prev => !prev);
+    setNewSub('');
   }
 
   return (
