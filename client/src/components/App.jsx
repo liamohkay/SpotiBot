@@ -9,7 +9,7 @@ import UserInfo from './UserInfo.jsx';
 import Playlists from './Playlists.jsx';
 import CreatePlaylist from './CreatePlaylist.jsx';
 // Main app components
-import SubredditList from './SubredditList.jsx';
+import Subreddits from './Subreddits.jsx';
 
 const App = () => {
   const [token, setToken] = useState();
@@ -24,7 +24,7 @@ const App = () => {
     let names = [];
     if (data) Object.keys(data).map(name => names.push(name));
     setPlaylists(names);
-    setSelected(names[1]);
+    setSelected(names[0]);
   }, [data, loaded]);
 
   // Sets API token upon authorization
@@ -82,7 +82,7 @@ const App = () => {
           </div>
 
           <div id="main-container">
-            <SubredditList
+            <Subreddits
               token={token}
               selected={selected}
               data={data}
