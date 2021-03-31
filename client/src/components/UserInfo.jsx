@@ -17,9 +17,14 @@ const UserInfo = ({ token }) => {
   }, [token])
 
   return (
-    <div id="user-container">
+    <div>
       { !user ? null : (
-        <img src={user.images[0].url}/>
+        <div id="user-container">
+          <img src={user.images[0].url}/>
+          <div id="display-name">{user.display_name}</div>
+          <div id="username">{user.id}</div>
+          <div id="followers">followers {user.followers.total}</div>
+        </div>
       ) }
     </div>
   );

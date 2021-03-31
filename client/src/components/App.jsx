@@ -1,15 +1,16 @@
 // Libraries, dependencies, components
-import qs from 'qs';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import UserInfo from './UserInfo.jsx';
+import SubredditList from './SubredditList.jsx';
 import Spotify from 'spotify-web-api-js';
+import SpotiBotData from '../../../spotibot.json';
 const SpotifyAPI = new Spotify();
 
 const App = () => {
   const [token, setToken] = useState()
   const [loaded, setLoaded] = useState(false)
-  const [data, setData] = useState();
+  const [data, setData] = useState(SpotiBotData);
 
   useEffect(() => {
     let url = window.location.href;
@@ -21,9 +22,22 @@ const App = () => {
   }, [loaded]);
 
   const handlePlaylist = () => {
-    SpotifyAPI.getUserPlaylists('liamohkay')
-      .catch(err => console.log(err))
-      .then(data => console.log(data))
+    console.log(data);
+    // fetch('../../../spotibot.json', { headers: {
+    //   'Content-Type': 'application/json'
+    // }})
+    //   .then(data => console.log(data))
+    //   .catch(err => console.log(err))
+    // SpotifyAPI.getUserPlaylists('liamohkay')
+    //   .catch(err => console.log(err))
+    //   .then(data => console.log(data))
+
+    /// get single playlist
+    // SpotifyAPI.getPlaylist('37i9dQZEVXcCwTwHgx6kYA')
+    //   .catch(err => console.log(err))
+    //   .then(data => console.log(data))
+
+    // data.name: data.id
   }
 
   return (
@@ -40,11 +54,18 @@ const App = () => {
 
       {/* App after authorization from Spotify */}
       { !token ? null : (
+
         <div id="app-container">
           <h1>SpotiBot</h1>
-          <UserInfo token={token}/>
+
+          <div id="sidebar-container">
+            <UserInfo token={token}/>
+          </div>
+          <SubredditList data={data} setData={setData}/>
+
         </div>
       ) }
+
       <button onClick={handlePlaylist}>Get Playlists</button>
     </div>
   );
