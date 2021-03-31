@@ -24,16 +24,3 @@ Front End
   - EC: set automatic script frequency
 
 
-// "dubtechno",
-//       "disco",
-//       "giegling",
-//       "house",
-//       "idm",
-//       "lofihouse",
-//       "minimal",
-//       "theoverload",
-//       "slavhouse",
-//       "techno",
-//       "tech_house",
-//       "truehouse"
-//     ]

@@ -65,14 +65,14 @@ const getArtistTrackObj = title => {
 };
 
 // Retreives top posts from user specified subreddit. n & time default to 10 & 'week'
-const getTopPosts = (subreddit, callback, n=10, time='week') => {
+const getTopPosts = (subreddit, callback, time='week') => {
   let topPosts = [];
 
   axios.get(`https://www.reddit.com/r/${subreddit}/top/.json?t=${time}`)
     .catch(err => console.log(err))
     .then(resp => resp.data.data.children)
     .then(resp => {
-      // Iterate through all posts in response
+      // Iterate through all posts in response & split artist - track into obj
       for (post in resp) {
         let title = cleanPostTitle(resp[post].data.title);
         let artistTrackObj = getArtistTrackObj(title);
