@@ -24,19 +24,28 @@ const SubredditList = ({ token, selected, data, setData }) => {
 
   return (
     <div id="subreddits-container">
-        { !selectedInfo ? null : (
-          <div id="subreddits-header">
-            {/* <img id="selected-img" src={selectedInfo.images[0].url} /> */}
-            <h1>
-              <a href={selectedInfo.external_urls.spotify}>{selected}</a>
-            </h1>
-            <RunBot
-              token={token}
-              playlistID={data[selected].id}
-              subreddits={subreddits}
-            />
+      { !selectedInfo ? null : (
+        <div id="subreddits-header">
+
+          { selectedInfo.images.length === 0 ? null : (
+            <img id="selected-playlist-img" src={selectedInfo.images[1].url} />
+          ) }
+
+          <div>
+            <h2><a href={selectedInfo.external_urls.spotify}>{selected}</a></h2>
+            <p>{ selectedInfo.description }</p>
+            <div> Followers: { selectedInfo.followers.total }</div>
           </div>
-        ) }
+          <br/>
+
+          <RunBot
+            token={token}
+            playlistID={data[selected].id}
+            subreddits={subreddits}
+            setClick={setClick}
+          />
+        </div>
+      ) }
       <div id="subreddits-main">
         <h4>Subreddits in { selected }</h4>
         <ul>{ subreddits.map(sub => <li key={sub}>{sub}</li>) }</ul>

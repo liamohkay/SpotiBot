@@ -7,7 +7,7 @@ const SpotifyAPI = new Spotify();
 // Sidebar components
 import UserInfo from './UserInfo.jsx';
 import Playlists from './Playlists.jsx';
-import CreatePlaylist from './CreatePlaylist.jsx';
+import AddPlaylist from './AddPlaylist.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
 
@@ -71,7 +71,7 @@ const App = () => {
               playlists={playlists}
               handleSelect={handleSelect}
             />
-            <CreatePlaylist
+            <AddPlaylist
               token={token}
               userID={user.id}
               data={data}
@@ -80,7 +80,7 @@ const App = () => {
               setLoaded={setLoaded}
             />
           </div>
-
+          { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
           <div id="main-container">
             <Subreddits
               token={token}
@@ -89,6 +89,7 @@ const App = () => {
               setData={setData}
             />
           </div>
+          ) }
 
         </div>
       ) }

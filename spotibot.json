@@ -1,22 +1,25 @@
 {
-  "My Awesome Playlist": {
-    "id": "2jMLGrhugMz0eS5FqfyN7O",
-    "subreddits": [
-      "boogiemusic",
-      "deephouse",
-      "dubtechno",
-      "disco",
-      "giegling",
-      "house",
-      "idm",
-      "lofihouse",
-      "minimal",
-      "theoverload",
-      "slavhouse",
-      "techno",
-      "tech_house",
-      "truehouse"
-    ]
-  }
+	"My Awesome Playlist": {
+		"id": "2jMLGrhugMz0eS5FqfyN7O",
+		"subreddits": [
+			"boogiemusic",
+			"deephouse",
+			"dubtechno",
+			"disco",
+			"giegling",
+			"house",
+			"idm",
+			"lofihouse",
+			"minimal",
+			"theoverload",
+			"slavhouse",
+			"techno",
+			"tech_house",
+			"truehouse"
+		]
+	},
+	"testing": {
+		"id": "1Yjc95S6QFMMgHRaqJztcK",
+		"subreddits": []
+	}
 }
-

@@ -3,9 +3,9 @@ const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const writeJsonFile = require('write-json-file');
 const request = require('request');
 const querystring = require('querystring');
 const config = require('./config.js');
@@ -34,8 +34,16 @@ var generateRandomString = function(length) {
   return text;
 };
 
+// Saves updated spotibot data to local file
+app.post('/save', (req, res) => {
+  console.log(req.body);
+  writeJsonFile(req.body.dir, req.body.data)
+    .catch(err => res.status(400).send(err))
+    .then(() => res.status(204).send())
+});
+
 // Login route to auth spotify account
-app.get('/login', function(req, res) {
+app.get('/login', (req, res) => {
   let scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
   let state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -50,7 +58,8 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/callback', function(req, res) {
+// Redirect request to serve client token after getting auth code
+app.get('/callback', (req, res) => {
   let code = req.query.code || null;
   let state = req.query.state || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -70,7 +79,7 @@ app.get('/callback', function(req, res) {
       },
     };
 
-    request.post(authOptions, function(err, resp, body) {
+    request.post(authOptions, (err, resp, body) => {
       if (!err && resp.statusCode === 200) {
         let access_token = body.access_token;
         let refresh_token = body.refresh_token;
@@ -90,9 +99,8 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/refresh_token', function(req, res) {
-
-  // requesting access token from refresh token
+// Refresh token endpoint that allows past users to get a fresh token w/o another oauth
+app.get('/refresh_token', (req, res) => {
   let refresh_token = req.query.refresh_token;
   let authOptions = {
     json: true,
@@ -104,7 +112,7 @@ app.get('/refresh_token', function(req, res) {
     },
   };
 
-  request.post(authOptions, function(error, response, body) {
+  request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       let access_token = body.access_token;
       res.send({

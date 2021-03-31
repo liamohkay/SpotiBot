@@ -3,21 +3,17 @@ import reddit from '../../../server/reddit.js';
 import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
 
-const RunBot = ({ token, playlistID, subreddits }) => {
+const RunBot = ({ token, playlistID, subreddits, setClick }) => {
   const [currentTracks, setCurrentTracks] = useState([]);
   const [tracksToAdd, setTracksToAdd] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
   const [render, setRender] = useState(true);
   SpotifyAPI.setAccessToken(token);
 
+  // A visual indicator to the user that SpotiBot is running
   useEffect(() => setFoundCount(tracksToAdd.length), [tracksToAdd])
 
-  // useEffect(() => {
-  //   SpotifyAPI.getPlaylistTracks(playlistID)
-  //     .catch(err => console.log(err))
-  //     .then(resp => setCurrentTracks(resp))
-  // })
-
+  // Adds songs found by the bot to selected spotify playlist
   const handleAdd = (e) => {
     e.preventDefault();
 
@@ -70,9 +66,10 @@ const RunBot = ({ token, playlistID, subreddits }) => {
 
   return (
     <div>
-      { foundCount === 0 ? null : `🤖 found ${foundCount} songs to add!`}
       <button id="run-bot" onClick={handleRun}>Run SpotiBot</button>
       <button id="add-songs" onClick={handleAdd}>Add Songs</button>
+      <br/>
+      { foundCount === 0 ? <br/> : `🤖 found ${foundCount} songs to add!`}
     </div>
   );
 }

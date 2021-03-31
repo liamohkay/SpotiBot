@@ -1,8 +1,10 @@
+// Libraries + dependencies
+import axios from 'axios';
 import React, { useState } from 'react';
 import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
 
-const CreatePlaylist = (props) => {
+const AddPlaylist = (props) => {
   const { token, userID, data, setData, setSelected, setLoaded } = props;
   const [clicked, setClicked] = useState(false);
   const [newPlaylist, setNewPlaylist] = useState({
@@ -32,10 +34,10 @@ const CreatePlaylist = (props) => {
       .catch(err => alert(`🤖 Failed to create your playlist ${newPlaylist.name}`))
       .then(() => {
         SpotifyAPI.getUserPlaylists(userID)
-        .catch(err => console.log(err))
-        .then(resp => {
-          // Map through playlist to find the one we just created
-          resp.items.map(item => {
+          .catch(err => console.log(err))
+          .then(resp => {
+            // Map through playlist to find the one we just created
+            resp.items.map(item => {
             if (
               item.name === newPlaylist.name &&
               item.description === newPlaylist.description
@@ -48,8 +50,15 @@ const CreatePlaylist = (props) => {
                 newData[newPlaylist.name] = playlistInfo;
                 setData(newData);
                 setLoaded(prev => !prev);
-                alert(`🤖 Created your playlist ${newPlaylist.name}!`);
-            }
+                console.log('data', data);
+                // Save new data for persistence
+                axios.post('/save', {
+                  dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
+                  data: newData
+                })
+                  .catch(err => console.log(err))
+                  .then(alert(`🤖 Created your playlist ${newPlaylist.name}!`));
+              }
           });
         })
       })
@@ -60,7 +69,7 @@ const CreatePlaylist = (props) => {
     <div id="create-playlist-container">
       <form>
         <button id="create-playlist-btn" onClick={handleClick}>
-          { !clicked ? 'Create New Playlist' : 'Hide' }
+          { !clicked ? 'Add New Playlist' : 'Hide' }
         </button>
         { !clicked ? null : (
           <div id="save-playlist-container">
@@ -78,4 +87,4 @@ const CreatePlaylist = (props) => {
   );
 }
 
-export default CreatePlaylist;
+export default AddPlaylist;
