@@ -1,6 +1,7 @@
 // Libraries, dependencies, components
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Playlists from './Playlists.jsx';
 import UserInfo from './UserInfo.jsx';
 import SubredditList from './SubredditList.jsx';
 import Spotify from 'spotify-web-api-js';
@@ -11,7 +12,17 @@ const App = () => {
   const [token, setToken] = useState()
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState(SpotiBotData);
+  const [playlists, setPlaylists] = useState();
 
+  // Creates list of stored playlist names
+  useEffect(() => {
+    let names = [];
+    if (data) Object.keys(data).map(name => names.push(name));
+    setPlaylists(names);
+    console.log(names);
+  }, [data]);
+
+  // Sets API token upon authorization
   useEffect(() => {
     let url = window.location.href;
     if (url.match(/\#access_token/)) {
@@ -60,7 +71,9 @@ const App = () => {
 
           <div id="sidebar-container">
             <UserInfo token={token}/>
+            <Playlists playlists={playlists} />
           </div>
+
           <SubredditList data={data} setData={setData}/>
 
         </div>

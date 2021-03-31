@@ -5,6 +5,9 @@
   },
   "Spotibot": {
     "id": "7KZLEKtS0l2sbeIFr7QDFn",
-    "subreddits": ""
+    "subreddits": {
+      "house": "",
+      "tech_house": ""
+    }
   }
 }
