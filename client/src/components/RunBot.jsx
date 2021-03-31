@@ -20,10 +20,20 @@ const RunBot = ({ token, playlistID, subreddits }) => {
   const handleAdd = (e) => {
     e.preventDefault();
     if (tracksToAdd.length === 0) alert('Press "Run SpotiBot" first!');
-    if (tracksToAdd.length > 0) {
+    if (tracksToAdd.length <= 100) {
       SpotifyAPI.addTracksToPlaylist(playlistID, tracksToAdd)
         .catch(err => console.log(err))
         .then(() => alert(`Done! Added ${tracksToAdd.length} songs <3!`))
+    }
+    if (tracksToAdd.length > 100) {
+      let multiplier = 0;
+      while ((tracksToAdd.length / (100 * multiplier) >= 1)) {
+        let trackSlice = tracksToAdd.slice(100 * multiplier, 100 * (multiplier + 1));
+        SpotifyAPI.addTracksToPlaylist('5NyvUjVlYwozPzVD91Pwhg', trackSlice)
+          .catch(err => console.log(err))
+          .then(() => alert(`Done! Added ${tracksToAdd.length} songs <3!`))
+        multiplier++;
+      }
     }
   }
 
@@ -39,13 +49,10 @@ const RunBot = ({ token, playlistID, subreddits }) => {
             .catch(err => console.log(err))
             .then(resp => {
               let trackResults = resp.tracks.items;
-
               // If there is a match & track i snot already in playlist, add to playlist
               trackResults.map(track => {
                 if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
-                  if (currentTracks.indexOf(track.id) === -1) {
-                    setTracksToAdd(prev => [...prev, track.id]);
-                  }
+                  setTracksToAdd(prev => [...prev, track.uri]);
                 }
               });
             })
@@ -66,7 +73,6 @@ const RunBot = ({ token, playlistID, subreddits }) => {
 
   return (
     <div>
-      { tracksToAdd.length }
       { !searching ? null : <div>Searching for: { searching }</div> }
       <button id="run-bot" onClick={handleRun}>Run SpotiBot</button>
       <button id="add-songs" onClick={handleAdd}>Add Songs</button>
