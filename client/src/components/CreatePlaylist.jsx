@@ -10,6 +10,12 @@ const CreatePlaylist = (props) => {
     description: '',
   });
 
+  // Toggles conditional render of new playlist form
+  const handleClick = (e) => {
+    e.preventDefault();
+    setClicked(prev => !prev);
+  }
+
   // Tracks + stores user input for new playlist name + description
   const handleChange = (e) => {
     setNewPlaylist({
@@ -51,7 +57,9 @@ const CreatePlaylist = (props) => {
   return (
     <div id="create-playlist-container">
       <form>
-        <button id="create-playlist-btn" onClick={() => setClicked(true)}>Create New Playlist</button>
+        <button id="create-playlist-btn" onClick={handleClick}>
+          { !clicked ? 'Create New Playlist' : 'Hide' }
+        </button>
         { !clicked ? null : (
           <div id="save-playlist-container">
             <h3>Enter A Playlist Name</h3>
