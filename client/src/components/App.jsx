@@ -20,8 +20,8 @@ const App = () => {
     let names = [];
     if (data) Object.keys(data).map(name => names.push(name));
     setPlaylists(names);
-    // setSelected(data[names[0]]);
-    setSelected(data[names[1]]);
+    setSelected(names[1]);
+    console.log('chaning')
   }, [data]);
 
   // Sets API token upon authorization
@@ -35,7 +35,7 @@ const App = () => {
   }, [loaded]);
 
   // Event listener that updates "selected" to the clicked playlist
-  const handleSelect = (e) => setSelected(data[e.target.innerText]);
+  const handleSelect = (e) => setSelected(e.target.innerText);
 
   const handlePlaylist = () => {
     console.log(data);

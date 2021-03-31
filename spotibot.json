@@ -1,13 +1,10 @@
 {
   "Discover Weekly": {
     "id": "37i9dQZEVXcCwTwHgx6kYA",
-    "subreddits": ""
+    "subreddits": []
   },
   "Spotibot": {
     "id": "7KZLEKtS0l2sbeIFr7QDFn",
-    "subreddits": {
-      "house": "",
-      "tech_house": ""
-    }
+    "subreddits": ["house", "tech_house"]
   }
 }

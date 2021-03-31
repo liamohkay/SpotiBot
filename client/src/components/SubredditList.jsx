@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddSubreddit from './AddSubreddit.jsx';
 
 const SubredditList = ({ selected, data, setData }) => {
-  const { id, subreddits } = selected;
+  const [subreddits, setSubreddits] = useState(data[selected].subreddits);
+  const [clicked, setClick] = useState(true);
+
+  useEffect(() => {
+    setSubreddits(data[selected].subreddits);
+  }, [selected, clicked]);
+
+  console.log(data);
   return (
     <div id="subreddit-list-container">
       <ul>
-        { Object.keys(subreddits).map(sub => <li key={sub}>{sub}</li>) }
+        { subreddits.map(sub => <li key={sub}>{sub}</li>) }
       </ul>
 
       <AddSubreddit
-        subreddits={subreddits}
+        selected={selected}
         data={data}
         setData={setData}
+        setClick={setClick}
       />
     </div>
   );
