@@ -1,0 +1,39 @@
+#app {
+  display: 'flex';
+  font-family: 'Poppins', sans-serif;
+  color: whitesmoke;
+  background-color: black;
+}
+
+#app-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Sidebar */
+#sidebar-container {
+  margin-top: 7%;
+}
+
+#user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+}
+
+#profile-pic {
+  width: 25%;
+  height: 25%;
+  border-radius: 100%;
+  box-shadow: 5px 5px 5px rgba(150, 148, 148, 0.2);
+}
+
+#display-name {
+  font-weight: bold;
+  margin-bottom: 3%;
+}

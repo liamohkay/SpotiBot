@@ -1,4 +1,4 @@
 /node_modules/
 package-lock.json
 server/config.js
-client/dist/
+client/dist/bundle.js

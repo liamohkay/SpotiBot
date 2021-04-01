@@ -8,9 +8,11 @@ const UserInfo = ({ user }) => {
       { !user ? null : (
         <div id="user-container">
           <img id="profile-pic" src={user.images[0].url}/>
-          <div id="display-name">{user.display_name}</div>
-          <div id="username">{user.id}</div>
-          <div id="followers">followers {user.followers.total}</div>
+          <div>
+            <div id="display-name">{user.display_name}</div>
+            <div id="username">@{user.id}</div>
+            <div id="followers">Followers: {user.followers.total}</div>
+          </div>
         </div>
       ) }
     </>
