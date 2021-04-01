@@ -58,9 +58,9 @@ const App = () => {
       {/* Conditional login screen if client has not authorized */}
       { token ? null : (
         <div id="login-container">
-          <h1>SpotiBot</h1>
+          <h1 id="title">SpotiBot</h1>
           <a href="/login">
-            <button onClick={() => setLoaded(true)}>Login With Spotify</button>
+            <button id="login-btn" onClick={() => setLoaded(true)}>Login With Spotify</button>
           </a>
         </div>
       ) }

@@ -8,6 +8,25 @@ ul {
   list-style: none;
 }
 
+#title {
+  font-size: 4rem;
+  padding-bottom: 5%;
+}
+#login-container {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#login-btn {
+  height: 250%;
+  width: 250%;
+  font-size: 2rem;
+  margin-left: -70%;
+}
+
 #app {
   display: 'flex';
   font-family: 'Poppins', sans-serif;
