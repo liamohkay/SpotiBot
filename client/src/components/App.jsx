@@ -67,18 +67,21 @@ const App = () => {
         <div id="app-container">
           <div id="sidebar-container">
             <UserInfo user={user} />
-            <Playlists
-              playlists={playlists}
-              handleSelect={handleSelect}
-            />
-            <AddPlaylist
-              token={token}
-              userID={user.id}
-              data={data}
-              setData={setData}
-              setSelected={setSelected}
-              setLoaded={setLoaded}
-            />
+            <div id="sidebar-playlists">
+              <h2>Your SpotiBot Playlists</h2>
+              <Playlists
+                playlists={playlists}
+                handleSelect={handleSelect}
+              />
+              <AddPlaylist
+                token={token}
+                userID={user.id}
+                data={data}
+                setData={setData}
+                setSelected={setSelected}
+                setLoaded={setLoaded}
+              />
+            </div>
           </div>
           { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
           <div id="main-container">

@@ -1,22 +1,27 @@
+button {
+  background-color: rgba(30, 215, 96, 1);
+  border: none;
+  color: white;
+  border-radius: 20px;
+}
+ul {
+  list-style: none;
+}
+
 #app {
   display: 'flex';
   font-family: 'Poppins', sans-serif;
-  color: whitesmoke;
-  background-color: black;
+  width: 95vw;
+  height: 100vh;
 }
-
 #app-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
 
-ul {
-  list-style: none;
-}
-
 /* Sidebar */
 #sidebar-container {
-  margin-top: 7%;
+  margin: 7% 5% 7% 5%;
 }
 
 #user-container {
@@ -24,16 +29,88 @@ ul {
   align-items: center;
   justify-content: center;
   gap: 10%;
+  padding: 5% 0% 5% 0%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  background-color: rgba(30, 215, 96, .3);
 }
-
+#user-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
 #profile-pic {
   width: 25%;
   height: 25%;
+  margin-left: -10%;
   border-radius: 100%;
-  box-shadow: 5px 5px 5px rgba(150, 148, 148, 0.2);
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 1);
 }
-
 #display-name {
   font-weight: bold;
-  margin-bottom: 3%;
+}
+
+#sidebar-playlists {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(237, 214, 175, 0.1);
+  height: 65vh;
+  margin: 10% 0% 0% 0%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+}
+#playlist-container {
+  display: flex;
+  align-items: left;
+  position: relative;
+  margin-left: -30%;
+  margin-top: -5%;
+}
+#save-playlist-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+#create-playlist-btn {
+  position: absolute;
+  width: 15%;
+  left: 10%;
+  bottom: 7%;
+  height: 5%;
+}
+#save-playlist-btn {
+  position: relative;
+  left: 10%;
+  width: 92%;
+}
+
+/* Main Subreddit */
+#main-container {
+  margin: 3.5% 5% 7% 5%;
+  background-color: rgba(237, 214, 175, 0.1);
+  border-radius: 15px;
+}
+
+#subreddits-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15%;
+  flex-direction: row;
+  padding: 3% 0% 3% 0%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  background-color: rgba(237, 214, 175, 0.1);
+}
+#selected-playlist-img {
+  height: 25%;
+  width: 25%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  margin-left: -15%;
+}
+#selected-info {
+
 }

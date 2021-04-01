@@ -68,20 +68,19 @@ const AddPlaylist = (props) => {
   return (
     <div id="create-playlist-container">
       <form>
+        { !clicked ? null : (
+          <div id="save-playlist-container">
+            <button id="save-playlist-btn" onClick={handleSave}>Save Playlist</button>
+            <h4>Enter A Playlist Name</h4>
+            <input type="text" name="name" onChange={handleChange}></input>
+            <br/>
+            <h4>Enter A Description</h4>
+            <textarea type="text" name="description" onChange={handleChange}></textarea>
+          </div>
+        ) }
         <button id="create-playlist-btn" onClick={handleClick}>
           { !clicked ? 'Add New Playlist' : 'Hide' }
         </button>
-        { !clicked ? null : (
-          <div id="save-playlist-container">
-            <h3>Enter A Playlist Name</h3>
-            <input type="text" name="name" onChange={handleChange}></input>
-            <br/>
-            <h3>Enter A Description</h3>
-            <textarea type="text" name="description" onChange={handleChange}></textarea>
-            <br/>
-            <button id="save-playlist-btn" onClick={handleSave}>Save Playlist</button>
-          </div>
-        ) }
       </form>
     </div>
   );
