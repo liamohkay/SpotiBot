@@ -4,7 +4,9 @@ const Playlists = ({ playlists, handleSelect }) => {
   return (
     <div id="playlist-container">
       <ul>
-        { playlists.map(name => <li onClick={handleSelect} key={name}>🤖 {name}</li>) }
+        { playlists.map(name => (
+          <li onClick={handleSelect} key={name}>{name}</li>
+        )) }
       </ul>
     </div>
   );

@@ -13,6 +13,7 @@ const SubredditList = ({ token, selected, data, setData }) => {
 
   // Updates displayed subreddits & playlist info currently selected playlist
   useEffect(() => {
+    console.log(data[selected]);
     setSubreddits(data[selected].subreddits);
     SpotifyAPI.getPlaylist(data[selected].id)
       .catch(err => console.log(err))
@@ -20,7 +21,7 @@ const SubredditList = ({ token, selected, data, setData }) => {
   }, [selected, clicked]);
 
   return (
-    <div id="subreddits-container">
+    <div>
       { !selectedInfo ? null : (
         <div id="subreddits-header">
           { selectedInfo.images.length === 0 ? null : (
@@ -41,9 +42,12 @@ const SubredditList = ({ token, selected, data, setData }) => {
           </div>
         </div>
       ) }
-      <div id="subreddits-main">
-        <h4>Subreddits in { selected }</h4>
-        <ul>{ subreddits.map(sub => <li key={sub}>{sub}</li>) }</ul>
+
+      <div id="subreddits-container">
+        <h2>Subreddits in { selected }</h2>
+        <div id="subreddits-main">
+          { subreddits.map(sub => <div className="subreddit-tile" key={sub}>{sub}</div>) }
+        </div>
       </div>
 
       <AddSubreddit
@@ -52,7 +56,6 @@ const SubredditList = ({ token, selected, data, setData }) => {
         setData={setData}
         setClick={setClick}
       />
-
     </div>
   );
 }

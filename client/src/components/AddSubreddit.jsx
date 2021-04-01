@@ -24,10 +24,10 @@ const AddSubreddit = ({ selected, data, setData, setClick }) => {
   }
 
   return (
-    <form>
+    <div id="add-subbreddit-container">
       <input type="text" name="newSub" onChange={handleChange}></input>
-      <button onClick={handleAdd}>Add Subreddit</button>
-    </form>
+      <button id="add-subbreddit-btn" onClick={handleAdd}>Add Subreddit</button>
+    </div>
   );
 }
 
