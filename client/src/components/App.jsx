@@ -11,8 +11,9 @@ import Playlists from './Playlists.jsx';
 import AddPlaylist from './AddPlaylist.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
+import Login from './Login.jsx';
 // Contexts
-// import FirebaseProvider from '../firebase/FirebaseContext.jsx';
+import { AuthProvider } from '../contexts/AuthContext.js';
 
 
 const App = () => {
@@ -54,54 +55,59 @@ const App = () => {
   const handleSelect = (e) => setSelected(e.target.innerText);
 
   return (
-    <div id="app">
+    <>
+    <AuthProvider>
+      <div id="app">
 
-      {/* Conditional login screen if client has not authorized */}
-      { token ? null : (
-        <div id="login-container">
-          <h1 id="title">SpotiBot</h1>
-          <a href="/login">
-            <button id="login-btn" onClick={() => setLoaded(true)}>Login With Spotify</button>
-          </a>
-        </div>
-      ) }
+        {/* Conditional login screen if client has not authorized */}
+        { token ? null : (
+          // <div id="login-container">
+          //   <h1 id="title">SpotiBot</h1>
+          //   <a href="/login">
+          //     <button id="login-btn" onClick={() => setLoaded(true)}>Login With Spotify</button>
+          //   </a>
+          // </div>
+          <Login />
+        ) }
 
-      {/* App after Spotify authorization */}
-      { !token || !user ? null : (
-        <div id="app-container">
-          <div id="sidebar-container">
-            <UserInfo user={user} />
-            <div id="sidebar-playlists">
-              <h2>Your SpotiBot Playlists</h2>
-              <Playlists
-                playlists={playlists}
-                handleSelect={handleSelect}
-              />
-              <AddPlaylist
+        {/* App after Spotify authorization */}
+        { !token || !user ? null : (
+          <div id="app-container">
+            <div id="sidebar-container">
+              <UserInfo user={user} />
+              <div id="sidebar-playlists">
+                <h2>Your SpotiBot Playlists</h2>
+                <Playlists
+                  playlists={playlists}
+                  handleSelect={handleSelect}
+                />
+                <AddPlaylist
+                  token={token}
+                  userID={user.id}
+                  data={data}
+                  setData={setData}
+                  setSelected={setSelected}
+                  setLoaded={setLoaded}
+                />
+              </div>
+            </div>
+            { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
+            <div id="main-container">
+              <Subreddits
                 token={token}
-                userID={user.id}
+                selected={selected}
                 data={data}
                 setData={setData}
-                setSelected={setSelected}
-                setLoaded={setLoaded}
               />
             </div>
-          </div>
-          { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
-          <div id="main-container">
-            <Subreddits
-              token={token}
-              selected={selected}
-              data={data}
-              setData={setData}
-            />
-          </div>
-          ) }
+            ) }
 
-        </div>
-      ) }
+          </div>
+        ) }
 
-    </div>
+      </div>
+      </AuthProvider>
+    </>
   );
 };
 

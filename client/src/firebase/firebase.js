@@ -5,7 +5,7 @@ import 'firebase/storage';
 import 'firebase/auth';
 
 // Initialize firebase app
-const fb = firebase.intializeApp({
+const fb = firebase.initializeApp({
   apiKey: firebaseConfig.apiKey,
   authDomain: firebaseConfig.authDomain,
   projectId: firebaseConfig.projectId,

@@ -1,11 +1,11 @@
 // Libraries + dependencies
 import axios from 'axios';
 import React from 'react';
-import { useFirebase } from './contexts/FirebaseContext.js';
+import { useAuth } from '../contexts/AuthContext.js';
 import useText from '../hooks/useText.js';
 
-export const Login = () => {
-  const { login, currentUser } = useFirebase();
+const Login = () => {
+  const { login, currentUser } = useAuth();
   const [text, setText] = useText({
     email: '',
     password: ''
@@ -13,7 +13,9 @@ export const Login = () => {
 
   return (
     <div id="login" className="container">
-      <h1>{ JSON.strigfy(text) }</h1>
+      <h1>{ JSON.stringify(text) }</h1>
     </div>
   );
 }
+
+export default Login;
