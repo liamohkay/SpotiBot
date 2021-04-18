@@ -12,6 +12,7 @@ import AddPlaylist from './AddPlaylist.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
 import LoginSignup from './LoginSignup.jsx';
+import LinkSpotify from './LinkSpotify.jsx';
 // Contexts
 import { AuthProvider } from '../contexts/AuthContext.js';
 
@@ -61,17 +62,14 @@ const App = () => {
 
         {/* Conditional login screen if client has not authorized */}
         { token ? null : (
-          // <div id="login-container">
-          //   <h1 id="title">SpotiBot</h1>
-          //   <a href="/login">
-          //     <button id="login-btn" onClick={() => setLoaded(true)}>Login With Spotify</button>
-          //   </a>
-          // </div>
-          <LoginSignup />
+          <div>
+            <LoginSignup />
+            <LinkSpotify />
+          </div>
         ) }
 
         {/* App after Spotify authorization */}
-        { !token || !user ? null : (
+        {/* { !token || !user ? null : (
           <div id="app-container">
             <div id="sidebar-container">
               <UserInfo user={user} />
@@ -105,6 +103,7 @@ const App = () => {
           </div>
         ) }
 
+      </div> */}
       </div>
       </AuthProvider>
     </>

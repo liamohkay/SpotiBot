@@ -14,7 +14,7 @@ const Login = () => {
   // onClick events for login + signup buttons
   const handleLogin = () => {
     login(text.email, text.password)
-      .then(() => null)
+      .then(() => console.log('Signin successful'))
       .catch(err => console.log(err))
   }
 
