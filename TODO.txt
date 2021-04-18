@@ -1,8 +1,15 @@
 - Add firebase auth + database storage for persistence
   - ^^ make this context
+
+
+
+
   - Add playlist check verification + delete if no longer in spotify playlists
   - Add private routes + redirect on no user auth to login + link to spotify pages
   - Refactor oauth
+  - Auth context spotify access token as well
+  - Set up as env variables for deployment
+  - I mean you probably wanna stop scraping access token from url and actually res return it from oauth
 - Fix bot to reset state after search + next playlist selection
 - Add infinite scroll to subredddit list
 - Add delete playlist option ^^
@@ -10,12 +17,15 @@
 - On 'enter' press add subreddits to list
    -> stretch (subreddit verifcation)
 - Make 'Create Playlist' a modal
+- Refactor spotify search & remove dupes while keeping maximum searchabillity
 
 - CLEAN UP EVERYTHING :(
-- Restyle entire front end
+- Restyle entire front end (think of a better fucking layout than what you have)
 - Make repo public
 - Check first time to contextual paint
   - GZIP bundle.js
   - Lighthouse shit
 * Deploy to heroku (maybe --- need to figure out display resolutions for most common screens & style for this as well)
 - ReadMe + gifs
+
+basically just rewrite the entire fucking thing
