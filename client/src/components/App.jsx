@@ -47,10 +47,7 @@ const App = () => {
   }, [token])
 
   // Updates "selected" to the user-clicked playlist
-  const handleSelect = (e) => {
-    console.log(e.target.innerText);
-    setSelected(e.target.innerText);
-  };
+  const handleSelect = (e) => setSelected(e.target.innerText);
 
   return (
     <div id="app">

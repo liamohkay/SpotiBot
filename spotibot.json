@@ -15,7 +15,28 @@
 			"slavhouse",
 			"techno",
 			"tech_house",
-			"truehouse"
+			"truehouse",
+			"electro"
+		]
+	},
+	"Space Milk": {
+		"id": "7kd7P1LoRFtr8hZ7MFzQPL",
+		"subreddits": [
+			"giegling",
+			"slav_house",
+			"true_house",
+			"theoverload",
+			"house",
+			"electro"
+		]
+	},
+	"Hey a new playlist": {
+		"id": "6Mi2yKvkx0B9vnenNiebQm",
+		"subreddits": [
+			"house",
+			"tech_house",
+			"techno",
+			"dubtechno"
 		]
 	}
 }

@@ -42,7 +42,6 @@ const RunBot = ({ token, playlistID, subreddits, setClick }) => {
 
   const handleRun = (e) => {
     e.preventDefault();
-
     subreddits.map((sub, subIndex) => {
       reddit.getTopPosts(sub, subPosts => {
         subPosts.map((post, postIndex) => {
