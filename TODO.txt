@@ -19,6 +19,7 @@
 
 - CLEAN UP EVERYTHING :(
 - Restyle entire front end (think of a better fucking layout than what you have)
+- Fix the header on the main section so its consistnetly centered
 - Make repo public
 - Check first time to contextual paint
   - GZIP bundle.js

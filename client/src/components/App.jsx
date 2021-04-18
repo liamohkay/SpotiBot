@@ -11,7 +11,7 @@ import Playlists from './Playlists.jsx';
 import AddPlaylist from './AddPlaylist.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
-import Login from './Login.jsx';
+import LoginSignup from './LoginSignup.jsx';
 // Contexts
 import { AuthProvider } from '../contexts/AuthContext.js';
 
@@ -67,7 +67,7 @@ const App = () => {
           //     <button id="login-btn" onClick={() => setLoaded(true)}>Login With Spotify</button>
           //   </a>
           // </div>
-          <Login />
+          <LoginSignup />
         ) }
 
         {/* App after Spotify authorization */}

@@ -6,7 +6,7 @@ import { auth } from '../firebase/firebase.js';
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={currentUser, login, signup, logout}>
+    <AuthContext.Provider value={{currentUser, login, signup, logout}}>
       {!loading && children}
     </AuthContext.Provider>
   )
