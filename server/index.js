@@ -34,13 +34,12 @@ var generateRandomString = function(length) {
   return text;
 };
 
-// Saves updated spotibot data to local file
-app.post('/save', (req, res) => {
-  console.log(req.body);
-  writeJsonFile(req.body.dir, req.body.data)
-    .catch(err => res.status(400).send(err))
-    .then(() => res.status(204).send())
-});
+// // Saves updated spotibot data to local file
+// app.post('/save', (req, res) => {
+//   writeJsonFile(req.body.dir, req.body.data)
+//     .catch(err => res.status(400).send(err))
+//     .then(() => res.status(204).send())
+// });
 
 // Login route to auth spotify account
 app.get('/login', (req, res) => {
