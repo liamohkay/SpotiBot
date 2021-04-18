@@ -19,24 +19,11 @@
 			"electro"
 		]
 	},
-	"Space Milk": {
-		"id": "7kd7P1LoRFtr8hZ7MFzQPL",
+	"Test Playlist": {
+		"id": "5aP6gTZpSrCUNTMzZVkqCU",
 		"subreddits": [
-			"giegling",
-			"slav_house",
-			"true_house",
-			"theoverload",
-			"house",
-			"electro"
-		]
-	},
-	"Hey a new playlist": {
-		"id": "6Mi2yKvkx0B9vnenNiebQm",
-		"subreddits": [
-			"house",
 			"tech_house",
-			"techno",
-			"dubtechno"
+			"boogiemusic"
 		]
 	}
 }
