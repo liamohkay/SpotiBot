@@ -30,7 +30,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "request": "^2.88.2",
-    "spotify-web-api-js": "^1.5.1"
+    "spotify-web-api-js": "^1.5.1",
+    "write-json-file": "^4.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
