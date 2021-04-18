@@ -1,15 +1,19 @@
-// Libraries, dependencies, components
+// Libraries + dependencies
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import SpotiBotData from '../../../spotibot.json';
 import Spotify from 'spotify-web-api-js';
 const SpotifyAPI = new Spotify();
+
 // Sidebar components
 import UserInfo from './UserInfo.jsx';
 import Playlists from './Playlists.jsx';
 import AddPlaylist from './AddPlaylist.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
+// Contexts
+// import FirebaseProvider from '../firebase/FirebaseContext.jsx';
+
 
 const App = () => {
   const [token, setToken] = useState();

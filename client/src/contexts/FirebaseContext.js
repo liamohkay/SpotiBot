@@ -1,6 +1,6 @@
 // Libraries + dependencies
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import { auth } from './firebase.js';
+import { auth } from '../firebase/firebase.js';
 
 // Firebase auth context
 const FirebaseContext = createContext();
@@ -17,10 +17,11 @@ export const FirebaseProvider = ({ children }) => {
   const logout = () => auth.signOut();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
-    }
+    });
+    return unsubscribe;
   }, []);
 
   const values = {

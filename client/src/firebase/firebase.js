@@ -14,6 +14,6 @@ const fb = firebase.intializeApp({
   appId: firebaseConfig.appId
 });
 
-export const storage =  fb.storage();
+export const storage = fb.storage();
 export const auth = fb.auth();
 export default fb;

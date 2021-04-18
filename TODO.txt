@@ -2,8 +2,6 @@
   - ^^ make this context
 
 
-
-
   - Add playlist check verification + delete if no longer in spotify playlists
   - Add private routes + redirect on no user auth to login + link to spotify pages
   - Refactor oauth
