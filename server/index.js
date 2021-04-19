@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const writeJsonFile = require('write-json-file');
 const request = require('request');
 const querystring = require('querystring');
 const config = require('./config.js');
@@ -33,13 +32,6 @@ var generateRandomString = function(length) {
   }
   return text;
 };
-
-// // Saves updated spotibot data to local file
-// app.post('/save', (req, res) => {
-//   writeJsonFile(req.body.dir, req.body.data)
-//     .catch(err => res.status(400).send(err))
-//     .then(() => res.status(204).send())
-// });
 
 // Login route to auth spotify account
 app.get('/login', (req, res) => {

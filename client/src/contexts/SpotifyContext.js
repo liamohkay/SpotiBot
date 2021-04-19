@@ -34,7 +34,7 @@ export const SpotifyProvider = ({ children }) => {
       db.collection('users').doc(currentUser.uid).get()
         .then(resp => {
           setPlaylists(resp.data().playlists);
-          setSelected(playlists[0]);
+          setSelected(resp.data().playlists[0]);
         })
         .catch(err => console.log(err))
     }
