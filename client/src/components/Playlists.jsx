@@ -2,17 +2,21 @@
 import React, { useState,  useEffect } from 'react';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 
-const Playlists = ({ handleSelect }) => {
-  const { playlists } = useSpotify();
+const Playlists = () => {
+  const { playlists, handleSelect } = useSpotify();
 
   return (
-    <div id="playlist-container">
-      <ul>
-        {/* { playlists.map(plist => (
-          <li onClick={handleSelect} key={plist.name}>{plist.name}</li>
-        )) } */}
-      </ul>
-    </div>
+    <>
+      { !playlists ? null : (
+        <div id="playlist-container">
+          <ul>
+            { playlists.map(plist => (
+              <li onClick={handleSelect} key={plist.name}>{plist.name}</li>
+            )) }
+          </ul>
+        </div>
+      ) }
+    </>
   );
 }
 

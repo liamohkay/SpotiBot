@@ -40,15 +40,16 @@ export const SpotifyProvider = ({ children }) => {
     }
   }, [])
 
+  let values = {
+    token,
+    SpotifyAPI,
+    playlists,
+    selected,
+    handleSelect
+  };
+
   return (
-    <SpotifyContext.Provider
-      value={{
-        token,
-        SpotifyAPI,
-        playlists,
-        selected,
-        handleSelect }}
-      >
+    <SpotifyContext.Provider value={values}>
       { children }
     </SpotifyContext.Provider>
   );
