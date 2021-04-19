@@ -10,9 +10,13 @@ const SpotifyContext = createContext();
 export const useSpotify = () => useContext(SpotifyContext);
 
 export const SpotifyProvider = ({ children }) => {
+  const { currentUser } = useAuth();
   const [token, setToken] = useState();
   const [playlists, setPlaylists] = useState();
-  const { currentUser } = useAuth();
+  const [selected, setSelected] = useState();
+
+  // Updates "selected" to the user-clicked playlist
+  const handleSelect = (e) => setSelected(e.target.innerText);
 
   // Stores API token upon authorization + gives token to api wrapper to make requests
   useEffect(() => {
@@ -24,17 +28,27 @@ export const SpotifyProvider = ({ children }) => {
     }
   }, []);
 
-  // Gets user playlist info on load from firestore up on sign in
+  // Gets user playlist info, sets intial selected playlist
   useEffect(() => {
     if (currentUser) {
       db.collection('users').doc(currentUser.uid).get()
-        .then(resp => setPlaylists(resp.data().playlists))
+        .then(resp => {
+          setPlaylists(resp.data().playlists);
+          setSelected(playlists[0]);
+        })
         .catch(err => console.log(err))
     }
   }, [])
 
   return (
-    <SpotifyContext.Provider value={{ token, SpotifyAPI, playlists }}>
+    <SpotifyContext.Provider
+      value={{
+        token,
+        SpotifyAPI,
+        playlists,
+        selected,
+        handleSelect }}
+      >
       { children }
     </SpotifyContext.Provider>
   );

@@ -15,7 +15,7 @@ import ProfileInfo from './ProfileInfo.jsx';
 import Subreddits from './Subreddits.jsx';
 
 const Dashboard = () => {
-  const { token, playlists } = useSpotify();
+  const { token } = useSpotify();
   // const [token, setToken] = useState();
   const [loaded, setLoaded] = useState(false);
   // const [data, setData] = useState(SpotiBotData);
@@ -31,35 +31,25 @@ const Dashboard = () => {
   //   setSelected(names[0]);
   // }, [data, loaded]);
 
-
-
-
-  // Updates "selected" to the user-clicked playlist
-  const handleSelect = (e) => setSelected(e.target.innerText);
-
   return (
     <>
-      { JSON.stringify(playlists) }
       {/* App after Spotify authorization */}
         { !token ? null : (
           <div id="app-container">
             <div id="sidebar-container">
               <ProfileInfo />
-              {/* <div id="sidebar-playlists">
+              <div id="sidebar-playlists">
                 <h2>Your SpotiBot Playlists</h2>
-                <Playlists
-                  playlists={playlists}
-                  handleSelect={handleSelect}
-                />
-                <AddPlaylist
+                <Playlists />
+                {/* <AddPlaylist
                   token={token}
                   userID={user.id}
                   data={data}
                   setData={setData}
                   setSelected={setSelected}
                   setLoaded={setLoaded}
-                />
-              </div> */}
+                /> */}
+              </div>
             </div>
             {/* { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
             <div id="main-container">
