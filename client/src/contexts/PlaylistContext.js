@@ -1,7 +1,11 @@
+// Libraries + dependencies
 import { db } from '../firebase/firebase.js';
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, useContext, createContext } from 'react';
 import { useAuth } from './AuthContext.js';
+import Spotify from 'spotify-web-api-js';
 
+// Context that provides playlist info, spotify access token + web api wrapper
+const SpotifyAPI = new Spotify();
 const PlaylistContext = createContext();
 export const usePlaylist = () => useContext(PlaylistContext);
 
@@ -10,12 +14,12 @@ export const PlaylistProvider = ({ children }) => {
   const [playlists, setPlaylists] = useState();
   const { currentUser } = useAuth();
 
-  // Sets API token upon authorization
+  // Stores API token upon authorization + gives token to api wrapper to make requests
   useEffect(() => {
     let url = window.location.href;
     if (url.match(/\#access_token/)) {
       const tokenStr = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-      // SpotifyAPI.setAccessToken(tokenStr);
+      SpotifyAPI.setAccessToken(tokenStr);
       setToken(tokenStr);
     }
   }, []);
@@ -30,7 +34,7 @@ export const PlaylistProvider = ({ children }) => {
   }, [])
 
   return (
-    <PlaylistContext.Provider value={{ token, playlists }}>
+    <PlaylistContext.Provider value={{ token, SpotifyAPI, playlists }}>
       { children }
     </PlaylistContext.Provider>
   );
