@@ -18,7 +18,7 @@ const Login = () => {
       .catch(err => console.log(err))
   }
 
-  // Creates user in firebase + intializes a doc w/ user playlists in db
+  // Creates firebase user & database entry w/ uid to store playlist info
   const handleSignup = () => {
     signup(text.email, text.password)
       .then(resp => {
@@ -32,10 +32,12 @@ const Login = () => {
   return (
     <div id="login" className="container">
       <h1>SpotiBot</h1>
-      <label htmlFor="email">Email</label>
-      <input type="text" name="email" onChange={setText}></input>
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" onChange={setText}></input>
+      <form>
+        <label htmlFor="email">Email</label>
+        <input type="text" name="email" onChange={setText}></input>
+        <label htmlFor="password">Password</label>
+        <input type="password" name="password" onChange={setText}></input>
+      </form>
       <button onClick={handleLogin}>Login</button>
       <button onClick={handleSignup}>Signup</button>
     </div>
