@@ -1,7 +1,7 @@
 // Libraries + dependencies
 import firebaseConfig from './fbConfig.js';
 import firebase from 'firebase/app';
-import 'firebase/storage';
+import 'firebase/firestore';
 import 'firebase/auth';
 
 // Initialize firebase app
@@ -14,6 +14,6 @@ const fb = firebase.initializeApp({
   appId: firebaseConfig.appId
 });
 
-export const storage = fb.storage();
+export const db = fb.firestore();
 export const auth = fb.auth();
 export default fb;

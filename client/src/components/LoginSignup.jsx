@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.js';
+import { db } from '../firebase/firebase.js';
 import useText from '../hooks/useText.js';
 
 const Login = () => {
@@ -10,16 +11,18 @@ const Login = () => {
   const history = useHistory();
   const [text, setText] = useText({ email: '', password: '' });
 
-  // onClick events for login + signup buttons
+  // Authenticates existing user w/ firebase
   const handleLogin = () => {
     login(text.email, text.password)
       .then(() => history.push('/link'))
       .catch(err => console.log(err))
   }
 
+  // Creates user in firebase + intializes a doc w/ user playlists in db
   const handleSignup = () => {
     signup(text.email, text.password)
       .then(resp => {
+        db.collection('users').doc(resp.user.uid).set({ playlists: [] });
         alert(`Account created for ${resp.user.email}`);
         history.push('/link');
       })

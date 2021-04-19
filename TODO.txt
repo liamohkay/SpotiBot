@@ -3,6 +3,12 @@
   - Add private routes + redirect on no user auth to login + link to spotify pages
   - Refactor oauth
 
+  - database
+    - on signup -> create new doc w/ user
+    - on login -> retrieve user doc from firestore & load database (probably should be context)
+    - indexed key should be uid from user Auth
+    - rules needs to be set so user can read/write to their specific doc
+
 
   - Add playlist check verification + delete if no longer in spotify playlists
   - Auth context spotify access token as well
