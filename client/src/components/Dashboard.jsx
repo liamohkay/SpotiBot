@@ -16,20 +16,8 @@ import Subreddits from './Subreddits.jsx';
 
 const Dashboard = () => {
   const { token } = useSpotify();
-  // const [token, setToken] = useState();
   const [loaded, setLoaded] = useState(false);
-  // const [data, setData] = useState(SpotiBotData);
-  // const [profile, setProfile] = useState();
-  // const [playlists, setPlaylists] = useState();
   const [selected, setSelected] = useState();
-
-  // // Creates list of stored playlist names
-  // useEffect(() => {
-  //   let names = [];
-  //   if (data) Object.keys(data).map(name => names.push(name));
-  //   setPlaylists(names);
-  //   setSelected(names[0]);
-  // }, [data, loaded]);
 
   return (
     <>
