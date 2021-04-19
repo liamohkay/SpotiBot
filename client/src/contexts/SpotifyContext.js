@@ -6,10 +6,10 @@ import Spotify from 'spotify-web-api-js';
 
 // Context that provides playlist info, spotify access token + web api wrapper
 const SpotifyAPI = new Spotify();
-const PlaylistContext = createContext();
-export const usePlaylist = () => useContext(PlaylistContext);
+const SpotifyContext = createContext();
+export const useSpotify = () => useContext(SpotifyContext);
 
-export const PlaylistProvider = ({ children }) => {
+export const SpotifyProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [playlists, setPlaylists] = useState();
   const { currentUser } = useAuth();
@@ -34,8 +34,8 @@ export const PlaylistProvider = ({ children }) => {
   }, [])
 
   return (
-    <PlaylistContext.Provider value={{ token, SpotifyAPI, playlists }}>
+    <SpotifyContext.Provider value={{ token, SpotifyAPI, playlists }}>
       { children }
-    </PlaylistContext.Provider>
+    </SpotifyContext.Provider>
   );
 }

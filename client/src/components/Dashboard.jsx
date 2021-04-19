@@ -2,8 +2,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { usePlaylist } from '../contexts/PlaylistContext.js';
-import SpotiBotData from '../../../spotibot.json';
+import { useSpotify } from '../contexts/SpotifyContext.js';
+// import SpotiBotData from '../../../spotibot.json';
 
 import PrivateRoute from './PrivateRoute.jsx';
 
@@ -15,11 +15,11 @@ import ProfileInfo from './ProfileInfo.jsx';
 import Subreddits from './Subreddits.jsx';
 
 const Dashboard = () => {
-  const { token, playlists } = usePlaylist();
+  const { token, playlists } = useSpotify();
   // const [token, setToken] = useState();
   const [loaded, setLoaded] = useState(false);
   // const [data, setData] = useState(SpotiBotData);
-  const [profile, setProfile] = useState();
+  // const [profile, setProfile] = useState();
   // const [playlists, setPlaylists] = useState();
   const [selected, setSelected] = useState();
 
@@ -32,14 +32,7 @@ const Dashboard = () => {
   // }, [data, loaded]);
 
 
-  // Gets spotify profile info upon authorization
-  useEffect(() => {
-    if (token) {
-      axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
-        .then(resp => setProfile(resp.data))
-        .catch(err => console.log(err))
-    }
-  }, [token])
+
 
   // Updates "selected" to the user-clicked playlist
   const handleSelect = (e) => setSelected(e.target.innerText);
@@ -48,7 +41,7 @@ const Dashboard = () => {
     <>
       { JSON.stringify(playlists) }
       {/* App after Spotify authorization */}
-        { !token || !profile ? null : (
+        { !token ? null : (
           <div id="app-container">
             <div id="sidebar-container">
               <ProfileInfo />

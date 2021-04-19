@@ -1,7 +1,7 @@
 // Libraries + dependencies
 import React from 'react';
 import { AuthProvider } from '../contexts/AuthContext.js';
-import { PlaylistProvider } from '../contexts/PlaylistContext.js';
+import { SpotifyProvider } from '../contexts/SpotifyContext.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Components
@@ -15,7 +15,7 @@ const App = () => {
   return (
   <>
     <AuthProvider>
-      <PlaylistProvider>
+      <SpotifyProvider>
         <Router>
           <Switch>
             <Route exact path="/login" render={() => <LoginSignup />} />
@@ -23,7 +23,7 @@ const App = () => {
             <PrivateRoute exact path="/" component={Dashboard} />
           </Switch>
         </Router>
-      </PlaylistProvider>
+      </SpotifyProvider>
     </AuthProvider>
   </>
   );
