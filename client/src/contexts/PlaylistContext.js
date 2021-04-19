@@ -10,7 +10,17 @@ export const PlaylistProvider = ({ children }) => {
   const [playlists, setPlaylists] = useState();
   const { currentUser } = useAuth();
 
-  // Gets user playlist info on load from firestore
+  // Sets API token upon authorization
+  useEffect(() => {
+    let url = window.location.href;
+    if (url.match(/\#access_token/)) {
+      const tokenStr = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+      // SpotifyAPI.setAccessToken(tokenStr);
+      setToken(tokenStr);
+    }
+  }, []);
+
+  // Gets user playlist info on load from firestore up on sign in
   useEffect(() => {
     if (currentUser) {
       db.collection('users').doc(currentUser.uid).get()
@@ -20,7 +30,7 @@ export const PlaylistProvider = ({ children }) => {
   }, [])
 
   return (
-    <PlaylistContext.Provider value={playlists}>
+    <PlaylistContext.Provider value={{ token, playlists }}>
       { children }
     </PlaylistContext.Provider>
   );
