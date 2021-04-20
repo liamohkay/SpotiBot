@@ -1,9 +1,7 @@
 // Libraries + dependencies
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSpotify } from '../contexts/SpotifyContext.js';
-// import SpotiBotData from '../../../spotibot.json';
 
 import PrivateRoute from './PrivateRoute.jsx';
 

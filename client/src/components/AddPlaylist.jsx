@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import useText from '../hooks/useText.js';
+import { db } from '../firebase/firebase.js';
+import { useAuth } from '../contexts/AuthContext.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 
 // const modalStyle = {
@@ -17,49 +19,45 @@ import { useSpotify } from '../contexts/SpotifyContext.js';
 // };
 
 const AddPlaylist = ({ spotifyID }) => {
-  // const { token, userID, data, setData, setSelected, setLoaded } = props;
+  const { currentUser } = useAuth();
   const { token, SpotifyAPI } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
-  const [newPlaylist, setNewPlaylist] = useText({ name: '', description: '' });
+  const [text, setText] = useText({ name: '', description: '' });
 
-  // // Saves playlist to spotify + returns ID for persistence
-  // const handleSave = (e) => {
-  //   e.preventDefault();
+  const postPlaylist = (playlist) => {
+    db.collection('users').doc(resp.user.uid).set({ playlists: [] });
+  }
 
-  //   SpotifyAPI.createPlaylist(userID, newPlaylist)
-  //     .catch(err => alert(`🤖 Failed to create your playlist ${newPlaylist.name}`))
-  //     .then(() => {
-  //       SpotifyAPI.getUserPlaylists(userID)
-  //         .catch(err => console.log(err))
-  //         .then(resp => {
-  //           // Map through playlist to find the one we just created
-  //           resp.items.map(item => {
-  //           if (
-  //             item.name === newPlaylist.name &&
-  //             item.description === newPlaylist.description
-  //           ) {
-  //               let newData = data;
-  //               let playlistInfo = {
-  //                 id: item.id,
-  //                 subreddits: []
-  //               };
-  //               newData[newPlaylist.name] = playlistInfo;
-  //               setData(newData);
-  //               setLoaded(prev => !prev);
+  // Saves playlist to spotify + returns ID for persistence
+  const handleSave = (e) => {
+    e.preventDefault();
 
-  //               // Save new data for persistence
-  //               axios.post('/save', {
-  //                 dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
-  //                 data: newData
-  //               })
-  //                 .catch(err => console.log(err))
-  //                 .then(alert(`🤖 Created your playlist ${newPlaylist.name}!`));
-  //             }
-  //         });
-  //       })
-  //     })
-  //   setClicked(false);
-  // }
+    SpotifyAPI.createPlaylist(spotifyID, text)
+      .catch(err => alert(`🤖 Failed to create your playlist ${text.name}`))
+      .then(() => {
+        SpotifyAPI.getUserPlaylists(spotifyID)
+          .then(resp => {
+            // Map through playlist to find the one we just created
+            resp.items.map(item => {
+              if (item.name === text.name && item.description === text.description) {
+                let newData = data;
+                let playlistInfo = {
+                  id: item.id,
+                  subreddits: []
+                };
+
+              // Save new data for persistence
+              axios.post('/save', {
+                dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
+                data: newData
+              })
+                .catch(err => console.log(err))
+                .then(alert(`🤖 Created your playlist ${newPlaylist.name}!`));
+            }
+          });
+        })
+      })
+  }
 
   return (
     <>
@@ -75,9 +73,9 @@ const AddPlaylist = ({ spotifyID }) => {
         <button id="close-modal" type="button" onClick={() => setIsOpen(false)}>x</button>
         <div id="save-playlist-container">
           <h4>Enter A Playlist Name</h4>
-          <input type="text" name="name" onChange={setNewPlaylist}></input>
+          <input type="text" name="name" onChange={setText}></input>
           <h4>Enter A Description</h4>
-          <textarea type="text" name="description" onChange={setNewPlaylist}></textarea>
+          <textarea type="text" name="description" onChange={setText}></textarea>
         </div>
         <button id="save-playlist-btn" onClick={() => setIsOpen(false)}>Save Playlist</button>
       </Modal>
