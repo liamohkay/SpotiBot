@@ -29,14 +29,7 @@ const Dashboard = () => {
               <div id="sidebar-playlists">
                 <h2>Your SpotiBot Playlists</h2>
                 <Playlists />
-                {/* <AddPlaylist
-                  token={token}
-                  userID={user.id}
-                  data={data}
-                  setData={setData}
-                  setSelected={setSelected}
-                  setLoaded={setLoaded}
-                /> */}
+                <AddPlaylist />
               </div>
             </div>
             {/* { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
