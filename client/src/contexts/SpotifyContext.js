@@ -33,11 +33,8 @@ export const SpotifyProvider = ({ children }) => {
     if (currentUser) {
       db.collection('users').doc(currentUser.uid).get()
         .then(resp => {
-          // let names = [];
-          // Object.values(resp.data()).map(playlist => names.push(playlist.name));
           setPlaylists(resp.data());
           // setSelected(resp.data().playlists[0]);
-          console.log('RESP', resp.data());
         })
         .catch(err => console.log(err))
     }

@@ -22,7 +22,7 @@ const Dashboard = () => {
     if (token) {
       axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
         .then(resp => setProfile(resp.data))
-        .catch(err => console.log(err))
+        .catch(err => alert(err.message))
     }
   }, [token])
 

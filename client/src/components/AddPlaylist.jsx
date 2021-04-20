@@ -22,41 +22,36 @@ const AddPlaylist = ({ spotifyID }) => {
   const { currentUser } = useAuth();
   const { token, SpotifyAPI } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
-  const [text, setText] = useText({ name: '', description: '' });
+  const [info, setInfo] = useText({ name: '', description: '' });
 
-  const postPlaylist = (playlist) => {
-    db.collection('users').doc(resp.user.uid).set({ playlists: [] });
+  // Saves playlist in firestore for persistence across sessions
+  const postPlaylist = (name, id) => {
+    let userRef = db.collection('users').doc(currentUser.uid);
+    userRef.collection('playlists').doc(id).set({
+      name: name,
+      subreddits: []
+    })
   }
 
   // Saves playlist to spotify + returns ID for persistence
   const handleSave = (e) => {
     e.preventDefault();
 
-    SpotifyAPI.createPlaylist(spotifyID, text)
-      .catch(err => alert(`🤖 Failed to create your playlist ${text.name}`))
+    SpotifyAPI.createPlaylist(spotifyID, info)
       .then(() => {
         SpotifyAPI.getUserPlaylists(spotifyID)
           .then(resp => {
-            // Map through playlist to find the one we just created
+            // Map through playlists to find the one we just created & extract id
             resp.items.map(item => {
-              if (item.name === text.name && item.description === text.description) {
-                let newData = data;
-                let playlistInfo = {
-                  id: item.id,
-                  subreddits: []
-                };
-
-              // Save new data for persistence
-              axios.post('/save', {
-                dir: '/Users/Liam/Desktop/Projects/MVP/spotibot.json',
-                data: newData
-              })
-                .catch(err => console.log(err))
-                .then(alert(`🤖 Created your playlist ${newPlaylist.name}!`));
-            }
-          });
+              if (item.name === info.name && item.description === info.description) {
+                postPlaylist(item.name, item.id);
+                alert(`🤖 Created your playlist ${item.name}`);
+                setIsOpen(false);
+              }
+            });
+          })
         })
-      })
+      .catch(err => alert(`🤖 Failed to create your playlist ${info.name}`))
   }
 
   return (
@@ -73,11 +68,11 @@ const AddPlaylist = ({ spotifyID }) => {
         <button id="close-modal" type="button" onClick={() => setIsOpen(false)}>x</button>
         <div id="save-playlist-container">
           <h4>Enter A Playlist Name</h4>
-          <input type="text" name="name" onChange={setText}></input>
+          <input type="text" name="name" onChange={setInfo}></input>
           <h4>Enter A Description</h4>
-          <textarea type="text" name="description" onChange={setText}></textarea>
+          <textarea type="text" name="description" onChange={setInfo}></textarea>
         </div>
-        <button id="save-playlist-btn" onClick={() => setIsOpen(false)}>Save Playlist</button>
+        <button id="save-playlist-btn" onClick={handleSave}>Save Playlist</button>
       </Modal>
     </>
   );

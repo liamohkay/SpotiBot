@@ -22,7 +22,7 @@ const Login = () => {
   const handleSignup = () => {
     signup(text.email, text.password)
       .then(resp => {
-        db.collection('users').doc(resp.user.uid).set();
+        db.collection('users').doc(resp.user.uid).set({});
         alert(`Account created for ${resp.user.email}`);
         history.push('/link');
       })
