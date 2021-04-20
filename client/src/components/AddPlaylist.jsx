@@ -15,8 +15,8 @@ const AddPlaylist = ({ spotifyID }) => {
 
   // Saves playlist in firestore db for persistence across sessions
   const postPlaylist = (name, id) => {
-    let userRef = db.collection('users').doc(currentUser.uid);
-    userRef.collection('playlists').doc(id).set({
+    let userRef = db.collection('playlists').doc(id).set({
+      uid: currentUser.uid,
       name: name,
       subreddits: []
     });

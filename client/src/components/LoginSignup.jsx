@@ -7,8 +7,8 @@ import { db } from '../firebase/firebase.js';
 import useText from '../hooks/useText.js';
 
 const Login = () => {
-  const { login, signup } = useAuth();
   const history = useHistory();
+  const { login, signup } = useAuth();
   const [text, setText] = useText({ email: '', password: '' });
 
   // Authenticates existing user w/ firebase
@@ -18,11 +18,10 @@ const Login = () => {
       .catch(err => console.log(err))
   }
 
-  // Creates firebase user & database entry w/ uid to store playlist info
+  // Creates new user & stores in firebase
   const handleSignup = () => {
     signup(text.email, text.password)
       .then(resp => {
-        db.collection('users').doc(resp.user.uid).set({});
         alert(`Account created for ${resp.user.email}`);
         history.push('/link');
       })
