@@ -6,42 +6,48 @@ import RunBot from './RunBot.jsx';
 // { token, selected, data, setData }
 const SubredditList = () => {
   const { selected, SpotifyAPI } = useSpotify();
-  // const [selectedInfo, setSelectedInfo] = useState();
-  // const [subreddits, setSubreddits] = useState(data[selected].subreddits);
+  const [selectedInfo, setSelectedInfo] = useState();
+  const [subreddits, setSubreddits] = useState();
   // const [clicked, setClick] = useState(true);
 
-  // // Updates displayed subreddits & playlist info currently selected playlist
-  // useEffect(() => {
-  //   console.log(data[selected]);
-  //   setSubreddits(data[selected].subreddits);
-  //   SpotifyAPI.getPlaylist(data[selected].id)
-  //     .catch(err => console.log(err))
-  //     .then(resp => setSelectedInfo(resp))
-  // }, [selected, clicked]);
-
-  // Updates displayed subreddits & playlist info currently
+  // Fetches + updates displayed subreddits & playlist info
+  useEffect(() => {
+    if (selected) {
+      setSubreddits(selected.subreddits);
+      SpotifyAPI.getPlaylist(selected.id)
+        .then(resp => setSelectedInfo(resp))
+        .catch(err => console.log(err))
+    }
+  }, [selected]);
 
   return (
     <>
-      { JSON.stringify(selected) }
+      { !selectedInfo ? null : (
+        <>
+          <div id="subreddits-header">
+            { selectedInfo.images.length === 0 ? null : (
+              <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
+            ) }
+          </div>
+          <div id="selected-info">
+            <h2>{selected.name}</h2>
+            <p>{ selectedInfo.description }</p>
+            <div> Followers: { selectedInfo.followers.total }</div>
+          </div>
+          <RunBot subreddits={subreddits} />
+        </>
+      ) }
     </>
-    // <div>
-    //   { !selectedInfo ? null : (
-    //     <div id="subreddits-header">
-    //       { selectedInfo.images.length === 0 ? null : (
-    //         <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
-    //       ) }
-
-    //       <div id="selected-info">
-    //         <h2>{selected}</h2>
-    //         <p>{ selectedInfo.description }</p>
-    //         <div> Followers: { selectedInfo.followers.total }</div>
-    //         <RunBot
-    //           token={token}
-    //           playlistID={data[selected].id}
-    //           subreddits={subreddits}
-    //           setClick={setClick}
-    //         />
+          // <div id="selected-info">
+          //   <h2>{selected}</h2>
+          //   <p>{ selectedInfo.description }</p>
+          //   <div> Followers: { selectedInfo.followers.total }</div>
+            // <RunBot
+            //   token={token}
+            //   playlistID={data[selected].id}
+            //   subreddits={subreddits}
+            //   setClick={setClick}
+            // />
     //       </div>
     //     </div>
     //   ) }
@@ -64,3 +70,10 @@ const SubredditList = () => {
 }
 
 export default SubredditList;
+
+ // <div>
+      // { !selectedInfo ? null : (
+      //   <div id="subreddits-header">
+      //     { selectedInfo.images.length === 0 ? null : (
+      //       <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
+      //     ) }
