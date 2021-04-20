@@ -1,8 +1,6 @@
 // Libraries + dependencies
 import axios from 'axios';
 import React, { useState } from 'react';
-import Spotify from 'spotify-web-api-js';
-const SpotifyAPI = new Spotify();
 
 const AddPlaylist = (props) => {
   const { token, userID, data, setData, setSelected, setLoaded } = props;
