@@ -1,7 +1,7 @@
 // Libraries + dependencies
 import axios from 'axios';
-import React, { useState } from 'react';
 import Modal from 'react-modal';
+import React, { useState } from 'react';
 import useText from '../hooks/useText.js';
 import { db } from '../firebase/firebase.js';
 import { useAuth } from '../contexts/AuthContext.js';
@@ -19,7 +19,7 @@ const AddPlaylist = ({ spotifyID }) => {
     userRef.collection('playlists').doc(id).set({
       name: name,
       subreddits: []
-    })
+    });
   }
 
   // Saves playlist to spotify + firestore db
