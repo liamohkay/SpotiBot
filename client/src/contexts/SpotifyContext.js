@@ -12,8 +12,9 @@ export const useSpotify = () => useContext(SpotifyContext);
 export const SpotifyProvider = ({ children }) => {
   const { currentUser } = useAuth();
   const [token, setToken] = useState();
-  const [playlists, setPlaylists] = useState([]);
   const [selected, setSelected] = useState();
+  const [playlists, setPlaylists] = useState([]);
+  const [update, setUpdate] = useState(false);
 
   // Updates "selected" to the user-clicked playlist
   const handleSelect = (e) => setSelected(e.target.innerText);
@@ -21,7 +22,11 @@ export const SpotifyProvider = ({ children }) => {
   // Get users playlists & sets to state
   const getUserPlaylists = () => {
     db.collection('playlists').where('uid', '==', currentUser.uid).get()
-      .then(resp => resp.forEach(doc => setPlaylists([...playlists, doc.data()])))
+      .then(resp => {
+        let data = [];
+        resp.forEach(doc => data.push(doc.data()));
+        setPlaylists(data);
+      })
       .catch(err => console.log(err))
   }
 
@@ -36,18 +41,15 @@ export const SpotifyProvider = ({ children }) => {
   }, []);
 
   // Gets user playlist info, sets intial selected playlist
-  useEffect(() => {
-    if (currentUser) {
-      getUserPlaylists();
-    }
-  }, [])
+  useEffect(() => getUserPlaylists(), [currentUser, update]);
 
   let values = {
     token,
     SpotifyAPI,
     playlists,
     selected,
-    handleSelect
+    handleSelect,
+    setUpdate
   };
 
   return (

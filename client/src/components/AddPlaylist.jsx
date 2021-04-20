@@ -9,7 +9,7 @@ import { useSpotify } from '../contexts/SpotifyContext.js';
 
 const AddPlaylist = ({ spotifyID }) => {
   const { currentUser } = useAuth();
-  const { token, SpotifyAPI } = useSpotify();
+  const { token, SpotifyAPI, setUpdate } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
   const [PL, setPL] = useText({ name: '', description: '' });
 
@@ -35,6 +35,7 @@ const AddPlaylist = ({ spotifyID }) => {
               if (item.name === PL.name && item.description === PL.description) {
                 postPlaylist(item.name, item.id);
                 alert(`🤖 Created your playlist ${item.name}`);
+                setUpdate(prev => !prev);
                 setIsOpen(false);
               }
             });
