@@ -17,7 +17,13 @@ export const SpotifyProvider = ({ children }) => {
   const [update, setUpdate] = useState(false);
 
   // Updates "selected" to the user-clicked playlist
-  const handleSelect = (e) => setSelected(e.target.innerText);
+  const handleSelect = (e) => {
+    playlists.map(playlist => {
+      if (playlist.name === e.target.innerText) {
+        setSelected(playlist);
+      }
+    });
+  };
 
   // Get users playlists & sets to state
   const getUserPlaylists = () => {
@@ -26,6 +32,7 @@ export const SpotifyProvider = ({ children }) => {
         let data = [];
         resp.forEach(doc => data.push(doc.data()));
         setPlaylists(data);
+        setSelected(data[0]);
       })
       .catch(err => console.log(err))
   }

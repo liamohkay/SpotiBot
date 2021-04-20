@@ -16,6 +16,7 @@ const AddPlaylist = ({ spotifyID }) => {
   // Saves playlist in firestore db for persistence across sessions
   const postPlaylist = (name, id) => {
     let userRef = db.collection('playlists').doc(id).set({
+      id: id,
       uid: currentUser.uid,
       name: name,
       subreddits: []
@@ -34,14 +35,14 @@ const AddPlaylist = ({ spotifyID }) => {
             resp.items.map(item => {
               if (item.name === PL.name && item.description === PL.description) {
                 postPlaylist(item.name, item.id);
-                alert(`🤖 Created your playlist ${item.name}`);
+                alert(`🤖 Created your playlist "${item.name}"`);
                 setUpdate(prev => !prev);
                 setIsOpen(false);
               }
             });
           })
         })
-      .catch(err => alert(`🤖 Failed to create your playlist ${PL.name}`))
+      .catch(err => alert(`🤖 Failed to create your playlist "${PL.name}"`))
   }
 
   return (

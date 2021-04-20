@@ -28,31 +28,21 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* App after Spotify authorization */}
-        { !token || !profile ? null : (
-          <div id="app-container">
-            <div id="sidebar-container">
-              <ProfileInfo profile={profile}/>
-              <div id="sidebar-playlists">
-                <h2>Your SpotiBot Playlists</h2>
-                <Playlists />
-                <AddPlaylist spotifyID={profile.id}/>
-              </div>
+      { !token || !profile ? null : (
+        <div id="dashboard" className="container">
+          <div id="sidebar" className="container">
+            <ProfileInfo profile={profile}/>
+            <div id="sidebar-playlists">
+              <h2>Your SpotiBot Playlists</h2>
+              <Playlists />
+              <AddPlaylist spotifyID={profile.id}/>
             </div>
-            {/* { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
-            <div id="main-container">
-              <Subreddits
-                token={token}
-                selected={selected}
-                data={data}
-                setData={setData}
-              />
-            </div>
-            ) } */}
-
           </div>
-        ) }
-
+          <div id="main" className="container">
+            <Subreddits />
+          </div>
+        </div>
+      ) }
     </>
   );
 }
