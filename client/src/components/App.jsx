@@ -13,19 +13,19 @@ import PrivateRoute from './PrivateRoute.jsx';
 const App = () => {
 
   return (
-  <>
-    <AuthProvider>
-      <SpotifyProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/login" render={() => <LoginSignup />} />
-            <Route exact path="/link" render={() => <LinkSpotify />} />
-            <PrivateRoute exact path="/" component={Dashboard} />
-          </Switch>
-        </Router>
-      </SpotifyProvider>
-    </AuthProvider>
-  </>
+    <>
+      <AuthProvider>
+        <SpotifyProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/login" render={() => <LoginSignup />} />
+              <Route exact path="/link" render={() => <LinkSpotify />} />
+              <PrivateRoute exact path="/" component={Dashboard} />
+            </Switch>
+          </Router>
+        </SpotifyProvider>
+      </AuthProvider>
+    </>
   );
 };
 

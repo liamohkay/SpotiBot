@@ -41,7 +41,11 @@ export const SpotifyProvider = ({ children }) => {
   }, []);
 
   // Gets user playlist info, sets intial selected playlist
-  useEffect(() => getUserPlaylists(), [currentUser, update]);
+  useEffect(() => {
+    if (currentUser) {
+      getUserPlaylists();
+    }
+  }, [update]);
 
   let values = {
     token,
