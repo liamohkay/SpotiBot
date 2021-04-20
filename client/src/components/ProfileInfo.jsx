@@ -3,18 +3,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 
-const ProfileInfo = () => {
+const ProfileInfo = ({ profile }) => {
   const { token } = useSpotify();
-  const [profile, setProfile] = useState();
-
-  // Gets spotify profile info upon authorization
-  useEffect(() => {
-    if (token) {
-      axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
-        .then(resp => setProfile(resp.data))
-        .catch(err => console.log(err))
-    }
-  }, [])
 
   return (
     <>

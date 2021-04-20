@@ -16,7 +16,7 @@ import { useSpotify } from '../contexts/SpotifyContext.js';
 //   }
 // };
 
-const AddPlaylist = (props) => {
+const AddPlaylist = ({ spotifyID }) => {
   // const { token, userID, data, setData, setSelected, setLoaded } = props;
   const { token, SpotifyAPI } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +79,7 @@ const AddPlaylist = (props) => {
           <h4>Enter A Description</h4>
           <textarea type="text" name="description" onChange={setNewPlaylist}></textarea>
         </div>
-        <button id="save-playlist-btn">Save Playlist</button>
+        <button id="save-playlist-btn" onClick={() => setIsOpen(false)}>Save Playlist</button>
       </Modal>
     </>
   );

@@ -16,20 +16,29 @@ import Subreddits from './Subreddits.jsx';
 
 const Dashboard = () => {
   const { token } = useSpotify();
-  const [loaded, setLoaded] = useState(false);
   const [selected, setSelected] = useState();
+  const [profile, setProfile] = useState();
+
+  // Gets spotify profile info upon authorization
+  useEffect(() => {
+    if (token) {
+      axios.get('https://api.spotify.com/v1/me', { headers: { 'Authorization': 'Bearer ' + token } })
+        .then(resp => setProfile(resp.data))
+        .catch(err => console.log(err))
+    }
+  }, [token])
 
   return (
     <>
       {/* App after Spotify authorization */}
-        { !token ? null : (
+        { !token || !profile ? null : (
           <div id="app-container">
             <div id="sidebar-container">
-              <ProfileInfo />
+              <ProfileInfo profile={profile}/>
               <div id="sidebar-playlists">
                 <h2>Your SpotiBot Playlists</h2>
                 <Playlists />
-                <AddPlaylist />
+                <AddPlaylist spotifyID={profile.id}/>
               </div>
             </div>
             {/* { JSON.stringify(data) === '{}' ? <h1>You have no playlists<br/>Create one in the sidebar</h1> : (
