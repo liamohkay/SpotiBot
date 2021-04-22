@@ -29,16 +29,39 @@ const SubredditList = () => {
               <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
             ) }
           </div>
+
           <div id="selected-info">
             <h2>{selected.name}</h2>
             <p>{ selectedInfo.description }</p>
             <div> Followers: { selectedInfo.followers.total }</div>
           </div>
           <RunBot subreddits={subreddits} />
+
+          <div id="subreddits-container">
+            <h2>Subreddits in { selected.name }</h2>
+            <div id="subreddits-main">
+              { selected.subreddits.map(sub => (
+                <div className="subreddit-tile" key={sub}>{sub}</div>
+              )) }
+            </div>
+          </div>
+          <AddSubreddit />
         </>
       ) }
     </>
-          // <div id="selected-info">
+
+  );
+}
+
+export default SubredditList;
+
+ // <div>
+      // { !selectedInfo ? null : (
+      //   <div id="subreddits-header">
+      //     { selectedInfo.images.length === 0 ? null : (
+      //       <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
+      //     ) }
+ // <div id="selected-info">
           //   <h2>{selected}</h2>
           //   <p>{ selectedInfo.description }</p>
           //   <div> Followers: { selectedInfo.followers.total }</div>
@@ -51,29 +74,17 @@ const SubredditList = () => {
     //       </div>
     //     </div>
     //   ) }
+    // <div id="subreddits-container">
+      //   <h2>Subreddits in { selected }</h2>
+      //   <div id="subreddits-main">
+      //     { subreddits.map(sub => <div className="subreddit-tile" key={sub}>{sub}</div>) }
+      //   </div>
+      // </div>
 
-    //   <div id="subreddits-container">
-    //     <h2>Subreddits in { selected }</h2>
-    //     <div id="subreddits-main">
-    //       { subreddits.map(sub => <div className="subreddit-tile" key={sub}>{sub}</div>) }
-    //     </div>
-    //   </div>
-
-    //   <AddSubreddit
-    //     selected={selected}
-    //     data={data}
-    //     setData={setData}
-    //     setClick={setClick}
-    //   />
+      // <AddSubreddit
+      //   selected={selected}
+      //   data={data}
+      //   setData={setData}
+      //   setClick={setClick}
+      // />
     // </div>
-  );
-}
-
-export default SubredditList;
-
- // <div>
-      // { !selectedInfo ? null : (
-      //   <div id="subreddits-header">
-      //     { selectedInfo.images.length === 0 ? null : (
-      //       <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
-      //     ) }
