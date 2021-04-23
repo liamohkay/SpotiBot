@@ -25,6 +25,13 @@ export const SpotifyProvider = ({ children }) => {
     });
   };
 
+  // Fetches latest data from db for currently selected playlist & triggers re-render
+  const getSelectedPlaylist = () => {
+    db.collection('playlists').where('id', '==', selected.id).get()
+      .then(resp => resp.forEach(doc => setSelected(doc.data())))
+      .catch(err => console.log(err))
+  }
+
   // Get users playlists & sets to state
   const getUserPlaylists = () => {
     db.collection('playlists').where('uid', '==', currentUser.uid).get()
@@ -60,7 +67,8 @@ export const SpotifyProvider = ({ children }) => {
     playlists,
     selected,
     handleSelect,
-    setUpdate
+    setUpdate,
+    getSelectedPlaylist
   };
 
   return (

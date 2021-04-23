@@ -6,7 +6,7 @@ import { useSpotify } from '../contexts/SpotifyContext.js';
 import useText from '../hooks/useText.js';
 
 const AddSubreddit = () => {
-  const { selected, setUpdate } = useSpotify();
+  const { selected, getSelectedPlaylist } = useSpotify();
   const [newSub, setNewSub] = useText();
 
   // Adds subreddit to list and re-renders component
@@ -16,7 +16,7 @@ const AddSubreddit = () => {
     db.collection('playlists').doc(selected.id).set({
       subreddits: selected.subreddits.concat([newSub.newSub])
     }, { merge: true })
-      .then(() => setUpdate(prev => !prev))
+      .then(() => getSelectedPlaylist())
       .catch(err => alert(`Subreddit could not be added`))
   }
 
