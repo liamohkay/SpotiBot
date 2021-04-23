@@ -5,18 +5,23 @@ import { db } from '../firebase/firebase.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 import useText from '../hooks/useText.js';
 
-const AddSubreddit = ({ selected, data, setData, setClick }) => {
+const AddSubreddit = () => {
+  const { selected, setUpdate } = useSpotify();
   const [newSub, setNewSub] = useText();
 
   // Adds subreddit to list and re-renders component
   const handleAdd = (e) => {
     e.preventDefault();
 
+    db.collection('playlists').doc(selected.id).set({
+      subreddits: selected.subreddits.concat([newSub.newSub])
+    }, { merge: true })
+      .then(() => setUpdate(prev => !prev))
+      .catch(err => alert(`Subreddit could not be added`))
   }
 
   return (
     <div id="add-subbreddit" className="container">
-      { JSON.stringify(newSub) }
       <input type="text" name="newSub" onChange={setNewSub}></input>
       <button id="add-subbreddit-btn" onClick={handleAdd}>Add Subreddit</button>
     </div>
