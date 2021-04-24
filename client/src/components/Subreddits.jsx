@@ -3,16 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 import AddSubreddit from './AddSubreddit.jsx';
 import RunBot from './RunBot.jsx';
-// { token, selected, data, setData }
+import ClearSongs from './ClearSongs.jsx';
+
 const SubredditList = () => {
   const { selected, SpotifyAPI } = useSpotify();
   const [selectedInfo, setSelectedInfo] = useState();
-  const [subreddits, setSubreddits] = useState();
 
   // Fetches + updates displayed subreddits & playlist info
   useEffect(() => {
     if (selected) {
-      setSubreddits(selected.subreddits);
       SpotifyAPI.getPlaylist(selected.id)
         .then(resp => setSelectedInfo(resp))
         .catch(err => console.log(err))
@@ -21,32 +20,33 @@ const SubredditList = () => {
 
   return (
     <>
-      { !selectedInfo ? null : (
+      {!selectedInfo ? null : (
         <>
           <div id="subreddits-header">
-            { selectedInfo.images.length === 0 ? null : (
-              <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
-            ) }
+            {selectedInfo.images.length === 0 ? null : (
+              <img id="selected-playlist-img" src={selectedInfo.images[1].url} />
+            )}
           </div>
 
           <div id="selected-info">
             <h2>{selected.name}</h2>
-            <p>{ selectedInfo.description }</p>
-            <div> Followers: { selectedInfo.followers.total }</div>
+            <p>{selectedInfo.description}</p>
+            <div>Followers: {selectedInfo.followers.total}</div>
           </div>
-          <RunBot subreddits={subreddits} />
+          <RunBot subreddits={selected.subreddits} />
+          <ClearSongs />
 
           <div id="subreddits-container">
-            <h2>Subreddits in { selected.name }</h2>
+            <h2>Subreddits in {selected.name}</h2>
             <div id="subreddits-main">
-              { selected.subreddits.map(sub => (
+              {selected.subreddits.map(sub => (
                 <div className="subreddit-tile" key={sub}>{sub}</div>
-              )) }
+              ))}
             </div>
           </div>
           <AddSubreddit />
         </>
-      ) }
+      )}
     </>
 
   );

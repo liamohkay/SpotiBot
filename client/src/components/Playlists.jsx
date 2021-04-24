@@ -10,12 +10,9 @@ const Playlists = () => {
       { !playlists ? null : (
         <div id="playlist-container">
           <ul>
-            { Object.values(playlists).map(plist => (
-              <>
-                <li onClick={handleSelect} key={plist.name}>{plist.name}</li>
-                <DeletePlaylist id={plist.id} />
-              </>
-            )) }
+            {Object.values(playlists).map(plist => (
+              <li onClick={handleSelect} key={plist.name}>{plist.name}</li>
+            ))}
           </ul>
         </div>
       ) }

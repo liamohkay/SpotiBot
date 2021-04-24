@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   return (
     <>
-      { !token || !profile ? null : (
+      {!token || !profile ? null : (
         <div id="dashboard" className="container">
           <div id="sidebar" className="container">
             <ProfileInfo profile={profile}/>
@@ -38,11 +38,11 @@ const Dashboard = () => {
               <AddPlaylist spotifyID={profile.id}/>
             </div>
           </div>
-          <div id="main" className="container">
+          <div id="subreddits" className="container">
             <Subreddits />
           </div>
         </div>
-      ) }
+      )}
     </>
   );
 }
