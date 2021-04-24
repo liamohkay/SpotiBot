@@ -1,7 +1,6 @@
 // Libraries + dependencies
 import React, { useState,  useEffect } from 'react';
 import { useSpotify } from '../contexts/SpotifyContext.js';
-import DeletePlaylist from '/client/src/components/DeletePlaylist.jsx';
 
 const Playlists = () => {
   const { playlists, handleSelect } = useSpotify();
