@@ -1,12 +1,13 @@
 // Libraries + dependencies
 import React, { useState, useEffect } from 'react';
+import { db } from '../firebase/firebase.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 import AddSubreddit from './AddSubreddit.jsx';
 import RunBot from './RunBot.jsx';
 import ClearSongs from './ClearSongs.jsx';
 
 const SubredditList = () => {
-  const { selected, SpotifyAPI } = useSpotify();
+  const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
   const [selectedInfo, setSelectedInfo] = useState();
 
   // Fetches + updates displayed subreddits & playlist info
@@ -17,6 +18,17 @@ const SubredditList = () => {
         .catch(err => console.log(err))
     }
   }, [selected]);
+
+  // Deletes subreddit on tile click
+  const handleDelete = (e) => {
+    let index = selected.subreddits.indexOf(e.target.innerText);
+    selected.subreddits.splice(index, 1);
+    db.collection('playlists').doc(selected.id).set({
+      subreddits: selected.subreddits
+    }, { merge: true })
+    .then(() => getSelectedPlaylist())
+    .catch(err => alert(`Subreddit could not be removed from ${selcted.name}`))
+  }
 
   return (
     <>
@@ -40,7 +52,7 @@ const SubredditList = () => {
             <h2>Subreddits in {selected.name}</h2>
             <div id="subreddits-main">
               {selected.subreddits.map(sub => (
-                <div className="subreddit-tile" key={sub}>{sub}</div>
+                <div className="subreddit-tile" onClick={handleDelete} key={sub}>{sub}</div>
               ))}
             </div>
           </div>
