@@ -13,6 +13,9 @@ const RunBot = () => {
   // A visual indicator to the user that SpotiBot is running
   useEffect(() => setFoundCount(tracksToAdd.length), [tracksToAdd])
 
+  // Resets tracks to add when a different playlist is clicked & bot run + songs added
+  useEffect(() => setTracksToAdd([]), [selected]);
+
   // Adds songs found by the bot to selected spotify playlist
   const handleAdd = (e) => {
     e.preventDefault();
@@ -23,17 +26,8 @@ const RunBot = () => {
       return;
     }
 
-    // // Spotify has a 100 song limit per request which is there are multiple cases
-    // if (tracksToAdd.length <= 100) {
-    //   SpotifyAPI.addTracksToPlaylist(selected.id, tracksToAdd)
-    //     .catch(err => console.log(err))
-    //     .then(() => alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`))
-    //     .then(() => setTracksToAdd([]))
-    // }
-
     // Spotify has a 100 song limit per request so we have break up requests into 100 song chunks
     let multiplier = 0;
-
     while ((tracksToAdd.length / (100 * multiplier) >= 1)) {
       let trackSlice = tracksToAdd.slice(100 * multiplier, 100 * (multiplier + 1));
       SpotifyAPI.addTracksToPlaylist(selected.id, trackSlice)
@@ -42,6 +36,7 @@ const RunBot = () => {
       multiplier++;
     }
 
+    // This simply triggers a get + render of the latest artwork from spotify after songs have been added
     getSelectedPlaylist();
     alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`);
   }

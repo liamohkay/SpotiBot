@@ -53,37 +53,3 @@ const SubredditList = () => {
 }
 
 export default SubredditList;
-
- // <div>
-      // { !selectedInfo ? null : (
-      //   <div id="subreddits-header">
-      //     { selectedInfo.images.length === 0 ? null : (
-      //       <img id="selected-playlist-img" src={selectedInfo.images[1].url } />
-      //     ) }
- // <div id="selected-info">
-          //   <h2>{selected}</h2>
-          //   <p>{ selectedInfo.description }</p>
-          //   <div> Followers: { selectedInfo.followers.total }</div>
-            // <RunBot
-            //   token={token}
-            //   playlistID={data[selected].id}
-            //   subreddits={subreddits}
-            //   setClick={setClick}
-            // />
-    //       </div>
-    //     </div>
-    //   ) }
-    // <div id="subreddits-container">
-      //   <h2>Subreddits in { selected }</h2>
-      //   <div id="subreddits-main">
-      //     { subreddits.map(sub => <div className="subreddit-tile" key={sub}>{sub}</div>) }
-      //   </div>
-      // </div>
-
-      // <AddSubreddit
-      //   selected={selected}
-      //   data={data}
-      //   setData={setData}
-      //   setClick={setClick}
-      // />
-    // </div>

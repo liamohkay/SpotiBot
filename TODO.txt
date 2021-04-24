@@ -1,14 +1,7 @@
-  - Add playlist check verification + delete if no longer in spotify playlists
-  - Auth context spotify access token as well
-  - Set up as env variables for deployment
-  - I mean you probably wanna stop scraping access token from url and actually res return it from oauth
-- Fix bot to reset state after search + next playlist selection
+- Add playlist check verification + delete if no longer in spotify playlists
 - Add infinite scroll to subredddit list
-- Add delete playlist option ^^
+- Add delete playlist option ^^ -> ok so spotify does not have a delete playlist option
 - Add delete subreddit option
-- On 'enter' press add subreddits to list
-   -> stretch (subreddit verifcation)
-- Make 'Create Playlist' a modal
 - Refactor spotify search & remove dupes while keeping maximum searchabillity
 
 - CLEAN UP EVERYTHING :(
