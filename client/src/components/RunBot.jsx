@@ -5,7 +5,7 @@ import reddit from '../../../server/reddit.js';
 
 // { token, playlistID, subreddits, setClick }
 const RunBot = () => {
-  const { token, SpotifyAPI } = useSpotify();
+  const { selected, SpotifyAPI } = useSpotify();
   const [tracksToAdd, setTracksToAdd] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
   const [render, setRender] = useState(true);
@@ -25,7 +25,7 @@ const RunBot = () => {
 
     // Spotify has a 100 song limit per request which is there are multiple cases
     if (tracksToAdd.length <= 100) {
-      SpotifyAPI.addTracksToPlaylist(playlistID, tracksToAdd)
+      SpotifyAPI.addTracksToPlaylist(selected.id, tracksToAdd)
         .catch(err => console.log(err))
         .then(() => alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`))
         .then(() => setTracksToAdd([]))
@@ -48,7 +48,7 @@ const RunBot = () => {
   const handleRun = (e) => {
     e.preventDefault();
 
-    subreddits.map((sub, subIndex) => {
+    selected.subreddits.map((sub, subIndex) => {
       reddit.getTopPosts(sub, subPosts => {
         subPosts.map((post, postIndex) => {
 

@@ -32,7 +32,7 @@ export const SpotifyProvider = ({ children }) => {
       .catch(err => console.log(err))
   }
 
-  // Get users playlists & sets to state
+  // Get all user playlists & sets to state
   const getUserPlaylists = () => {
     db.collection('playlists').where('uid', '==', currentUser.uid).get()
       .then(resp => {
@@ -54,7 +54,7 @@ export const SpotifyProvider = ({ children }) => {
     }
   }, []);
 
-  // Gets user playlist info, sets intial selected playlist
+  // Triggers re-render
   useEffect(() => {
     if (currentUser) {
       getUserPlaylists();
@@ -66,8 +66,8 @@ export const SpotifyProvider = ({ children }) => {
     SpotifyAPI,
     playlists,
     selected,
-    handleSelect,
     setUpdate,
+    handleSelect,
     getSelectedPlaylist
   };
 
