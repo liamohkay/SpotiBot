@@ -5,7 +5,7 @@ import reddit from '../../../server/reddit.js';
 
 // { token, playlistID, subreddits, setClick }
 const RunBot = () => {
-  const { selected, SpotifyAPI } = useSpotify();
+  const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
   const [tracksToAdd, setTracksToAdd] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
   const [render, setRender] = useState(true);
@@ -23,26 +23,27 @@ const RunBot = () => {
       return;
     }
 
-    // Spotify has a 100 song limit per request which is there are multiple cases
-    if (tracksToAdd.length <= 100) {
-      SpotifyAPI.addTracksToPlaylist(selected.id, tracksToAdd)
-        .catch(err => console.log(err))
-        .then(() => alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`))
+    // // Spotify has a 100 song limit per request which is there are multiple cases
+    // if (tracksToAdd.length <= 100) {
+    //   SpotifyAPI.addTracksToPlaylist(selected.id, tracksToAdd)
+    //     .catch(err => console.log(err))
+    //     .then(() => alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`))
+    //     .then(() => setTracksToAdd([]))
+    // }
+
+    // Spotify has a 100 song limit per request so we have break up requests into 100 song chunks
+    let multiplier = 0;
+
+    while ((tracksToAdd.length / (100 * multiplier) >= 1)) {
+      let trackSlice = tracksToAdd.slice(100 * multiplier, 100 * (multiplier + 1));
+      SpotifyAPI.addTracksToPlaylist(selected.id, trackSlice)
         .then(() => setTracksToAdd([]))
+        .catch(err => console.log(err))
+      multiplier++;
     }
 
-    // If there's more than 100 songs to add, break it up into 100 song increments
-    if (tracksToAdd.length > 100) {
-      let multiplier = 0;
-      while ((tracksToAdd.length / (100 * multiplier) >= 1)) {
-        let trackSlice = tracksToAdd.slice(100 * multiplier, 100 * (multiplier + 1));
-        SpotifyAPI.addTracksToPlaylist(playlistID, trackSlice)
-          .catch(err => console.log(err))
-          .then(() => setTracksToAdd([]))
-        multiplier++;
-      }
-      alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`);
-    }
+    getSelectedPlaylist();
+    alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`);
   }
 
   const handleRun = (e) => {
@@ -54,16 +55,16 @@ const RunBot = () => {
 
           // Search by song title then check against artist name
           SpotifyAPI.searchTracks(post.track, { limit: 50 })
-            .catch(err => console.log(err))
-            .then(resp => {
-              let trackResults = resp.tracks.items;
-              // If there is a match & track is not already in playlist, add to playlist
-              trackResults.map(track => {
-                if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
-                  setTracksToAdd(prev => [...prev, track.uri]);
-                }
-              });
-            })
+          .then(resp => {
+            let trackResults = resp.tracks.items;
+            // If there is a match & track is not already in playlist, add to playlist
+            trackResults.map(track => {
+              if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
+                setTracksToAdd(prev => [...prev, track.uri]);
+              }
+            });
+          })
+          .catch(err => console.log(err))
         });
       });
     });

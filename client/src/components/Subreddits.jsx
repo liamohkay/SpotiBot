@@ -8,7 +8,6 @@ const SubredditList = () => {
   const { selected, SpotifyAPI } = useSpotify();
   const [selectedInfo, setSelectedInfo] = useState();
   const [subreddits, setSubreddits] = useState();
-  // const [clicked, setClick] = useState(true);
 
   // Fetches + updates displayed subreddits & playlist info
   useEffect(() => {
