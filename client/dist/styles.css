@@ -1,4 +1,4 @@
-button {
+/* button {
   background-color: rgba(30, 215, 96, 1);
   border: none;
   color: white;
@@ -36,10 +36,10 @@ ul {
 #app-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-}
+} */
 
 /* Sidebar */
-#sidebar-container {
+/* #sidebar-container {
   margin: 7% 5% 7% 5%;
 }
 
@@ -103,10 +103,10 @@ ul {
   position: relative;
   left: 9%;
   width: 92%;
-}
+} */
 
 /* Main Subreddit */
-#main-container {
+/* #main-container {
   display: flex;
   flex-direction: column;
   margin: 3.5% 5% 7% 5%;
@@ -126,7 +126,6 @@ ul {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-color: rgba(237, 214, 175, 0.4);
-  /* box-shadow: 3px 5px 15px rgba(122, 122, 122, .3); */
 }
 #selected-playlist-img {
   height: 25%;
@@ -167,4 +166,4 @@ ul {
 }
 #add-subbreddit-btn {
   width: 15%;
-}
+} */

@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       setLoading(false);
     })
-
     return unsubscribe;
   }, [])
 

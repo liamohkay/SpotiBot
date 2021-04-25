@@ -3,12 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 import reddit from '../../../server/reddit.js';
 
-// { token, playlistID, subreddits, setClick }
 const RunBot = () => {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
   const [tracksToAdd, setTracksToAdd] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
-  const [render, setRender] = useState(true);
 
   // A visual indicator to the user that SpotiBot is running
   useEffect(() => setFoundCount(tracksToAdd.length), [tracksToAdd])
@@ -38,7 +36,7 @@ const RunBot = () => {
 
     // This simply triggers a get + render of the latest artwork from spotify after songs have been added
     getSelectedPlaylist();
-    alert(`🤖 Done! Added ${tracksToAdd.length} songs 💜`);
+    alert(`🤖 Done! Added ${tracksToAdd.length} songs to "${selected.name}" 💜`);
   }
 
   const handleRun = (e) => {

@@ -10,8 +10,7 @@ import LoginSignup from './LoginSignup.jsx';
 import LinkSpotify from './LinkSpotify.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 
-const App = () => {
-
+export default function App() {
   return (
     <>
       <AuthProvider>
@@ -28,5 +27,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;

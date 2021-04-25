@@ -23,11 +23,12 @@ const SubredditList = () => {
   const handleDelete = (e) => {
     let index = selected.subreddits.indexOf(e.target.innerText);
     selected.subreddits.splice(index, 1);
+
     db.collection('playlists').doc(selected.id).set({
       subreddits: selected.subreddits
     }, { merge: true })
-    .then(() => getSelectedPlaylist())
-    .catch(err => alert(`Subreddit could not be removed from ${selcted.name}`))
+      .then(() => getSelectedPlaylist())
+      .catch(err => alert(`Subreddit could not be removed from ${selcted.name}`))
   }
 
   return (

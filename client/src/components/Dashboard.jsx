@@ -14,7 +14,6 @@ import Subreddits from './Subreddits.jsx';
 
 const Dashboard = () => {
   const { token } = useSpotify();
-  const [selected, setSelected] = useState();
   const [profile, setProfile] = useState();
 
   // Gets spotify profile info upon authorization

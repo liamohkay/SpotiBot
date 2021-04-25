@@ -1,6 +1,6 @@
 // Libraries + dependencies
-import { db } from '../firebase/firebase.js';
 import React, { useState, useEffect, useContext, createContext } from 'react';
+import { db } from '../firebase/firebase.js';
 import { useAuth } from './AuthContext.js';
 import Spotify from 'spotify-web-api-js';
 
