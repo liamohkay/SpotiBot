@@ -3,11 +3,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { db } from '../firebase/firebase.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
-import useText from '../hooks/useText.js';
+import useInput from '../hooks/useInput.js';
 
 const AddSubreddit = () => {
   const { selected, getSelectedPlaylist } = useSpotify();
-  const [newSub, setNewSub] = useText();
+  const [newSub, setNewSub] = useInput();
 
   // Adds subreddit to list and re-renders component
   const handleAdd = (e) => {

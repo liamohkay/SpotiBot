@@ -5,8 +5,8 @@ import { SpotifyProvider } from '../contexts/SpotifyContext.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Components
+import Login from './Login.jsx';
 import Dashboard from './Dashboard.jsx';
-import LoginSignup from './LoginSignup.jsx';
 import LinkSpotify from './LinkSpotify.jsx';
 import PrivateRoute from './PrivateRoute.jsx';
 
@@ -17,7 +17,7 @@ export default function App() {
         <SpotifyProvider>
           <Router>
             <Switch>
-              <Route exact path="/login" render={() => <LoginSignup />} />
+              <Route exact path="/login" render={() => <Login />} />
               <Route exact path="/link" render={() => <LinkSpotify />} />
               <PrivateRoute exact path="/" component={Dashboard} />
             </Switch>

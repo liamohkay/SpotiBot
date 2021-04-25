@@ -1,15 +1,14 @@
-// Libraries + dependencies
 import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.js';
-import { db } from '../firebase/firebase.js';
-import useText from '../hooks/useText.js';
+import { useAuth } from '/client/src/contexts/AuthContext.js';
+import { db } from '/client/src/firebase/firebase.js';
+import useInput from '/client/src/hooks/useInput.js';
 
-const Login = () => {
+export default function Login() {
   const history = useHistory();
   const { login, signup } = useAuth();
-  const [text, setText] = useText({ email: '', password: '' });
+  const [text, setText] = useInput({ email: '', password: '' });
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
@@ -42,5 +41,3 @@ const Login = () => {
     </div>
   );
 }
-
-export default Login;

@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
-import useText from '../hooks/useText.js';
+import useInput from '../hooks/useInput.js';
 import { db } from '../firebase/firebase.js';
 import { useAuth } from '../contexts/AuthContext.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
@@ -11,7 +11,7 @@ const AddPlaylist = ({ spotifyID }) => {
   const { currentUser } = useAuth();
   const { token, SpotifyAPI, setUpdate } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
-  const [PL, setPL] = useText({ name: '', description: '' });
+  const [PL, setPL] = useInput({ name: '', description: '' });
 
   // Saves playlist in firestore db for persistence across sessions
   const postPlaylist = (name, id) => {

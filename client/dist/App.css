@@ -1,0 +1,7 @@
+#app {
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  display: flex;
+}

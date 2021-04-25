@@ -8,7 +8,7 @@ import PrivateRoute from './PrivateRoute.jsx';
 // Sidebar components
 import Playlists from './Playlists.jsx';
 import AddPlaylist from './AddPlaylist.jsx';
-import ProfileInfo from './ProfileInfo.jsx';
+import Profile from './Profile.jsx';
 // Main app components
 import Subreddits from './Subreddits.jsx';
 
@@ -30,11 +30,11 @@ const Dashboard = () => {
       {!token || !profile ? null : (
         <div id="dashboard" className="container">
           <div id="sidebar" className="container">
-            <ProfileInfo profile={profile}/>
+            <Profile profile={profile} />
             <div id="sidebar-playlists">
               <h2>Your SpotiBot Playlists</h2>
               <Playlists />
-              <AddPlaylist spotifyID={profile.id}/>
+              <AddPlaylist spotifyID={profile.id} />
             </div>
           </div>
           <div id="subreddits" className="container">
