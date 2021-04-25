@@ -1,20 +1,22 @@
-#login-card {
+/* Login + Link Spotify Styles */
+#login-card, #link-spotify-card  {
   width: 33%;
   height: 75%;
   padding: 2.5%;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(to bottom right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
+  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
   box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
   border-radius: 10px;
 }
 
-#login-card h1 {
+#login-card h1, #link-spotify-card h1 {
   color: rgb(30, 215, 96);
   font-size: 7vh;
   font-weight: 600;
 }
 
+/* Login Styles */
 #login-inputs {
   height: 25%;
   flex-direction: column;
@@ -46,5 +48,24 @@
   border-radius: 20px;
 }
 #login-btns button:hover {
+  background-color: rgba(30, 215, 96, .8);
+}
+
+/* Link Spotify Styles */
+#link-spotify-card {
+  height: 50%;
+}
+
+#link-spotify-card button {
+  height: 10vh;
+  width: 25vw;
+  color: white;
+  font-size: 2.5vh;
+  font-weight: 600;
+  background-color: rgba(30, 215, 96, 1);
+  border: none;
+  border-radius: 15px;
+}
+#link-spotify-card button:hover {
   background-color: rgba(30, 215, 96, .8);
 }

@@ -1,14 +1,15 @@
-// Libraries + dependencies
 import React from 'react';
 
-const LinkSpotify = () => {
+// Prompts users to link their spotify account + initiates oauth
+export default function LinkSpotify() {
   return (
-    <div id="link-spotify" className="container">
-      <a href="/login">
-        <button id="login-btn">Link Your Spotify Account</button>
-      </a>
+    <div className="container flex">
+      <div id="link-spotify-card" className="flex">
+        <h1>SpotiBot</h1>
+        <a href="/login">
+          <button id="login-btn">Link Your Spotify Account</button>
+        </a>
+      </div>
     </div>
   );
 }
-
-export default LinkSpotify;
