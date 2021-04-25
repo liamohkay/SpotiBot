@@ -1,7 +1,25 @@
-#app {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
   font-family: 'Poppins', sans-serif;
+}
+ul {
+  list-style-type: none;
+}
+button {
+  cursor: pointer;
 }
 
 .container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.flex {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }

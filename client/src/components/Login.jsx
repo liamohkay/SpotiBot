@@ -2,42 +2,43 @@ import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '/client/src/contexts/AuthContext.js';
-import { db } from '/client/src/firebase/firebase.js';
 import useInput from '/client/src/hooks/useInput.js';
 
 export default function Login() {
   const history = useHistory();
   const { login, signup } = useAuth();
-  const [text, setText] = useInput({ email: '', password: '' });
+  const [input, setInput] = useInput({ email: '', password: '' });
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
-    login(text.email, text.password)
+    login(input.email, input.password)
       .then(() => history.push('/link'))
-      .catch(err => console.log(err))
+      .catch(err => alert(err.message))
   }
 
   // Creates new user & stores in firebase
   const handleSignup = () => {
-    signup(text.email, text.password)
+    signup(input.email, input.password)
       .then(resp => {
         alert(`Account created for ${resp.user.email}`);
         history.push('/link');
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.message))
   }
 
   return (
-    <div id="login" className="container">
-      <h1>SpotiBot</h1>
-      <form>
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" onChange={setText}></input>
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" onChange={setText}></input>
-      </form>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleSignup}>Signup</button>
+    <div className="container flex">
+      <div id="login-card" className="flex">
+        <h1>SpotiBot</h1>
+        <form id="login-inputs" className="flex">
+          <input type="text" name="email" placeholder="Email" onChange={setInput}></input>
+          <input type="password" name="password" placeholder="Password" onChange={setInput}></input>
+        </form>
+        <div id="login-btns" className="flex">
+          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleSignup}>Signup</button>
+        </div>
+      </div>
     </div>
   );
 }
