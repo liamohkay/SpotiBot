@@ -1,14 +1,14 @@
-// Libraries + dependencies
 import React, { useState,  useEffect } from 'react';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 
-const Playlists = () => {
+// Lists user playlists by name from firebase in sidebar
+export default function Playlists() {
   const { playlists, handleSelect } = useSpotify();
 
   return (
     <>
       { !playlists ? null : (
-        <div id="playlist-container">
+        <div id="playlists" className="flex">
           <ul>
             {Object.values(playlists).map(plist => (
               <li onClick={handleSelect} key={plist.name}>{plist.name}</li>
@@ -19,5 +19,3 @@ const Playlists = () => {
     </>
   );
 }
-
-export default Playlists;
