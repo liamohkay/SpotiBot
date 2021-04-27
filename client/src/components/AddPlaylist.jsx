@@ -1,4 +1,3 @@
-// Libraries + dependencies
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
@@ -7,7 +6,7 @@ import { db } from '../firebase/firebase.js';
 import { useAuth } from '../contexts/AuthContext.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
 
-const AddPlaylist = ({ spotifyID }) => {
+export default function AddPlaylist({ spotifyID }) {
   const { currentUser } = useAuth();
   const { token, SpotifyAPI, setUpdate } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
@@ -65,10 +64,8 @@ const AddPlaylist = ({ spotifyID }) => {
           <textarea type="text" name="description" onChange={setPL}></textarea>
         </div>
 
-        <button id="save-playlist-btn" onClick={handleSave}>Save Playlist</button>
+        <button id="add-playlist-btn" onClick={handleSave}>Save Playlist</button>
       </Modal>
     </>
   );
 }
-
-export default AddPlaylist;

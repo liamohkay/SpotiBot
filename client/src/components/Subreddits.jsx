@@ -1,12 +1,13 @@
-// Libraries + dependencies
+// Libraries, dependencies, contexts
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase.js';
 import { useSpotify } from '../contexts/SpotifyContext.js';
-import AddSubreddit from './AddSubreddit.jsx';
+// Components
 import RunBot from './RunBot.jsx';
 import ClearSongs from './ClearSongs.jsx';
+import AddSubreddit from './AddSubreddit.jsx';
 
-const SubredditList = () => {
+export default function SubredditList() {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
   const [selectedInfo, setSelectedInfo] = useState();
 
@@ -34,14 +35,14 @@ const SubredditList = () => {
   return (
     <>
       {!selectedInfo ? null : (
-        <>
-          <div id="subreddits-header">
+        <div id="selected-playlist" className="flex">
+          <div id="selected-playlist-header" className="flex">
             {selectedInfo.images.length === 0 ? null : (
               <img id="selected-playlist-img" src={selectedInfo.images[1].url} />
             )}
           </div>
 
-          <div id="selected-info">
+          <div id="selected-playlist-info">
             <h2>{selected.name}</h2>
             <p>{selectedInfo.description}</p>
             <div>Followers: {selectedInfo.followers.total}</div>
@@ -58,11 +59,9 @@ const SubredditList = () => {
             </div>
           </div>
           <AddSubreddit />
-        </>
+        </div>
       )}
     </>
 
   );
 }
-
-export default SubredditList;

@@ -1,0 +1,6 @@
+/* Selected playlist + subreddits styling */
+#selected-playlist {
+  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
+  border-radius: 10px;
+}

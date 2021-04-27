@@ -28,8 +28,8 @@ export default function Dashboard() {
         <div id="dashboard" className="container">
           <div id="sidebar" className="flex">
             <Profile profile={profile} />
-            <div id="sidebar-playlists">
-              <h2>Your SpotiBot Playlists</h2>
+            <h2>Your SpotiBot Playlists</h2>
+            <div id="sidebar-playlists" className="flex">
               <Playlists />
               <AddPlaylist spotifyID={profile.id} />
             </div>
