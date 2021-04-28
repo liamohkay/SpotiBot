@@ -34,9 +34,7 @@ export default function Dashboard() {
               <AddPlaylist spotifyID={profile.id} />
             </div>
           </div>
-          <div id="subreddits">
-            <Subreddits />
-          </div>
+          <Subreddits />
         </div>
       )}
     </>

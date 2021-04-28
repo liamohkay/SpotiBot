@@ -2,9 +2,9 @@
 #sidebar {
   justify-content: flex-start;
   min-width: 25vw;
-  min-height: 100%;
+  width: 25vw;
   flex-direction: column;
-  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
+  background: linear-gradient(to top right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.7));
   box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
   border-radius: 10px;
 }
@@ -36,6 +36,9 @@
 #sidebar li {
   font-size: 2.25vh;
 }
+#sidebar li:hover {
+  color: rgb(30, 215, 96);
+}
 #sidebar-playlists {
   height: 100%;
   flex-direction: column;
@@ -45,7 +48,8 @@
 #add-playlist-btn {
   min-width: 15vw;
   min-height: 5vh;
-  font-size: 2.5vh;
+  font-size: 2vh;
+  font-weight: 600;
   background-color: rgb(30, 215, 96);
 }
 #add-playlist-btn:hover {

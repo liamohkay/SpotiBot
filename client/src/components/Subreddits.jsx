@@ -1,11 +1,10 @@
 // Libraries, dependencies, contexts
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase/firebase.js';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import { db } from '/client/src/firebase/firebase.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 // Components
-import RunBot from './RunBot.jsx';
-import ClearSongs from './ClearSongs.jsx';
-import AddSubreddit from './AddSubreddit.jsx';
+import RunBot from '/client/src/components/RunBot.jsx';
+import AddSubreddit from '/client/src/components/AddSubreddit.jsx';
 
 export default function SubredditList() {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
@@ -37,31 +36,34 @@ export default function SubredditList() {
       {!selectedInfo ? null : (
         <div id="selected-playlist" className="flex">
           <div id="selected-playlist-header" className="flex">
-            {selectedInfo.images.length === 0 ? null : (
-              <img id="selected-playlist-img" src={selectedInfo.images[1].url} />
-            )}
-          </div>
-
-          <div id="selected-playlist-info">
-            <h2>{selected.name}</h2>
-            <p>{selectedInfo.description}</p>
-            <div>Followers: {selectedInfo.followers.total}</div>
-          </div>
-          <RunBot subreddits={selected.subreddits} />
-          <ClearSongs />
-
-          <div id="subreddits-container">
-            <h2>Subreddits in {selected.name}</h2>
-            <div id="subreddits-main">
-              {selected.subreddits.map(sub => (
-                <div className="subreddit-tile" onClick={handleDelete} key={sub}>{sub}</div>
-              ))}
+            <RunBot subreddits={selected.subreddits} />
+            {selectedInfo.images.length === 0
+              ? <img src="https://i1.wp.com/hertrack.com/wp-content/uploads/2018/10/no-image.jpg?w=1000&ssl=1"/>
+              : <img src={selectedInfo.images[1].url} />
+            }
+            <div id="selected-playlist-info" className="flex">
+              <div>
+                <h1>{selected.name}</h1>
+                <div>Followers: {selectedInfo.followers.total}</div>
+                <br/>
+                <p>{selectedInfo.description}</p>
+              </div>
             </div>
           </div>
-          <AddSubreddit />
+
+          <div id="subreddits">
+            <div className="flex">
+              <h1>Subreddits in {selected.name}</h1>
+              <div id="subreddit-tile-list" className="flex">
+                {selected.subreddits.map(sub => (
+                  <div className="subreddit-tile" onClick={handleDelete} key={sub}>{sub}</div>
+                ))}
+              </div>
+            </div>
+            <AddSubreddit />
+          </div>
         </div>
       )}
     </>
-
   );
 }

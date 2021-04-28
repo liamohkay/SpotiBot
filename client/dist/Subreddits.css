@@ -1,6 +1,69 @@
 /* Selected playlist + subreddits styling */
 #selected-playlist {
-  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
+  width: 65vw;
+  padding: 2%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: linear-gradient(to top right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.7));
   box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
   border-radius: 10px;
+}
+
+#selected-playlist-header {
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2%;
+  margin-bottom: 5%;
+}
+#selected-playlist-header img {
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 25vh;
+}
+#selected-playlist-info {
+  padding: 1%;
+  width: 50%;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Playlist "action" buttons styling */
+#action-btns {
+  width: 15vw;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* border-right: 1px solid grey; */
+}
+#action-btns button {
+  width: 80%;
+  height: 3.5vh;
+  font-weight: 600;
+  font-size: 1.75vh;
+}
+#run-bot {
+  background: linear-gradient(to top right, rgba(138, 95, 245), rgb(30, 215, 96));
+}
+#add-songs {
+  background-color:rgba(30, 215, 96, .6);
+}
+#clear-songs {
+  background-color: rgba(227, 33, 52, .5);
+  width: 10vw;
+  height: 2.5vh;
+}
+
+/* Subreddit list styling */
+#subreddits {
+  width: 100%;
+}
+.subreddit-tile {
+  background-color: rgba(30, 215, 96, .2);
+  margin: 1%;
+  padding: 1% 5% 1% 5%;
+  border-radius: 5px;
 }

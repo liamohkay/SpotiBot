@@ -7,7 +7,7 @@ export default function Playlists() {
 
   return (
     <>
-      { !playlists ? null : (
+      {!playlists ? null : (
         <div id="playlists" className="flex">
           <ul>
             {Object.values(playlists).map(plist => (
@@ -15,7 +15,7 @@ export default function Playlists() {
             ))}
           </ul>
         </div>
-      ) }
+      )}
     </>
   );
 }

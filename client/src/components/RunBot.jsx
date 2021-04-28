@@ -1,7 +1,9 @@
-// Libraries + dependneices
+// Libraries, dependencies, contexts
 import React, { useState, useEffect } from 'react';
-import { useSpotify } from '../contexts/SpotifyContext.js';
-import reddit from '../../../server/reddit.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
+import reddit from '/server/reddit.js';
+// Components
+import ClearSongs from '/client/src/components/ClearSongs.jsx';
 
 const RunBot = () => {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
@@ -64,11 +66,11 @@ const RunBot = () => {
   }
 
   return (
-    <div>
+    <div id="action-btns" className="flex">
+      {`🤖 found ${foundCount} songs!`}
       <button id="run-bot" onClick={handleRun}>Run SpotiBot</button>
       <button id="add-songs" onClick={handleAdd}>Add Songs</button>
-      <br/>
-      { foundCount === 0 ? <br/> : `🤖 found ${foundCount} songs to add!`}
+      <ClearSongs />
     </div>
   );
 }
