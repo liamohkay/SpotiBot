@@ -1,0 +1,57 @@
+/* Sidebar styling */
+#sidebar {
+  justify-content: flex-start;
+  min-width: 25vw;
+  width: 25vw;
+  flex-direction: column;
+  background: linear-gradient(to bottom right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
+  border-radius: 10px;
+}
+
+/* Spotify profile styling */
+#profile {
+  padding: 7.5% 5% 15% 5%;
+  gap: 5%;
+}
+#profile-pic {
+  width: 25%;
+  border-radius: 100%;
+  border: 1px solid white;
+}
+#profile-info {
+  flex-direction: column;
+  align-items: flex-start;
+}
+#display-name {
+  font-size: 2.5vh;
+  font-weight: 600;
+}
+
+/* SpotiBot sidebar playlist list styling */
+#sidebar h2 {
+  color: rgb(30, 215, 96);
+  padding-bottom: 5%;
+}
+#sidebar li {
+  font-size: 2.25vh;
+}
+#sidebar li:hover {
+  color: rgb(30, 215, 96);
+}
+#sidebar-playlists {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 7.5%;
+}
+#add-playlist-btn {
+  min-width: 15vw;
+  min-height: 5vh;
+  font-size: 2vh;
+  font-weight: 600;
+  background-color: rgb(30, 215, 96);
+}
+#add-playlist-btn:hover {
+  background-color: rgba(30, 215, 96, .8);
+}

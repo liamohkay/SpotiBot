@@ -1,17 +1,16 @@
-// Libraries + dependencies
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
-import useText from '../hooks/useText.js';
-import { db } from '../firebase/firebase.js';
-import { useAuth } from '../contexts/AuthContext.js';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import useInput from '/client/src/hooks/useInput.js';
+import { db } from '/client/src/firebase/firebase.js';
+import { useAuth } from '/client/src/contexts/AuthContext.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 
-const AddPlaylist = ({ spotifyID }) => {
+export default function AddPlaylist({ spotifyID }) {
   const { currentUser } = useAuth();
   const { token, SpotifyAPI, setUpdate } = useSpotify();
   const [isOpen, setIsOpen] = useState(false);
-  const [PL, setPL] = useText({ name: '', description: '' });
+  const [PL, setPL] = useInput({ name: '', description: '' });
 
   // Saves playlist in firestore db for persistence across sessions
   const postPlaylist = (name, id) => {
@@ -65,10 +64,8 @@ const AddPlaylist = ({ spotifyID }) => {
           <textarea type="text" name="description" onChange={setPL}></textarea>
         </div>
 
-        <button id="save-playlist-btn" onClick={handleSave}>Save Playlist</button>
+        <button id="add-playlist-btn" onClick={handleSave}>Save Playlist</button>
       </Modal>
     </>
   );
 }
-
-export default AddPlaylist;
