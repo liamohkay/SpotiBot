@@ -1,0 +1,169 @@
+/* button {
+  background-color: rgba(30, 215, 96, 1);
+  border: none;
+  color: white;
+  border-radius: 20px;
+}
+ul {
+  list-style: none;
+}
+
+#title {
+  font-size: 4rem;
+  padding-bottom: 5%;
+}
+#login-container {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#login-btn {
+  height: 250%;
+  width: 250%;
+  font-size: 2rem;
+  margin-left: -70%;
+}
+
+#app {
+  display: 'flex';
+  font-family: 'Poppins', sans-serif;
+  width: 95vw;
+  height: 100vh;
+}
+#app-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+} */
+
+/* Sidebar */
+/* #sidebar-container {
+  margin: 7% 5% 7% 5%;
+}
+
+#user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  padding: 5% 0% 5% 0%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  background-color: rgba(30, 215, 96, .3);
+}
+#user-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+}
+#profile-pic {
+  width: 25%;
+  height: 25%;
+  margin-left: -10%;
+  border-radius: 100%;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, 1);
+}
+#display-name {
+  font-weight: bold;
+}
+
+#sidebar-playlists {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(237, 214, 175, 0.1);
+  height: 65vh;
+  margin: 10% 0% 0% 0%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+}
+#playlist-container {
+  display: flex;
+  align-items: left;
+  position: relative;
+  margin-left: -30%;
+  margin-top: -5%;
+}
+#save-playlist-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+#create-playlist-btn {
+  position: absolute;
+  width: 15%;
+  left: 10%;
+  bottom: 8%;
+  height: 5%;
+}
+#save-playlist-btn {
+  position: relative;
+  left: 9%;
+  width: 92%;
+} */
+
+/* Main Subreddit */
+/* #main-container {
+  display: flex;
+  flex-direction: column;
+  margin: 3.5% 5% 7% 5%;
+  background-color: rgba(237, 214, 175, 0.1);
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  border-radius: 15px;
+  height: 92%;
+}
+
+#subreddits-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15%;
+  flex-direction: row;
+  padding: 2% 0% 2% 0%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: rgba(237, 214, 175, 0.4);
+}
+#selected-playlist-img {
+  height: 25%;
+  width: 25%;
+  border-radius: 15px;
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .6);
+  margin-left: -15%;
+}
+
+#subreddits-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2% 5% 2% 5%;
+  position: relative;
+}
+#subreddits-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.subreddit-tile {
+  background-color: rgba(30, 215, 96, .2);
+  margin: 1%;
+  padding: 1% 5% 1% 5%;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(122, 122, 122, .5);
+}
+
+#add-subbreddit-container {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  padding-top: 5%;
+}
+#add-subbreddit-btn {
+  width: 15%;
+} */
