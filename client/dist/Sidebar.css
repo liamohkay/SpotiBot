@@ -4,7 +4,7 @@
   min-width: 25vw;
   width: 25vw;
   flex-direction: column;
-  background: linear-gradient(to top right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.7));
+  background: linear-gradient(to bottom right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
   box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
   border-radius: 10px;
 }

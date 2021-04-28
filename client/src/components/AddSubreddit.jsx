@@ -1,11 +1,10 @@
-// Libraries & dependencies
 import axios from 'axios';
 import React, { useState } from 'react';
-import { db } from '../firebase/firebase.js';
-import { useSpotify } from '../contexts/SpotifyContext.js';
-import useInput from '../hooks/useInput.js';
+import { db } from '/client/src/firebase/firebase.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
+import useInput from '/client/src/hooks/useInput.js';
 
-const AddSubreddit = () => {
+export default function AddSubreddit() {
   const { selected, getSelectedPlaylist } = useSpotify();
   const [newSub, setNewSub] = useInput();
 
@@ -21,11 +20,9 @@ const AddSubreddit = () => {
   }
 
   return (
-    <div id="add-subbreddit" className="container">
+    <div id="add-subreddit" className="flex">
       <input type="text" name="newSub" onChange={setNewSub}></input>
       <button id="add-subbreddit-btn" onClick={handleAdd}>Add Subreddit</button>
     </div>
   );
 }
-
-export default AddSubreddit;

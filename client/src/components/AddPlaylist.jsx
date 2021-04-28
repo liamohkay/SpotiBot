@@ -1,10 +1,10 @@
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
-import useInput from '../hooks/useInput.js';
-import { db } from '../firebase/firebase.js';
-import { useAuth } from '../contexts/AuthContext.js';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import useInput from '/client/src/hooks/useInput.js';
+import { db } from '/client/src/firebase/firebase.js';
+import { useAuth } from '/client/src/contexts/AuthContext.js';
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 
 export default function AddPlaylist({ spotifyID }) {
   const { currentUser } = useAuth();

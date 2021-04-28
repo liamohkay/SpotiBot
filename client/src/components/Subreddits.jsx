@@ -52,16 +52,16 @@ export default function SubredditList() {
           </div>
 
           <div id="subreddits">
-            <div className="flex">
+            <div id="subredits-header" className="flex">
               <h1>Subreddits in {selected.name}</h1>
               <div id="subreddit-tile-list" className="flex">
                 {selected.subreddits.map(sub => (
-                  <div className="subreddit-tile" onClick={handleDelete} key={sub}>{sub}</div>
+                  <div className="subreddit-tile flex" onClick={handleDelete} key={sub}>{sub}</div>
                 ))}
               </div>
             </div>
-            <AddSubreddit />
           </div>
+          <AddSubreddit />
         </div>
       )}
     </>
