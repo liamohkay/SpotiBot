@@ -199,6 +199,8 @@ Sidebar + Sidebar Component Styles
   font-size: 2vh;
   border-radius: 10px;
   border: 1px solid rgba(122, 122, 122, .8);
+  font-family: 'Poppins', sans-serif;
+  font-size: 2vh;
 }
 
 /* ----------------------------------------------------
