@@ -1,3 +1,4 @@
+// Firebase + Firestore SDK config
 const firebaseConfig = {
   apiKey: "FILL_ME_IN",
   authDomain: "FILL_ME_IN",

@@ -99,9 +99,6 @@ button:hover {
 }
 
 /* Link Spotify Styles */
-#link-spotify-card {
-  height: 50%;
-}
 #link-spotify-card button {
   height: 10vh;
   width: 25vw;
