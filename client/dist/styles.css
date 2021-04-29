@@ -1,0 +1,287 @@
+/* ---------------------
+App-wide + Shared Styles
+--------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2vh;
+  color: whitesmoke;
+  overflow-x: hidden;
+}
+ul {
+  list-style-type: none;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+  border: none;
+  color: whitesmoke;
+  border-radius: 20px;
+}
+button:hover {
+  opacity: .8;
+}
+
+/* Utility classes */
+.container {
+  width: 100vw;
+  height: 90vh;
+  max-width: 100%;
+  max-height: 100%;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dashboard {
+  display: flex;
+  gap: 5%;
+  margin: 2.5%;
+}
+
+
+
+/* -------------------------
+ Login + Link Spotify Styles
+------------------------- */
+#login-card, #link-spotify-card  {
+  width: 33%;
+  height: 75%;
+  padding: 2.5%;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
+  border-radius: 10px;
+}
+#login-card h1, #link-spotify-card h1 {
+  color: rgb(30, 215, 96);
+  font-size: 7vh;
+  font-weight: 600;
+}
+#login-inputs {
+  height: 25%;
+  flex-direction: column;
+  gap: 10%;
+}
+#login-inputs input {
+  width: 20vw;
+  height: 10vh;
+  text-align: center;
+  font-size: 2vh;
+  border: none;
+  border-radius: 10px;
+}
+#login-btns {
+  width: 20vw;
+  height: 10vh;
+  justify-content: space-between;
+  gap: 10%;
+}
+#login-btns button {
+  width: 50%;
+  height: 50%;
+  color: white;
+  font-size: 2vh;
+  font-weight: 600;
+  background-color: rgba(30, 215, 96, 1);
+  border: none;
+  border-radius: 20px;
+}
+#login-btns button:hover {
+  background-color: rgba(30, 215, 96, .8);
+}
+
+/* Link Spotify Styles */
+#link-spotify-card {
+  height: 50%;
+}
+#link-spotify-card button {
+  height: 10vh;
+  width: 25vw;
+  color: white;
+  font-size: 2.5vh;
+  font-weight: 600;
+  background-color: rgba(30, 215, 96, 1);
+  border: none;
+  border-radius: 15px;
+}
+#link-spotify-card button:hover {
+  background-color: rgba(30, 215, 96, .8);
+}
+
+/* -------------------------------
+Sidebar + Sidebar Component Styles
+------------------------------- */
+#sidebar {
+  justify-content: flex-start;
+  min-width: 25vw;
+  width: 25vw;
+  flex-direction: column;
+  background: linear-gradient(to bottom right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
+  border-radius: 10px;
+}
+
+/* Spotify profile styling */
+#profile {
+  padding: 7.5% 5% 15% 5%;
+  gap: 5%;
+}
+#profile-pic {
+  width: 25%;
+  border-radius: 100%;
+  border: 1px solid white;
+}
+#profile-info {
+  flex-direction: column;
+  align-items: flex-start;
+}
+#display-name {
+  font-size: 2.5vh;
+  font-weight: 600;
+}
+
+/* SpotiBot sidebar playlist list styling */
+#sidebar h2 {
+  color: rgb(30, 215, 96);
+  padding-bottom: 5%;
+}
+#sidebar li {
+  font-size: 2.25vh;
+}
+#sidebar li:hover {
+  color: rgb(30, 215, 96);
+}
+#sidebar-playlists {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 7.5%;
+}
+#add-playlist-btn {
+  min-width: 15vw;
+  min-height: 5vh;
+  font-size: 2vh;
+  font-weight: 600;
+  background-color: rgb(30, 215, 96);
+}
+#add-playlist-btn:hover {
+  background-color: rgba(30, 215, 96, .8);
+}
+
+/* ----------------------------------------------------
+"Main Dash": Selected Playlist + Subreddits List Styles
+---------------------------------------------------- */
+#selected-playlist {
+  width: 65vw;
+  padding: 2%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: linear-gradient(to bottom left, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
+  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
+  border-radius: 10px;
+}
+#selected-playlist-header {
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2%;
+  padding-bottom: 2.5%;
+  border-bottom: 1px solid grey;
+}
+#selected-playlist-header img {
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 25vh;
+}
+#selected-playlist-info {
+  padding: 1%;
+  width: 50%;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Playlist "action" buttons styling */
+#action-btns {
+  width: 15vw;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#action-btns button {
+  width: 80%;
+  height: 3.5vh;
+  font-weight: 600;
+  font-size: 1.75vh;
+}
+#run-bot {
+  background: linear-gradient(to top right, rgba(138, 95, 245), rgb(30, 215, 96));
+}
+#add-songs {
+  background-color:rgba(30, 215, 96, .6);
+}
+#clear-songs {
+  background-color: rgba(227, 33, 52, .5);
+  width: 10vw;
+  height: 2.5vh;
+}
+
+/* Subreddit list styling */
+#subreddits {
+  width: 100%;
+  min-height: 50vh;
+  justify-content: space-between;
+  padding: 2.5% 0%;
+}
+#subredits-header {
+  flex-direction: column;
+}
+#subredits-header h1 {
+  padding-bottom: 1%;
+}
+#subreddit-tile-list {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.subreddit-tile {
+  height: 7vh;
+  margin: 1%;
+  padding: 1% 5% 1% 5%;
+  background: linear-gradient(to bottom left, rgba(252, 200, 149, 0.85), rgba(255, 228, 202, 0.8));
+  color: black;
+  border-radius: 5px;
+}
+.subreddit-tile:hover {
+  cursor: pointer;
+}
+#add-subreddit {
+  width: 100%;
+  gap: 2.5%;
+}
+#add-subreddit input {
+  width: 15vw;
+  height: 5vh;
+  text-align: center;
+  font-size: 2vh;
+  border: none;
+  border-radius: 10px;
+}
+#add-subbreddit-btn {
+  width: 15vw;
+  height: 5vh;
+  background: rgb(255, 107, 33);
+  font-weight: 600;
+  font-size: 2vh;
+}
