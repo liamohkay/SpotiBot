@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const request = require('request');
 const querystring = require('querystring');
-const config = require('./config.js');
+const config = require('./spotifyConfig.js');
 
 // Global vars
 const port = 3000;
