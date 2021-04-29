@@ -45,8 +45,6 @@ button:hover {
   margin: 2.5%;
 }
 
-
-
 /* -------------------------
  Login + Link Spotify Styles
 ------------------------- */
@@ -173,6 +171,36 @@ Sidebar + Sidebar Component Styles
   background-color: rgba(30, 215, 96, .8);
 }
 
+/* Add playlist modal */
+#add-playlist-modal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: black;
+}
+#add-playlist-info {
+  height: 60vh;
+  flex-direction: column;
+  gap: 2.5%;
+}
+#add-playlist-info input {
+  width: 20vw;
+  height: 5vh;
+  text-align: center;
+  font-size: 2vh;
+  border-radius: 10px;
+  border: 1px solid rgba(122, 122, 122, .8);
+}
+#add-playlist-info textarea {
+  width: 20vw;
+  height: 10vh;
+  text-align: center;
+  font-size: 2vh;
+  border-radius: 10px;
+  border: 1px solid rgba(122, 122, 122, .8);
+}
+
 /* ----------------------------------------------------
 "Main Dash": Selected Playlist + Subreddits List Styles
 ---------------------------------------------------- */
@@ -262,6 +290,7 @@ Sidebar + Sidebar Component Styles
 }
 .subreddit-tile:hover {
   cursor: pointer;
+  background: rgba(227, 33, 52, 1);
 }
 #add-subreddit {
   width: 100%;

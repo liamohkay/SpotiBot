@@ -3,6 +3,7 @@
 1. [Technologies](#Technologies)
 1. [Installation](#Installation)
 1. [Setup](#Setup)
+1. [Run SpotiBot](#RunSpotiBot)
 1. [Application Demo](#ApplicationDemo)
 
 # Overview
@@ -48,7 +49,7 @@ module.exports = {
 };
 ```
 
-4. Rename `/server/spotifyConfig-ex.js` to `/server/spotifyConfig.js`. Renaming the file will cause it to become gitignored and is the filepath for the server to import your Spotify configuration.
+4. Rename `/server/spotifyConfig-ex.js` to `/server/spotifyConfig.js`. Renaming the file will cause it to become gitignored and is the correct filepath for the express server to import your Spotify configuration.
 
 ## Firebase/Firestore
 1. Sign up for a [Firebase](https://firebase.google.com/) account and create a new project.
@@ -66,6 +67,6 @@ const firebaseConfig = {
 };
 ```
 
-3.  Rename `/client/src/firebase/fbConfig-ex.js` to `/client/src/firebase/fbConfig.js`. Renaming the file will cause it to become gitignored and is the filepath for the front-end to import your Firebase configuration.
+3.  Rename `/client/src/firebase/fbConfig-ex.js` to `/client/src/firebase/fbConfig.js`. Renaming the file will cause it to become gitignored and is the correct filepath for the front-end to import your Firebase configuration.
 
 #

@@ -57,10 +57,10 @@ export default function AddPlaylist({ spotifyID }) {
         <button id="close-modal" type="button" onClick={() => setIsOpen(false)}>x</button>
 
         { /* Input fields for new playlist name & description */ }
-        <div id="add-playlist-info">
-          <h4>Enter A Playlist Name</h4>
+        <div id="add-playlist-info" className="flex">
+          <h1>Enter A Playlist Name</h1>
           <input type="text" name="name" onChange={setPL}></input>
-          <h4>Enter A Description</h4>
+          <h1>Enter A Description</h1>
           <textarea type="text" name="description" onChange={setPL}></textarea>
         </div>
 
