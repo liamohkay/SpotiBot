@@ -10,7 +10,7 @@ SpotiBot is a web application that leverages the constant stream of new music po
 
 SpotiBot aggregates top music posts from user-inputted subreddits, searches for the corresponding songs on Spotify, and then adds the songs to a single Spotify playlist. SpotiBot alleviates the painstaking process of visiting a sundry of different subreddits and clicking through multiple external links just to listen to a song.
 
-![](https://s3.gifyu.com/images/SpotiBot.gif)
+![](https://thumbs.gfycat.com/ClumsyWholeGosling-size_restricted.gif)
 
 # Technologies
 - HTML + CSS
