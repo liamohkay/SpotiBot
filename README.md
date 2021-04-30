@@ -28,7 +28,7 @@ SpotiBot aggregates top music posts from user-inputted subreddits, searches for 
 $ git clone https://github.com/liamohkay/SpotiBot.git
 $ cd SpotiBot
 ```
-2. Using install project dependencies inside the SpotiBot directory.
+2. Install project dependencies inside the SpotiBot directory.
 ```
 $ npm install
 ```
