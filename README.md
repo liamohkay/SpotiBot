@@ -1,4 +1,4 @@
-# SpotiBot Table Of Contents
+# Table Of Contents
 1. [Overview](#Overview)
 1. [Technologies](#Technologies)
 1. [Installation](#Installation)
@@ -80,4 +80,3 @@ $ npm run build
 $ npm start
 ```
 3. Navigate to the localhost port in your browser. The project default is `localhost:3000`.
-
