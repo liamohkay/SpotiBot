@@ -4,16 +4,13 @@
 1. [Installation](#Installation)
 1. [Setup](#Setup)
 1. [Run SpotiBot](#RunSpotiBot)
-1. [Application Demo](#ApplicationDemo)
 
 # Overview
 SpotiBot is a web application that leverages the constant stream of new music posted to Reddit and combines it with the listening convenience of Spotify.
 
-[](https://imgur.com/RPtzQzk)
-
 SpotiBot aggregates top music posts from user-inputted subreddits, searches for the corresponding songs on Spotify, and then adds the songs to a single Spotify playlist. SpotiBot alleviates the painstaking process of visiting a sundry of different subreddits and clicking through multiple external links just to listen to a song.
 
-![](https://media.giphy.com/media/GgE4O1aR7I8vvm6yeq/giphy.gif)
+![](https://firebasestorage.googleapis.com/v0/b/spotibot-5d612.appspot.com/o/SpotiBot.gif?alt=media&token=cb892c74-3608-4d21-89fe-e919ad4f11f6)
 
 # Technologies
 - HTML + CSS
@@ -73,4 +70,14 @@ const firebaseConfig = {
 
 3.  Rename `/client/src/firebase/fbConfig-ex.js` to `/client/src/firebase/fbConfig.js`. Renaming the file will cause it to become gitignored and is the correct filepath for the front-end to import your Firebase configuration.
 
-#
+# Run SpotiBot
+1. Compile the project build.
+```
+$ npm run build
+```
+2. Start the express server.
+```
+$ npm start
+```
+3. Navigate to the localhost port in your browser. The project default is `localhost:3000`.
+
