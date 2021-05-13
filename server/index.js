@@ -52,7 +52,6 @@ app.get('/login', (req, res) => {
 // Redirect request to serve client token after getting auth code
 app.get('/callback', (req, res) => {
   let code = req.query.code || null;
-  let state = req.query.state || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
@@ -79,9 +78,9 @@ app.get('/callback', (req, res) => {
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-
+a
         // use the access token to access the Spotify Web API
-        request.get(options, (err, resp, body) => console.log(body));
+        // request.get(options, (err, resp, body) => console.log(body));
         res.redirect('/#' + querystring.stringify({ access_token, refresh_token }));
       } else {
         res.redirect('/#' + querystring.stringify({ err: 'invalid_token' }));

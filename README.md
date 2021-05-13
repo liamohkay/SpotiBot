@@ -3,7 +3,7 @@
 1. [Technologies](#Technologies)
 1. [Installation](#Installation)
 1. [Setup](#Setup)
-1. [Run SpotiBot](#RunSpotiBot)
+1. [Start](#Start)
 
 # Overview
 SpotiBot is a web application that leverages the constant stream of new music posted to Reddit and combines it with the listening convenience of Spotify.
@@ -28,7 +28,7 @@ SpotiBot aggregates top music posts from user-inputted subreddits, searches for 
 $ git clone https://github.com/liamohkay/SpotiBot.git
 $ cd SpotiBot
 ```
-2. Install project dependencies inside the SpotiBot directory.
+2. Using install project dependencies inside the SpotiBot directory.
 ```
 $ npm install
 ```
@@ -70,7 +70,7 @@ const firebaseConfig = {
 
 3.  Rename `/client/src/firebase/fbConfig-ex.js` to `/client/src/firebase/fbConfig.js`. Renaming the file will cause it to become gitignored and is the correct filepath for the front-end to import your Firebase configuration.
 
-# Run SpotiBot
+# Start
 1. Compile the project build.
 ```
 $ npm run build
