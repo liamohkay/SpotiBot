@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const request = require('request');
 const querystring = require('querystring');
 const config = require('./spotifyConfig.js');
+require('dotenv').config();
+
 
 // Global vars
 const port = 3000;
@@ -18,7 +20,7 @@ const { client_id, client_secret, redirect_uri } = config;
 const app = express()
   .use(cors())
   .use(cookieParser())
-  .use(morgan('dev'))
+  .use(morgan('combined'))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(express.static(path.join(__dirname, '../client/dist/')))

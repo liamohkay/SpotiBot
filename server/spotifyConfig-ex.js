@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Spotify API Configs
 module.exports = {
     redirect_uri: process.env.REDIRECT_URI,
