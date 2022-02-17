@@ -1,6 +1,6 @@
 // Spotify API Configs
 module.exports = {
-    redirect_uri: 'http://localhost:3000/callback',
-    client_id: 'INSERT SPOTIFY APP CLIENT ID',
-    client_secret: 'INSERT SPOTIFY APP CLIENT SECRET'
+    redirect_uri: process.env.REDIRECT_URI,
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET
 };

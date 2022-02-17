@@ -3,3 +3,4 @@ package-lock.json
 server/spotifyConfig.js
 client/dist/bundle.js
 client/src/firebase/fbConfig.js
+.env

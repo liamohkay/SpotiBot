@@ -35,6 +35,8 @@ $ npm install
 
 # Setup
 
+NOTE: If you are going to deploy this appplication, you should be using environment variables. These instructions are merely a guide to get a dev environment set up.
+
 ## Spotify API Key
 1. Sign up for a [Spotify Developer Account](https://developer.spotify.com/dashboard/) and create a new web app.
 
