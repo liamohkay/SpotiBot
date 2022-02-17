@@ -10,7 +10,6 @@ const querystring = require('querystring');
 const config = require('./spotifyConfig.js');
 require('dotenv').config();
 
-
 // Global vars
 const port = 3000;
 const stateKey = 'spotify_auth_state';
