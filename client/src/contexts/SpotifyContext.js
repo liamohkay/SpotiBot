@@ -10,7 +10,7 @@ const SpotifyContext = createContext();
 export const useSpotify = () => useContext(SpotifyContext);
 
 export const SpotifyProvider = ({ children }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
   const [token, setToken] = useState();
   const [selected, setSelected] = useState();
   const [playlists, setPlaylists] = useState([]);
@@ -51,8 +51,12 @@ export const SpotifyProvider = ({ children }) => {
       const tokenStr = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
       SpotifyAPI.setAccessToken(tokenStr);
       setToken(tokenStr);
+    } else if (!token) {
+      logout()
     }
   }, []);
+
+  
 
   // Triggers re-render
   useEffect(() => {
