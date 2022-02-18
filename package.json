@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "build": "webpack --watch --mode=development",
+    "build:prod": "webpack --mode=production",
     "start": "nodemon server/index.js"
   },
   "repository": {

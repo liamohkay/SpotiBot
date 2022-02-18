@@ -11,15 +11,17 @@ const config = require('./spotifyConfig.js');
 require('dotenv').config();
 
 // Global vars
-const port = 3000;
+const port = process.env.PORT || 3000;
 const stateKey = 'spotify_auth_state';
 const { client_id, client_secret, redirect_uri } = config;
+
+console.log(redirect_uri);
 
 // Express server + middleware + controllers
 const app = express()
   .use(cors())
   .use(cookieParser())
-  .use(morgan('combined'))
+  .use(morgan('dev'))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(express.static(path.join(__dirname, '../client/dist/')))
@@ -55,9 +57,9 @@ app.get('/callback', (req, res) => {
   let code = req.query.code || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
 
-  if (state === null || state !== storedState) {
-    res.redirect('/#' + querystring.stringify({ error: 'state_mismatch' }));
-  } else {
+  // if (state === null || state !== storedState) {
+  //   res.redirect('/#' + querystring.stringify({ error: 'state_mismatch' }));
+  // } else {
     res.clearCookie(stateKey);
     let authOptions = {
       json: true,
@@ -79,7 +81,7 @@ app.get('/callback', (req, res) => {
           headers: { 'Authorization': 'Bearer ' + access_token },
           json: true
         };
-a
+
         // use the access token to access the Spotify Web API
         // request.get(options, (err, resp, body) => console.log(body));
         res.redirect('/#' + querystring.stringify({ access_token, refresh_token }));
@@ -87,7 +89,6 @@ a
         res.redirect('/#' + querystring.stringify({ err: 'invalid_token' }));
       }
     });
-  }
 });
 
 // Refresh token endpoint that allows past users to get a fresh token w/o another oauth
