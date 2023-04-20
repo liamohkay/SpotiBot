@@ -4,8 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "build": "webpack --watch --mode=development",
-    "build:prod": "webpack --mode=production",
+    "build:dev": "webpack --watch --mode=development",
+    "build": "webpack --mode=production",
     "start": "nodemon server/index.js"
   },
   "repository": {

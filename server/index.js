@@ -15,8 +15,6 @@ const port = process.env.PORT || 3000;
 const stateKey = 'spotify_auth_state';
 const { client_id, client_secret, redirect_uri } = config;
 
-console.log(redirect_uri);
-
 // Express server + middleware + controllers
 const app = express()
   .use(cors())
