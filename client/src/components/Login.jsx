@@ -27,17 +27,43 @@ export default function Login() {
   }
 
   return (
-    <div className="container flex">
-      <div id="login-card" className="flex">
-        <h1>SpotiBot</h1>
-        <form id="login-inputs" className="flex">
-          <input type="text" name="email" placeholder="Email" onChange={setInput}></input>
-          <input type="password" name="password" placeholder="Password" onChange={setInput}></input>
-        </form>
-        <div id="login-btns" className="flex">
-          <button onClick={handleLogin}>Login</button>
-          <button onClick={handleSignup}>Signup</button>
-        </div>
+    <div className="flex border-bg">
+      <div className="nav-bg">
+
+        <section id="login-nav-header">
+          <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
+          <div>
+            <h1>SpotiBot</h1>
+            <p>Your digital digger</p>
+          </div>
+        </section>
+
+        <main id="login-nav-main" className="flex">
+          <form>
+            <input
+              className="text-input"
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={setInput}
+            />
+            <input
+              className="text-input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={setInput}
+            />
+            <button onClick={handleLogin}>Login</button>
+          </form>
+        </main>
+
+      </div>
+
+      <div className="main-bg">
+        {/* <img src="https://totallywiredmag.com/wp-content/uploads/2020/12/1280-jp-record-shelf-1.jpg" /> */}
+        <button onClick={handleSignup}>Signup</button>
+        {JSON.stringify(input)}
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ export const SpotifyProvider = ({ children }) => {
     }
   }, []);
 
-  
+
 
   // Triggers re-render
   useEffect(() => {
