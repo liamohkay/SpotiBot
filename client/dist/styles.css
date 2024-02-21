@@ -71,19 +71,19 @@ button:hover {
 }
 
 #login-nav-header div h1 {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 #login-nav-header div p {
   font-size: .9em;
 }
 
-#login-nav-main {
+#login-nav-section {
   padding: var(--spacing-sm);
   width: 30vw;
 }
 
-#login-nav-main form {
+#login-nav-section form {
   width: 30vw;
   height: 80vh;
   display: flex;
@@ -93,7 +93,7 @@ button:hover {
   padding-left: var(--spacing-sm);
 }
 
-#login-nav-main form input {
+#login-nav-section form input {
   width: 85%;
   height: 3rem;
   color: whitesmoke;
@@ -101,14 +101,14 @@ button:hover {
   text-align: center;
 }
 
-#login-nav-main form input::placeholder {
+#login-nav-section form input::placeholder {
   text-align: start;
-  color: rgba(255, 255, 255, .6);
+  color: rgba(255, 255, 255, .8);
 }
 
-#login-nav-main form button {
+#login-nav-section form button {
   height: 3rem;
-  width: 55%;
+  width: 60%;
   margin-top: var(--spacing-sm);
   margin-left: var(--spacing-med);
   background-color: black;
@@ -117,7 +117,19 @@ button:hover {
   font-weight: 700;
 }
 
+@keyframes slideRightToLeft {
+  from {
+    transform: translateX(100%);
+  }
 
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-right-to-left {
+  animation: slideRightToLeft .7s ease;
+}
 
 /* ------ */
 .main-bg {
@@ -145,6 +157,46 @@ button:hover {
   opacity: .1;
   position: absolute;
 }
+
+#main-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+#main-login input {
+  width: 50%;
+  height: 3rem;
+  color: black;
+  font-size: 1.15em;
+  text-align: center;
+}
+
+#main-login input::placeholder {
+  text-align: start;
+  color: rgba(0, 0, 0, .25);
+}
+
+#main-login h1 {
+  font-size: 2rem;
+  color: var(--spotify-green);
+  padding-top: 6rem;
+}
+
+#main-login button {
+  width: 25%;
+  height: 3rem;
+  background-color: var(--spotify-green);
+  font-size: 1.15em;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: 700;
+  margin-top: var(--spacing-sm);
+
+}
+
 
 /* Utility classes */
 .container {

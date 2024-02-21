@@ -7,7 +7,13 @@ import useInput from '/client/src/hooks/useInput.js';
 export default function Login() {
   const history = useHistory();
   const { login, signup } = useAuth();
-  const [input, setInput] = useInput({ email: '', password: '' });
+  const [input, setInput] = useInput({
+    email: '',
+    password: '',
+    newEmail: '',
+    newPass: '',
+    newPassMatch: ''
+  });
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
@@ -18,12 +24,17 @@ export default function Login() {
 
   // Creates new user & stores in firebase
   const handleSignup = () => {
-    signup(input.email, input.password)
-      .then(resp => {
-        alert(`Account created for ${resp.user.email}`);
-        history.push('/link');
-      })
-      .catch(err => alert(err.message))
+    if (input.newPass !== input.newPassMatch) {
+      alert('Passwords don\'t match');
+      return;
+    } else {
+      signup(input.newEmail, input.newPass)
+        .then(resp => {
+          alert(`Account created for ${resp.user.email}`);
+          history.push('/link');
+        })
+        .catch(err => alert(err.message))
+    }
   }
 
   return (
@@ -34,11 +45,11 @@ export default function Login() {
           <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
           <div>
             <h1>SpotiBot</h1>
-            <p>Your digital digger</p>
+            <p>The digital digger</p>
           </div>
         </section>
 
-        <main id="login-nav-main" className="flex">
+        <section id="login-nav-section" className="flex slide-right-to-left">
           <form>
             <input
               className="text-input"
@@ -56,15 +67,38 @@ export default function Login() {
             />
             <button onClick={handleLogin}>Login</button>
           </form>
-        </main>
+        </section>
 
       </div>
 
-      <div className="main-bg">
+      <main className="main-bg">
         {/* <img src="https://totallywiredmag.com/wp-content/uploads/2020/12/1280-jp-record-shelf-1.jpg" /> */}
-        <button onClick={handleSignup}>Signup</button>
-        {JSON.stringify(input)}
-      </div>
+        <section id="main-login">
+          <h1>Create an Account</h1>
+          <input
+            className="text-input"
+            type="text"
+            name="newEmail"
+            placeholder="New Email"
+            onChange={setInput}
+          />
+          <input
+            className="text-input"
+            type="password"
+            name="newPass"
+            placeholder="New Password"
+            onChange={setInput}
+          />
+          <input
+            className="text-input"
+            type="password"
+            name="newPassMatch"
+            placeholder="Confirm New Password"
+            onChange={setInput}
+          />
+          <button onClick={handleSignup}>Signup</button>
+        </section>
+      </main>
     </div>
   );
 }
