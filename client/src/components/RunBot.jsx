@@ -20,12 +20,6 @@ const RunBot = () => {
   const handleAdd = (e) => {
     e.preventDefault();
 
-    // If there are not tracks to add alert user to run the bot
-    if (tracksToAdd.length === 0) {
-      alert('🤖 Press "Run SpotiBot" first!');
-      return;
-    }
-
     // Spotify has a 100 song limit per request so we have break up requests into 100 song chunks
     let multiplier = 0;
     while ((tracksToAdd.length / (100 * multiplier) >= 1)) {

@@ -39,9 +39,8 @@ export default function Dashboard() {
         { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
       </div>
       <div className="main-bg">
-        <RunBot />
+        {/* <RunBot /> */}
         <Subreddits />
-
       </div>
       {/* {!token || !profile ? null : (
         <div id="dashboard" className="container">

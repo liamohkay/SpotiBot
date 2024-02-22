@@ -10,6 +10,7 @@ App-wide + Shared Styles
 
 :root {
   font-size: 16px;
+  --reddit-orange: rgb(255, 107, 33);
   --spotify-green: rgb(30, 215, 96);
   --spacing-xsm: .5rem;
   --spacing-sm: 1rem;
@@ -335,17 +336,6 @@ Sidebar + Sidebar Component Styles
 /* ----------------------------------------------------
 "Main Dash": Selected Playlist + Subreddits List Styles
 ---------------------------------------------------- */
-#selected-playlist {
-  width: 65vw;
-  padding: 2%;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background: linear-gradient(to bottom left, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
-  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
-  border-radius: 10px;
-}
-
 #selected-playlist-header {
   width: 100%;
   align-items: flex-start;
@@ -402,9 +392,7 @@ Sidebar + Sidebar Component Styles
 /* Subreddit list styling */
 #subreddits {
   width: 100%;
-  min-height: 50vh;
   justify-content: space-between;
-  padding: 2.5% 0%;
 }
 
 #subredits-header {
@@ -417,18 +405,20 @@ Sidebar + Sidebar Component Styles
 
 #subreddit-tile-list {
   width: 100%;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
+  padding: var(--spacing-med);
 }
 
 .subreddit-tile {
-  height: 7vh;
-  margin: 1%;
+  height: 3rem;
+  margin: 1% .25%;
   padding: 1% 5% 1% 5%;
-  background: linear-gradient(to bottom left, rgba(252, 200, 149, 0.85), rgba(255, 228, 202, 0.8));
+  border-width: 1px;
+  border: solid;
   color: black;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .subreddit-tile:hover {
@@ -453,7 +443,7 @@ Sidebar + Sidebar Component Styles
 #add-subbreddit-btn {
   width: 15vw;
   height: 5vh;
-  background: rgb(255, 107, 33);
+  background: var(--reddit-orange);
   font-weight: 600;
   font-size: 2vh;
 }
