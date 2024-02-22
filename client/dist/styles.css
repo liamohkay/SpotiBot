@@ -422,8 +422,9 @@ Sidebar + Sidebar Component Styles
 }
 
 .subreddit-tile:hover {
-  cursor: pointer;
-  background: rgba(227, 33, 52, 1);
+  cursor: not-allowed;
+  color: red;
+  opacity: .6;
 }
 
 #add-subreddit {
