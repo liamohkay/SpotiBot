@@ -5,14 +5,16 @@ import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 // Playlist sidebar components
 import Profile from './Profile.jsx';
 import Playlists from './Playlists.jsx';
+import PlaylistInfo from './PlaylistInfo.jsx';
 import AddPlaylist from './AddPlaylist.jsx';
 // Subreddits dashboard components
 import RunBot from './RunBot.jsx';
 import Subreddits from './Subreddits.jsx';
 
 export default function Dashboard() {
-  const { token } = useSpotify();
+  const { token, selected, SpotifyAPI } = useSpotify();
   const [profile, setProfile] = useState();
+  const [selectedPlaylist, setSelectedPlaylist] = useState();
 
   // Gets spotify profile info upon oauth authorization + dashboard load
   useEffect(() => {
@@ -22,6 +24,15 @@ export default function Dashboard() {
         .catch(err => alert(err.message))
     }
   }, [token]);
+
+  // Fetches + updates displayed subreddits & playlist info
+  useEffect(() => {
+    if (selected) {
+      SpotifyAPI.getPlaylist(selected.id)
+        .then(resp => setSelectedPlaylist(resp))
+        .catch(err => console.log(err))
+    }
+  }, [selected]);
 
   return (
     <div className="flex border-bg">
@@ -40,7 +51,8 @@ export default function Dashboard() {
       </div>
       <div className="main-bg">
         {/* <RunBot /> */}
-        <Subreddits />
+        <PlaylistInfo selectedPlaylist={selectedPlaylist} />
+        <Subreddits selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist} />
       </div>
       {/* {!token || !profile ? null : (
         <div id="dashboard" className="container">

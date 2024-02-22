@@ -390,10 +390,50 @@ Sidebar + Sidebar Component Styles
   height: 2.5vh;
 } */
 
+#playlist-info {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xsm);
+}
+
+#playlist-info img {
+  height: min(30vh, 30vw);
+  border-radius: 15px;
+  /* border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px; */
+}
+
+#playlist-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xsm);
+  width: calc(100% - min(30vh, 30vw));
+  color: black;
+}
+
+#playlist-info-container h1 {
+  font-size: 1.75rem;
+  margin-bottom: -0.5rem;
+}
+
+#playlist-info-container p {
+  font-size: .9rem;
+  color: rgba(0, 0, 0, .4);
+}
+
 /* Subreddit list styling */
 #subreddits {
-  width: 100%;
+  width: calc(100% - (2 * var(--spacing-xsm)));
+  height: calc(100% - min(30vh, 30vw) - (2.5 * var(--spacing-sm)));
   justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  margin-top: var(--spacing-sm);
+  margin-left: var(--spacing-xsm);
+  margin-right: var(--spacing-xsm);
+  border: rgba(0, 0, 0, .3);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
 }
 
 #subreddits h2 {
@@ -406,8 +446,8 @@ Sidebar + Sidebar Component Styles
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: var(--spacing-med);
-  padding-right: var(--spacing-med);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
   padding-bottom: var(--spacing-sm);
   padding-top: var(--spacing-sm);
 }

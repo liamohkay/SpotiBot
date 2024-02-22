@@ -1,23 +1,10 @@
-// Libraries, dependencies, contexts
 import React, { useState, useEffect } from 'react';
 import { db } from '/client/src/firebase/firebase.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-// Components
-import RunBot from '/client/src/components/RunBot.jsx';
 import AddSubreddit from '/client/src/components/AddSubreddit.jsx';
 
-export default function SubredditList() {
+export default function SubredditList({ selectedPlaylist, setSelectedPlaylist }) {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
-  const [selectedPlaylist, setSelectedPlaylist] = useState();
-
-  // Fetches + updates displayed subreddits & playlist info
-  useEffect(() => {
-    if (selected) {
-      SpotifyAPI.getPlaylist(selected.id)
-        .then(resp => setSelectedPlaylist(resp))
-        .catch(err => console.log(err))
-    }
-  }, [selected]);
 
   // Deletes subreddit on tile click
   const handleDelete = (e) => {
