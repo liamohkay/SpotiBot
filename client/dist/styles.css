@@ -276,6 +276,7 @@ Sidebar + Sidebar Component Styles
 }
 
 #playlist-nav li {
+  font-size: 1.1rem;
   margin: var(--spacing-xsm) 0;
 }
 
@@ -407,7 +408,7 @@ Sidebar + Sidebar Component Styles
   justify-content: space-between;
   padding-left: var(--spacing-med);
   padding-right: var(--spacing-med);
-  padding-bottom: var(--spacing-med);
+  padding-bottom: var(--spacing-sm);
   padding-top: var(--spacing-sm);
 }
 
@@ -418,6 +419,7 @@ Sidebar + Sidebar Component Styles
   border-width: 1px;
   border: solid;
   color: black;
+  font-size: .95rem;
   border-radius: 15px;
 }
 
