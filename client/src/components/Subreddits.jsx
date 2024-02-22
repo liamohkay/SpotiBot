@@ -34,35 +34,34 @@ export default function SubredditList() {
   return (
     <>
       {!selectedInfo ? null : (
-        <div id="selected-playlist" className="flex">
-          <div id="selected-playlist-header" className="flex">
-            <RunBot subreddits={selected.subreddits} />
-            {!selectedInfo.images || selectedInfo.images.length === 0
-              ? <img src="https://i1.wp.com/hertrack.com/wp-content/uploads/2018/10/no-image.jpg?w=1000&ssl=1"/>
-              : <img src={selectedInfo.images[1].url} />
-            }
-            <div id="selected-playlist-info" className="flex">
-              <div>
-                <h1>{selected.name}</h1>
-                <div>Followers: {selectedInfo.followers.total}</div>
-                <br/>
-                <p>{selectedInfo.description}</p>
-              </div>
-            </div>
-          </div>
+        <section>
+          {/* <RunBot  subreddits={selected.subreddits} /> */}
 
-          <div id="subreddits">
-            <div id="subredits-header" className="flex">
-              <h1>Subreddits in {selected.name}</h1>
-              <div id="subreddit-tile-list" className="flex">
-                {selected.subreddits.map(sub => (
-                  <div className="subreddit-tile flex" onClick={handleDelete} key={sub}>{sub}</div>
-                ))}
-              </div>
+          {!selectedInfo.images || selectedInfo.images.length === 0
+            ? <img src="https://i1.wp.com/hertrack.com/wp-content/uploads/2018/10/no-image.jpg?w=1000&ssl=1"/>
+            : <img src={selectedInfo.images[1].url} />
+          }
+
+          <div id="selected-playlist-info" className="flex">
+            <div>
+              <h1>{selected.name}</h1>
+              <div>Followers: {selectedInfo.followers.total}</div>
+              <p>{selectedInfo.description}</p>
             </div>
           </div>
-          <AddSubreddit />
-        </div>
+        </section>
+        // <div id="subreddits">
+        //   <div id="subredits-header" className="flex">
+        //     <h1>Subreddits in {selected.name}</h1>
+        //     <div id="subreddit-tile-list" className="flex">
+        //       {selected.subreddits.map(sub => (
+        //         <div className="subreddit-tile flex" onClick={handleDelete} key={sub}>{sub}</div>
+        //       ))}
+        //     </div>
+        //   </div>
+        // </div>
+        // <AddSubreddit />
+        // </div>
       )}
     </>
   );

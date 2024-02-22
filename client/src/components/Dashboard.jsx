@@ -3,11 +3,12 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 // Playlist sidebar components
-import Profile from '/client/src/components/Profile.jsx';
-import Playlists from '/client/src/components/Playlists.jsx';
-import AddPlaylist from '/client/src/components/AddPlaylist.jsx';
+import Profile from './Profile.jsx';
+import Playlists from './Playlists.jsx';
+import AddPlaylist from './AddPlaylist.jsx';
 // Subreddits dashboard components
-import Subreddits from '/client/src/components/Subreddits.jsx';
+import RunBot from './RunBot.jsx';
+import Subreddits from './Subreddits.jsx';
 
 export default function Dashboard() {
   const { token } = useSpotify();
@@ -38,7 +39,9 @@ export default function Dashboard() {
         { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
       </div>
       <div className="main-bg">
+        <RunBot />
         <Subreddits />
+
       </div>
       {/* {!token || !profile ? null : (
         <div id="dashboard" className="container">

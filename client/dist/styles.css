@@ -38,6 +38,22 @@ button:hover {
   opacity: .8;
 }
 
+@keyframes slideRightToLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-right-to-left {
+  animation: slideRightToLeft .7s ease;
+}
+
 /* bg styling */
 .nav-bg {
   background-color: var(--spotify-green);
@@ -114,20 +130,6 @@ button:hover {
   color: whitesmoke;
   font-size: 1.1rem;
   font-weight: 700;
-}
-
-@keyframes slideRightToLeft {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-.slide-right-to-left {
-  animation: slideRightToLeft .7s ease;
 }
 
 /* ------ */
@@ -258,7 +260,8 @@ Sidebar + Sidebar Component Styles
 /* SpotiBot sidebar playlist list styling */
 #playlist-nav {
   width: 80%;
-  padding-top: var(--spacing-med);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
 }
 
 #playlist-nav h2 {

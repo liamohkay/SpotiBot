@@ -43,6 +43,10 @@ const RunBot = () => {
 
   const handleRun = (e) => {
     e.preventDefault();
+    if (!selected.subreddits || selected.subreddits.length === 0) {
+      alert('Add subreddits to this playlist first!');
+      return;
+    }
 
     selected.subreddits.map((sub, subIndex) => {
       reddit.getTopPosts(sub, subPosts => {
