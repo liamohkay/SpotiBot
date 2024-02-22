@@ -15,11 +15,19 @@ export default function Login() {
     newPassMatch: ''
   });
 
+  const sendConfirmation = (email) => {
+    axios.post('/confirmationEmail', { email })
+      .then(() => console.log(`Signup confirmation sent to: ${email}.`))
+      .catch(err => console.error(err))
+  }
+
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
-    login(input.email, input.password)
-      .then(() => history.push('/link'))
-      .catch(err => alert(err.message))
+    sendConfirmation(input.email);
+    // login(input.email, input.password)
+    //   .then(() => sendConfirmation(input.email))
+    //   .then(() => history.push('/link'))
+    //   .catch(err => alert(err.message))
   }
 
   // Creates new user & stores in firebase
@@ -31,6 +39,7 @@ export default function Login() {
       signup(input.newEmail, input.newPass)
         .then(resp => {
           alert(`Account created for ${resp.user.email}`);
+          sendConfirmation(resp.user.email);
           history.push('/link');
         })
         .catch(err => alert(err.message))
@@ -68,11 +77,9 @@ export default function Login() {
             <button onClick={handleLogin}>Login</button>
           </form>
         </section>
-
       </div>
 
       <main className="main-bg">
-        {/* <img src="https://totallywiredmag.com/wp-content/uploads/2020/12/1280-jp-record-shelf-1.jpg" /> */}
         <section id="main-login">
           <h1>Create an Account</h1>
           <input

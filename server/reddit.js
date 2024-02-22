@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+// Functions to clean up reddit post titles
 const removeFeatures = title => title.replace(/[([](FEAT|FT).*[\)\]]/i, '');
 const removeExtended = title => title.replace(/[([](EXTENDED).*[\)\]]/i, '');
 const removeVersion = title => title.replace(/[([](VERSION).*[\)\]]/i, '');
