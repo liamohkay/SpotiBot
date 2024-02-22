@@ -8,13 +8,13 @@ import AddSubreddit from '/client/src/components/AddSubreddit.jsx';
 
 export default function SubredditList() {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
-  const [selectedInfo, setSelectedInfo] = useState();
+  const [selectedPlaylist, setSelectedPlaylist] = useState();
 
   // Fetches + updates displayed subreddits & playlist info
   useEffect(() => {
     if (selected) {
       SpotifyAPI.getPlaylist(selected.id)
-        .then(resp => setSelectedInfo(resp))
+        .then(resp => setSelectedPlaylist(resp))
         .catch(err => console.log(err))
     }
   }, [selected]);
@@ -33,9 +33,9 @@ export default function SubredditList() {
 
   return (
     <>
-      {!selectedInfo ? null : (
+      { !selectedPlaylist ? null : (
         <section id="subreddits">
-          <h1>Subreddits in {selected.name}</h1>
+          <h2>Indexed Subreddits</h2>
           <div id="subreddit-tile-list" className="flex">
             {selected.subreddits.map(sub => (
               <div className="subreddit-tile flex" onClick={handleDelete} key={sub}>{sub}</div>
@@ -43,7 +43,7 @@ export default function SubredditList() {
           </div>
           <AddSubreddit />
         </section>
-      )}
+      ) }
     </>
   );
 }

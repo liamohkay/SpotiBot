@@ -20,9 +20,14 @@ export default function AddSubreddit() {
   }
 
   return (
-    <div id="add-subreddit" className="flex">
-      <input type="text" name="newSub" onChange={setNewSub}></input>
-      <button id="add-subbreddit-btn" onClick={handleAdd}>Add Subreddit</button>
-    </div>
+    <section id="add-subreddit" className="flex">
+      <input
+        type="text"
+        name="newSub"
+        placeholder="Enter Subreddit Name"
+        onChange={setNewSub}
+      />
+      <button id="add-subbreddit-btn" onClick={handleAdd}>Add to Index</button>
+    </section>
   );
 }
