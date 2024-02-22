@@ -23,11 +23,10 @@ export default function Login() {
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
-    sendConfirmation(input.email);
-    // login(input.email, input.password)
-    //   .then(() => sendConfirmation(input.email))
-    //   .then(() => history.push('/link'))
-    //   .catch(err => alert(err.message))
+    login(input.email, input.password)
+      .then(() => sendConfirmation(input.email))
+      .then(() => history.push('/link'))
+      .catch(err => alert(err.message))
   }
 
   // Creates new user & stores in firebase
