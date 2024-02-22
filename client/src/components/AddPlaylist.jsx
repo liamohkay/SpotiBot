@@ -45,8 +45,8 @@ export default function AddPlaylist({ spotifyID }) {
   }
 
   return (
-    <>
-      <button id="add-playlist-btn" onClick={() => setIsOpen(true)}>Add New Playlist</button>
+    <div id="add-playlist">
+      <button onClick={() => setIsOpen(true)}>Add New Playlist</button>
 
       <Modal
         id="add-playlist-modal"
@@ -66,6 +66,6 @@ export default function AddPlaylist({ spotifyID }) {
 
         <button id="add-playlist-btn" onClick={handleSave}>Save Playlist</button>
       </Modal>
-    </>
+    </div>
   );
 }

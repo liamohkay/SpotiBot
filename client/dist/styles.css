@@ -40,7 +40,6 @@ button:hover {
 
 /* bg styling */
 .nav-bg {
-  z-index: -3;
   background-color: var(--spotify-green);
   width: 37.5vw;
   height: 100vh;
@@ -133,7 +132,6 @@ button:hover {
 
 /* ------ */
 .main-bg {
-  z-index: -2;
   width: 75vw;
   height: 100vh;
   background-color: white;
@@ -144,18 +142,6 @@ button:hover {
   border: white;
   border-width: 6px;
   border-style: solid;
-}
-
-.main-bg img {
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 35px;
-  border-bottom-left-radius: 35px;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  opacity: .1;
-  position: absolute;
 }
 
 #main-login {
@@ -194,9 +180,7 @@ button:hover {
   text-align: center;
   font-weight: 700;
   margin-top: var(--spacing-sm);
-
 }
-
 
 /* Utility classes */
 .container {
@@ -248,15 +232,6 @@ button:hover {
 /* -------------------------------
 Sidebar + Sidebar Component Styles
 ------------------------------- */
-#sidebar {
-  justify-content: flex-start;
-  min-width: 25vw;
-  width: 25vw;
-  flex-direction: column;
-  background: linear-gradient(to bottom right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
-  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
-  border-radius: 10px;
-}
 
 /* Spotify profile styling */
 #profile {
@@ -281,36 +256,42 @@ Sidebar + Sidebar Component Styles
 }
 
 /* SpotiBot sidebar playlist list styling */
-#sidebar h2 {
-  color: var(--spotify-green);
-  padding-bottom: 5%;
+#playlist-nav {
+  width: 80%;
+  padding-top: var(--spacing-med);
 }
 
-#sidebar li {
-  font-size: 2.25vh;
+#playlist-nav h2 {
+  text-align: center;
+  color: black;
 }
 
-#sidebar li:hover {
-  color: var(--spotify-green);
+#playlist-nav ul {
+  padding-left: 2rem;
+  color: black;
 }
 
-#sidebar-playlists {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 7.5%;
+#playlist-nav li {
+  margin: var(--spacing-xsm) 0;
 }
 
-#add-playlist-btn {
-  min-width: 15vw;
-  min-height: 5vh;
-  font-size: 2vh;
-  font-weight: 600;
-  background-color: var(--spotify-green);
+#playlist-nav li:hover {
+  color: whitesmoke;
 }
 
-#add-playlist-btn:hover {
-  background-color: rgba(30, 215, 96, .8);
+/* add playlist */
+#add-playlist {
+  width: 80%;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+#add-playlist button {
+  height: 3rem;
+  width: 50%;
+  background-color: black;
+  color: whitesmoke;
+  font-weight: 700;
 }
 
 /* Add playlist modal */

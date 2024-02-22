@@ -23,20 +23,29 @@ export default function Dashboard() {
   }, [token]);
 
   return (
-    <>
-      {!token || !profile ? null : (
+    <div className="flex border-bg">
+      <div className="nav-bg">
+
+        <section id="login-nav-header">
+          <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
+          <div>
+            <h1>SpotiBot</h1>
+            <p>The digital digger</p>
+          </div>
+        </section>
+
+        <Playlists />
+        { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
+      </div>
+      <div className="main-bg">
+        <Subreddits />
+      </div>
+      {/* {!token || !profile ? null : (
         <div id="dashboard" className="container">
           <div id="sidebar" className="flex">
             <Profile profile={profile} />
-            <h2>Your SpotiBot Playlists</h2>
-            <div id="sidebar-playlists" className="flex">
-              <Playlists />
-              <AddPlaylist spotifyID={profile.id} />
-            </div>
-          </div>
-          <Subreddits />
         </div>
-      )}
-    </>
+      )} */}
+    </div>
   );
 }
