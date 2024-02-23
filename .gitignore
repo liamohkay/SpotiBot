@@ -1,6 +1,4 @@
 node_modules/
-package-lock.json
-server/spotifyConfig.js
 client/dist/bundle*
 client/src/firebase/fbConfig.js
 .env

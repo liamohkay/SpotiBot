@@ -3,13 +3,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 // Playlist sidebar components
-import Profile from './Profile.jsx';
-import Playlists from './Playlists.jsx';
-import PlaylistInfo from './PlaylistInfo.jsx';
-import AddPlaylist from './AddPlaylist.jsx';
+import Profile from '../components/Profile.jsx';
+import Playlists from '../components/Playlists.jsx';
+import PlaylistInfo from '../components/PlaylistInfo.jsx';
+import AddPlaylist from '../components/AddPlaylist.jsx';
 // Subreddits dashboard components
-import RunBot from './RunBot.jsx';
-import Subreddits from './Subreddits.jsx';
+import RunBot from '../components/RunBot.jsx';
+import Subreddits from '../components/Subreddits.jsx';
 
 export default function Dashboard() {
   const { token, selected, SpotifyAPI } = useSpotify();

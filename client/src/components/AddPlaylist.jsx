@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
-import useInput from '/client/src/hooks/useInput.js';
+import useInput from '../utils/useInput.js';
 import { db } from '/client/src/firebase/firebase.js';
 import { useAuth } from '/client/src/contexts/AuthContext.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';

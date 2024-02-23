@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { db } from '/client/src/firebase/firebase.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-import useInput from '/client/src/hooks/useInput.js';
+import useInput from '../utils/useInput.js';
 
 export default function AddSubreddit() {
   const { selected, getSelectedPlaylist } = useSpotify();

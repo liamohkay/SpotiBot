@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '/client/src/contexts/AuthContext.js';
-import useInput from '/client/src/hooks/useInput.js';
+import useInput from '../utils/useInput.js';
 
 export default function Login() {
   const history = useHistory();

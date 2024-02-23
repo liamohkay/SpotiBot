@@ -14,11 +14,9 @@ export default function LinkSpotify() {
         </section>
       </div>
       <main className="main-bg">
-        {/* <div className="flex"> */}
-          <a href="/login">
-            <button id="link-btn">Link Your Spotify Account</button>
-          </a>
-        {/* </div> */}
+        <a href="/login">
+          <button id="link-btn">Link Your Spotify Account</button>
+        </a>
       </main>
     </div>
   );
