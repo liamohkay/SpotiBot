@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import { useSpotify } from '../../contexts/SpotifyContext.js';
 
 export default function ClearSongs() {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();

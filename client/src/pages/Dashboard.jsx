@@ -7,7 +7,7 @@ import Profile from '../components/Profile.jsx';
 import YourPlaylists from '../components/sidebar/YourPlaylists.jsx';
 import AddPlaylist from '../components/sidebar/AddPlaylist.jsx';
 import PlaylistInfo from '../components/PlaylistInfo.jsx';
-import Subreddits from '../components/Subreddits.jsx';
+import Subreddits from '../components/reddit_search/Subreddits.jsx';
 
 export default function Dashboard() {
   const { token, selected, SpotifyAPI } = useSpotify();

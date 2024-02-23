@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
+import { useSpotify } from '../../contexts/SpotifyContext.js';
 import reddit from '/server/reddit.js';
 import ClearPlaylist from './ClearPlaylist.jsx';
 

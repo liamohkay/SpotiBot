@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-import RunBot from './RunBot.jsx';
+import { useSpotify } from '../contexts/SpotifyContext.js';
+import RunBot from './bot_functions/RunBot.jsx';
 
 export default function PlaylistInfo({ selectedPlaylist }) {
   const { selected } = useSpotify();

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '/client/src/firebase/firebase.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-import AddSubreddit from '/client/src/components/AddSubreddit.jsx';
+import AddSubreddit from './AddSubreddit.jsx';
 
-export default function SubredditList({ selectedPlaylist, setSelectedPlaylist }) {
+export default function Subreddits({ selectedPlaylist, setSelectedPlaylist }) {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
 
   // Deletes subreddit on tile click
