@@ -7,13 +7,11 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const request = require('request');
 const querystring = require('querystring');
-const config = require('./spotifyConfig.js');
 require('dotenv').config();
 
 // Global vars
 const port = process.env.PORT || 3000;
 const stateKey = 'spotify_auth_state';
-const { client_id, client_secret, redirect_uri } = config;
 
 // Express server + middleware + controllers
 const app = express()
@@ -43,9 +41,9 @@ app.get('/login', (req, res) => {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: client_id,
+      client_id: process.env.CLIENT_ID,
       scope: scope,
-      redirect_uri: redirect_uri,
+      redirect_uri: process.env.REDIRECT_URI,
       state: state
     }));
 });
@@ -62,10 +60,10 @@ app.get('/callback', (req, res) => {
     let authOptions = {
       json: true,
       url: 'https://accounts.spotify.com/api/token',
-      headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+      headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')) },
       form: {
         code: code,
-        redirect_uri: redirect_uri,
+        redirect_uri: process.env.REDIRECT_URI,
         grant_type: 'authorization_code'
       },
     };
@@ -95,7 +93,7 @@ app.get('/refresh_token', (req, res) => {
   let authOptions = {
     json: true,
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')) },
     form: {
       grant_type: 'refresh_token',
       refresh_token: refresh_token
