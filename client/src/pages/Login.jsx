@@ -21,7 +21,7 @@ export default function Login() {
   const sendEmail = async (template) => {
     try {
       await axios.post('/email', {
-        email: input.email,
+        email: template === 'signin' ? input.email : input.newEmail,
         name: input.name,
         template: template
       });

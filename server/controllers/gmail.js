@@ -4,13 +4,13 @@ const { google } = require('googleapis');
 
 // Email templates & text -> email function
 const emailTemplates = {
-  signup: {
-    subject: (req) => `Welcome to SpotiBot ${req.body.name}!`,
-    html: (req) => `<h3>Thank you for signing up for SpotiBot ${req.body.name}</h3>\n<p>${req.body.email} is your login ID. You can navigate to <a href="http://localhost:3000>SpotiBot</a> to start finding tracks!</p>`
-  },
   signin: {
     subject: (req) => `${req.body.name} did you just sign into SpotiBot?`,
     html: (req) => `If this wasn't you (${req.body.email}) please ask the dev to build out reporting functionality.`
+  },
+  signup: {
+    subject: (req) => `Welcome to SpotiBot ${req.body.name}!`,
+    html: (req) => `<h3>Thank you for signing up for SpotiBot ${req.body.name}</h3>\n<b>${req.body.email}</b> is your login ID. You can navigate to http://localhost:3000 to start finding tracks!`
   }
 }
 
