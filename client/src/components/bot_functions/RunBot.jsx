@@ -42,7 +42,7 @@ const RunBot = () => {
     alert(`🤖 Done! Added ${tracksToAdd.length} songs to "${selected.name}" 💜`);
   }
 
-  const handleRun = async (e) => {
+  const handleRun = (e) => {
     e.preventDefault();
 
     if (!selected.subreddits || selected.subreddits.length === 0) {
@@ -50,10 +50,9 @@ const RunBot = () => {
       return;
     }
 
-    selected.subreddits.map((sub, subIndex) => {
+    selected.subreddits.map(sub => {
       reddit.getTopPosts(sub, subPosts => {
-        subPosts.map((post, postIndex) => {
-
+        subPosts.map(post => {
           // Search by song title then check against artist name
           SpotifyAPI.searchTracks(post.track, { limit: 50 })
             .then(resp => {
@@ -70,7 +69,9 @@ const RunBot = () => {
             .catch(err => console.log(err))
         });
       });
-    });
+    })
+
+
   }
 
   const handleClearFound = (e) => {

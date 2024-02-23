@@ -9,6 +9,7 @@ export default function Login() {
   const history = useHistory();
   const { login, signup } = useAuth();
   const [input, setInput] = useInput({
+    name: 'Liam',
     email: '',
     password: '',
     newEmail: '',
@@ -17,10 +18,13 @@ export default function Login() {
   });
 
   // Triggers an automated email
-  const sendConfirmation = async (email) => {
+  const sendEmail = async (template) => {
     try {
-      await axios.post('/confirmationEmail', { email })
-      alert(console.log(`Signup confirmation sent to: ${email}.`));
+      await axios.post('/email', {
+        email: input.email,
+        name: input.name,
+        template: template
+      });
     } catch (err) {
       console.error(err);
     }
@@ -29,8 +33,7 @@ export default function Login() {
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
     login(input.email, input.password)
-      .then(() => history.push('/link'))
-      .then(() => sendConfirmation(input.email))
+      .then(() => sendEmail('signin'))
       .catch(err => alert(err.message))
   }
 
@@ -44,7 +47,7 @@ export default function Login() {
       signup(input.newEmail, input.newPass)
         .then(resp => {
           alert(`Account created for ${resp.user.email}.\nPlease link your Spotify account.`);
-          sendConfirmation(resp.user.email);
+          sendEmail('signup');
           history.push('/link');
         })
         .catch(err => alert(err.message))

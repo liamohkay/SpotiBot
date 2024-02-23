@@ -52,11 +52,9 @@ export const SpotifyProvider = ({ children }) => {
       SpotifyAPI.setAccessToken(tokenStr);
       setToken(tokenStr);
     } else if (!token) {
-      logout()
+      logout();
     }
   }, []);
-
-
 
   // Triggers re-render
   useEffect(() => {

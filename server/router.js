@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { emailNewUser } = require('./controllers/gmail.js');
+const { postEmail } = require('./controllers/gmail.js');
 const { getSpotifyLogin, getSpotifyAcccessToken, getSpotifyRefreshToken } = require('./controllers/spotify.js');
 
 // Spotify OAuth endpoints
@@ -15,7 +15,7 @@ router
 
 // Gmail OAuth endpoints
 router
-	.route('/confirmationEmail')
-	.post(emailNewUser)
+	.route('/email')
+	.post(postEmail)
 
 module.exports = router;
