@@ -8,7 +8,6 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.GMAIL_SECRET,
   'https://developers.google.com/oauthplayground'
 )
-
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 const emailNewUser = async (req, res) => {
@@ -36,6 +35,7 @@ const emailNewUser = async (req, res) => {
 
     const result = await transporter.sendMail(mailOptions);
     res.status(200).send(`Signup confirmation sent to: ${req.body.email}.`);
+
   } catch(err) {
     res.status(400).send(err);
     return err;

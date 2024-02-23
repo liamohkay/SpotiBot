@@ -22,7 +22,6 @@ export default function Login() {
     } catch (err) {
       console.error(err);
     }
-
     // axios.post('/confirmationEmail', { email })
     //   .then(() => console.log(`Signup confirmation sent to: ${email}.`))
     //   .catch(err => console.error(err))
@@ -31,8 +30,8 @@ export default function Login() {
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
     login(input.email, input.password)
-      .then(() => sendConfirmation(input.email))
       // .then(() => history.push('/link'))
+      .then(() => sendConfirmation(input.email))
       .catch(err => alert(err.message))
   }
 
