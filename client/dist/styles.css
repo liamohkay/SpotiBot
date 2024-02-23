@@ -363,7 +363,6 @@ Sidebar + Sidebar Component Styles
 
 #playlist-info-container h1 {
   font-size: 1.75rem;
-  margin-bottom: -0.5rem;
 }
 
 #playlist-info-container p {
@@ -383,7 +382,7 @@ Sidebar + Sidebar Component Styles
   height: 3rem;
   padding: 0 var(--spacing-med);
   font-weight: 700;
-  font-size: .9rem;
+  font-size: .85rem;
 }
 
 #run-bot-btn {
@@ -400,6 +399,19 @@ Sidebar + Sidebar Component Styles
   color: white;
 }
 
+#clear-playlist-btn {
+  background-color: white;
+  border: solid;
+  border-width: 1px;
+  color: black;
+  border-color: black;
+}
+
+#clear-playlist-btn:hover {
+  color: red;
+  border-color: red;
+}
+
 /* Subreddit list styling */
 #subreddits {
   width: calc(100% - (2 * var(--spacing-xsm)));
@@ -409,13 +421,15 @@ Sidebar + Sidebar Component Styles
   margin-top: var(--spacing-sm);
   margin-left: var(--spacing-xsm);
   margin-right: var(--spacing-xsm);
-  border: rgba(0, 0, 0, .1);
+  border: rgba(0, 0, 0, .2);
   border-width: 1px;
   border-style: solid;
   border-radius: 15px;
 }
 
 #subreddits h2 {
+  /* padding-left: var(--spacing-sm);
+  text-align: left; */
   text-align: center;
   color: black;
 }
@@ -425,10 +439,8 @@ Sidebar + Sidebar Component Styles
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  padding-left: var(--spacing-sm);
-  padding-right: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm);
-  padding-top: var(--spacing-sm);
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-sm);
 }
 
 .subreddit-tile {

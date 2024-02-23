@@ -17,7 +17,13 @@ export default function ClearSongs() {
       .then(resp => {
         let tracksToDelete = [];
         resp.items.map(item => tracksToDelete.push(item.track.uri));
-        deleteSongs(selected.id, tracksToDelete);
+
+        let multiplier = 0;
+        while ((tracksToDelete.length / (100 * multiplier) >= 1)) {
+          let trackSlice = tracksToDelete.slice(100 * multiplier, 100 * (multiplier + 1));
+          deleteSongs(selected.id, trackSlice);
+          multiplier++;
+        }
       })
       .then(getSelectedPlaylist())
       .catch(err => console.log(err))
@@ -26,6 +32,6 @@ export default function ClearSongs() {
   }
 
   return (
-    <button id="clear-songs" onClick={handleClear}>Clear Songs</button>
+    <button id="clear-playlist-btn" onClick={handleClear}>Clear Playlist</button>
   );
 }

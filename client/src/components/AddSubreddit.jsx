@@ -12,6 +12,11 @@ export default function AddSubreddit() {
   const handleAdd = (e) => {
     e.preventDefault();
 
+    if (!newSub || newSub === '') {
+      alert('Enter a subreddit name!');
+      return;
+    }
+
     db.collection('playlists').doc(selected.id).set({
       subreddits: selected.subreddits.concat([newSub.newSub])
     }, { merge: true })
@@ -20,7 +25,7 @@ export default function AddSubreddit() {
   }
 
   return (
-    <section id="add-subreddit" className="flex">
+    <form id="add-subreddit" className="flex">
       <input
         type="text"
         name="newSub"
@@ -28,6 +33,6 @@ export default function AddSubreddit() {
         onChange={setNewSub}
       />
       <button id="add-subbreddit-btn" onClick={handleAdd}>Add to Index</button>
-    </section>
+    </form>
   );
 }
