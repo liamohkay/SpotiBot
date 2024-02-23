@@ -42,13 +42,15 @@ export default function Dashboard() {
           <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
           <div>
             <h1>SpotiBot</h1>
-            <p>The digital digger</p>
+            <span>The digital digger</span>
           </div>
         </section>
 
         <Playlists />
         { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
+
       </div>
+
       <div className="main-bg">
         <PlaylistInfo selectedPlaylist={selectedPlaylist} />
         <Subreddits selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist} />
