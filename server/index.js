@@ -10,7 +10,7 @@ const querystring = require('querystring');
 require('dotenv').config();
 
 // Global vars
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const stateKey = 'spotify_auth_state';
 
 // Express server + middleware + controllers
