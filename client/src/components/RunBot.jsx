@@ -1,20 +1,27 @@
-// Libraries, dependencies, contexts
 import React, { useState, useEffect } from 'react';
-import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 import reddit from '/server/reddit.js';
-// Components
+import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
 import ClearSongs from '/client/src/components/ClearSongs.jsx';
 
 const RunBot = () => {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
   const [tracksToAdd, setTracksToAdd] = useState([]);
   const [foundCount, setFoundCount] = useState(0);
+  const [addColor, setAddColor] = useState('black');
 
   // A visual indicator to the user that SpotiBot is running
   useEffect(() => setFoundCount(tracksToAdd.length), [tracksToAdd])
 
   // Resets tracks to add when a different playlist is clicked & bot run + songs added
   useEffect(() => setTracksToAdd([]), [selected]);
+
+  useEffect(() => {
+    if (foundCount === 0) {
+      setAddColor('black');
+    } else if (addColor === 'black' & foundCount > 0) {
+      setAddColor('green');
+    }
+  }, [foundCount])
 
   // Adds songs found by the bot to selected spotify playlist
   const handleAdd = (e) => {
@@ -35,10 +42,11 @@ const RunBot = () => {
     alert(`🤖 Done! Added ${tracksToAdd.length} songs to "${selected.name}" 💜`);
   }
 
-  const handleRun = (e) => {
+  const handleRun = async (e) => {
     e.preventDefault();
+
     if (!selected.subreddits || selected.subreddits.length === 0) {
-      alert('Add subreddits to this playlist first!');
+      alert('Add subreddits to this playlist\s index first!');
       return;
     }
 
@@ -48,28 +56,35 @@ const RunBot = () => {
 
           // Search by song title then check against artist name
           SpotifyAPI.searchTracks(post.track, { limit: 50 })
-          .then(resp => {
-            let trackResults = resp.tracks.items;
-            // If there is a match & track is not already in playlist, add to playlist
-            trackResults.map(track => {
-              if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
-                setTracksToAdd(prev => [...prev, track.uri]);
-              }
-            });
-          })
-          .catch(err => console.log(err))
+            .then(resp => {
+              let trackResults = resp.tracks.items;
+              // If there is a match & track is not already in playlist, add to playlist
+              trackResults.map(track => {
+                if (track.artists[0].name.toLowerCase() === post.artist.toLowerCase()) {
+                  setTracksToAdd(prev => [...prev, track.uri]);
+                }
+              });
+            })
+            .catch(err => console.log(err))
         });
       });
     });
   }
 
+  const handleClearFound = (e) => {
+    e.preventDefault();
+    setFoundCount(0);
+    setTracksToAdd([]);
+  }
+
   return (
-    <div id="action-btns" className="flex">
-      {`🤖 found ${foundCount} songs!`}
-      <button id="run-bot" onClick={handleRun}>Run SpotiBot</button>
-      <button id="add-songs" onClick={handleAdd}>Add Songs</button>
-      <ClearSongs />
-    </div>
+    <section id="bot-button-container">
+      { tracksToAdd.length === 0
+        ? <button id="run-bot-btn" onClick={handleRun}>Run SpotiBot</button>
+        : <button id="clear-bot-btn" onClick={handleClearFound}>Clear Found</button>
+      }
+      <button id="add-bot-songs-btn" onClick={handleAdd} className={addColor}>{`Add ${foundCount} songs`}</button>
+    </section>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
+import RunBot from './RunBot.jsx';
 
 export default function PlaylistInfo({ selectedPlaylist }) {
   const { selected } = useSpotify();
@@ -15,6 +16,7 @@ export default function PlaylistInfo({ selectedPlaylist }) {
           <h1>{selected.name}</h1>
           <p>Followers: {selectedPlaylist.followers.total}</p>
           <p>{selectedPlaylist.description}</p>
+          <RunBot />
         </div>
       ) }
     </section>

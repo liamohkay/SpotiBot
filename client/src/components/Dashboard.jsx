@@ -50,16 +50,9 @@ export default function Dashboard() {
         { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
       </div>
       <div className="main-bg">
-        {/* <RunBot /> */}
         <PlaylistInfo selectedPlaylist={selectedPlaylist} />
         <Subreddits selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist} />
       </div>
-      {/* {!token || !profile ? null : (
-        <div id="dashboard" className="container">
-          <div id="sidebar" className="flex">
-            <Profile profile={profile} />
-        </div>
-      )} */}
     </div>
   );
 }
