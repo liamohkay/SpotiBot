@@ -5,7 +5,7 @@ import { SpotifyProvider } from '../contexts/SpotifyContext.js';
 import Login from '../pages/Login.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import LinkSpotify from '../pages/LinkSpotify.jsx';
-import PrivateRoute from './PrivateRoute.jsx';
+import PrivateRoute from '../utils/PrivateRoute.jsx';
 
 export default function App() {
   return (

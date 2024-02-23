@@ -3,6 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '/client/src/contexts/AuthContext.js';
 import useInput from '../utils/useInput.js';
+import LogoBrand from '../components/LogoBrand.jsx';
 
 export default function Login() {
   const history = useHistory();
@@ -53,15 +54,7 @@ export default function Login() {
   return (
     <div className="flex border-bg">
       <div className="nav-bg">
-
-        <section id="login-nav-header">
-          <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
-          <div>
-            <h1>SpotiBot</h1>
-            <p>The digital digger</p>
-          </div>
-        </section>
-
+        <LogoBrand />
         <section id="login-nav-section" className="flex slide-right-to-left">
           <form>
             <input

@@ -1,4 +1,3 @@
-// Libraries + dependencies
 import firebaseConfig from './fbConfig.js';
 import firebase from 'firebase/app';
 import 'firebase/firestore';

@@ -1,9 +1,8 @@
 import React from 'react';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-import AddPlaylist from './AddPlaylist.jsx';
 
 // Lists user playlists by name from firebase in sidebar
-export default function Playlists() {
+export default function YourPlaylists() {
   const { selected, playlists, handleSelect } = useSpotify();
 
   return (

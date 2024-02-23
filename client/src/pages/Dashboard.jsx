@@ -2,13 +2,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-// Playlist sidebar components
+import LogoBrand from '../components/LogoBrand.jsx';
 import Profile from '../components/Profile.jsx';
-import Playlists from '../components/Playlists.jsx';
+import YourPlaylists from '../components/sidebar/YourPlaylists.jsx';
+import AddPlaylist from '../components/sidebar/AddPlaylist.jsx';
 import PlaylistInfo from '../components/PlaylistInfo.jsx';
-import AddPlaylist from '../components/AddPlaylist.jsx';
-// Subreddits dashboard components
-import RunBot from '../components/RunBot.jsx';
 import Subreddits from '../components/Subreddits.jsx';
 
 export default function Dashboard() {
@@ -37,20 +35,10 @@ export default function Dashboard() {
   return (
     <div className="flex border-bg">
       <div className="nav-bg">
-
-        <section id="login-nav-header">
-          <img src="https://cdn.icon-icons.com/icons2/814/PNG/512/Spotify_icon-icons.com_66209.png" />
-          <div>
-            <h1>SpotiBot</h1>
-            <span>The digital digger</span>
-          </div>
-        </section>
-
-        <Playlists />
+        <LogoBrand />
+        <YourPlaylists />
         { !profile ? null : <AddPlaylist spotifyID={profile.id} /> }
-
       </div>
-
       <div className="main-bg">
         { !profile? null : <Profile profile={profile} /> }
         <PlaylistInfo selectedPlaylist={selectedPlaylist} />
