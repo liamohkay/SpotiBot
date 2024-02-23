@@ -52,6 +52,7 @@ export default function Dashboard() {
       </div>
 
       <div className="main-bg">
+        { !profile? null : <Profile profile={profile} /> }
         <PlaylistInfo selectedPlaylist={selectedPlaylist} />
         <Subreddits selectedPlaylist={selectedPlaylist} setSelectedPlaylist={setSelectedPlaylist} />
       </div>

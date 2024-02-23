@@ -266,6 +266,38 @@ Sidebar + Sidebar Component Styles
   font-weight: 600;
 } */
 
+#profile {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  gap: var(--spacing-xsm);
+  padding: var(--spacing-xsm) var(--spacing-sm);
+  margin-top: calc(6px + var(--spacing-xsm));
+  margin-right: calc(6px + var(--spacing-xsm));
+  border: rgba(0, 0, 0, .2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+  /* border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px; */
+}
+
+#profile img {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: auto;
+  border: rgba(0, 0, 0, .5);
+  border-width: 1px;
+  border-style: solid;
+}
+
+#profile span {
+  color: rgba(0, 0, 0, .6);
+  font-size: .8rem;
+}
+
 /* SpotiBot sidebar playlist list styling */
 #playlist-nav {
   width: 80%;
@@ -400,16 +432,16 @@ Sidebar + Sidebar Component Styles
 }
 
 #clear-playlist-btn {
-  background-color: white;
-  border: solid;
-  border-width: 1px;
-  color: black;
-  border-color: black;
+  background-color: black;
+  color: white;
 }
 
 #clear-playlist-btn:hover {
+  background-color: white;
   color: red;
   border-color: red;
+  border: solid;
+  border-width: 1px;
 }
 
 /* Subreddit list styling */
@@ -421,10 +453,11 @@ Sidebar + Sidebar Component Styles
   margin-top: var(--spacing-sm);
   margin-left: var(--spacing-xsm);
   margin-right: var(--spacing-xsm);
-  border: rgba(0, 0, 0, .2);
+  border-color: rgba(0, 0, 0, .6);
+  border-top: solid;
   border-width: 1px;
-  border-style: solid;
-  border-radius: 15px;
+  /* border-style: solid;
+  border-radius: 15px; */
 }
 
 #subreddits h2 {
