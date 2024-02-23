@@ -51,8 +51,8 @@ const RunBot = () => {
     }
 
     selected.subreddits.map(sub => {
-      reddit.getTopPosts(sub, subPosts => {
-        subPosts.map(post => {
+      reddit.getTopPosts(sub, subTopPosts => {
+        subTopPosts.map(post => {
 
           // Search by song title then check against artist name
           SpotifyAPI.searchTracks(post.track, { limit: 50 })
