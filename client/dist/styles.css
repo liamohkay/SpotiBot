@@ -240,32 +240,7 @@ button:hover {
   background-color: rgba(30, 215, 96, .8);
 }
 
-/* -------------------------------
-Sidebar + Sidebar Component Styles
-------------------------------- */
-
 /* Spotify profile styling */
-/* #profile {
-  padding: 7.5% 5% 15% 5%;
-  gap: 5%;
-}
-
-#profile-pic {
-  width: 25%;
-  border-radius: 100%;
-  border: 1px solid white;
-}
-
-#profile-info {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-#display-name {
-  font-size: 2.5vh;
-  font-weight: 600;
-} */
-
 #profile {
   display: flex;
   align-items: center;
@@ -502,13 +477,17 @@ Sidebar + Sidebar Component Styles
   background: transparent;
   outline: 0;
   border-width: 0 0 2.5px;
-  border-color: rgba(0, 0, 0, .3);
+  border-color: rgba(0, 0, 0, .2);
 }
 
 #add-subreddit input::placeholder {
   font-size: 1rem;
   text-align: start;
   color: rgba(0, 0, 0, .3);
+}
+
+#add-subreddit input:focus {
+  border-color: var(--reddit-orange);
 }
 
 #add-subbreddit-btn {
