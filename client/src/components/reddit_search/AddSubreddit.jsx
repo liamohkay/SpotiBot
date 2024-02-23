@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { db } from '/client/src/firebase/firebase.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
-import useInput from '/client/src/hooks/useInput.js';
+import useInput from '../../utils/useInput.js';
 
 export default function AddSubreddit() {
   const { selected, getSelectedPlaylist } = useSpotify();
@@ -12,6 +12,11 @@ export default function AddSubreddit() {
   const handleAdd = (e) => {
     e.preventDefault();
 
+    if (!newSub || newSub === '') {
+      alert('Enter a subreddit name!');
+      return;
+    }
+
     db.collection('playlists').doc(selected.id).set({
       subreddits: selected.subreddits.concat([newSub.newSub])
     }, { merge: true })
@@ -20,9 +25,14 @@ export default function AddSubreddit() {
   }
 
   return (
-    <div id="add-subreddit" className="flex">
-      <input type="text" name="newSub" onChange={setNewSub}></input>
-      <button id="add-subbreddit-btn" onClick={handleAdd}>Add Subreddit</button>
-    </div>
+    <form id="add-subreddit" className="flex">
+      <input
+        type="text"
+        name="newSub"
+        placeholder="Enter Subreddit Name"
+        onChange={setNewSub}
+      />
+      <button id="add-subbreddit-btn" onClick={handleAdd}>Add to Index</button>
+    </form>
   );
 }

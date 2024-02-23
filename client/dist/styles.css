@@ -5,34 +5,213 @@ App-wide + Shared Styles
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
+
+:root {
+  font-size: 16px;
+  --reddit-orange: rgb(255, 107, 33);
+  --spotify-green: rgb(30, 215, 96);
+  --spacing-xsm: .5rem;
+  --spacing-sm: 1rem;
+  --spacing-med: 3rem;
+  --spacing-lg: 5rem;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  font-size: 2vh;
   color: whitesmoke;
   overflow-x: hidden;
 }
+
 ul {
   list-style-type: none;
   cursor: pointer;
 }
+
 button {
   cursor: pointer;
   border: none;
-  color: whitesmoke;
-  border-radius: 20px;
+  border-radius: 15px;
 }
+
 button:hover {
   opacity: .8;
 }
 
+@keyframes slideRightToLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-right-to-left {
+  animation: slideRightToLeft .7s ease;
+}
+
+/* bg styling */
+.nav-bg {
+  background-color: var(--spotify-green);
+  width: 37.5vw;
+  height: 100vh;
+  margin-right: -7.5vw;
+  border: white;
+  border-width: 6px;
+  border-style: solid;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.nav-bg section img {
+  height: 100px;
+  width: auto;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+  transform: rotate(-15deg);
+}
+
+#login-nav-header {
+  display: flex;
+  width: 30vw;
+}
+
+#login-nav-header div {
+  padding-left: var(--spacing-xsm);
+  padding-top: .70em;
+}
+
+#login-nav-header div h1 {
+  font-size: 2rem;
+}
+
+#login-nav-header div span {
+  font-size: .9em;
+}
+
+#login-nav-section {
+  padding: var(--spacing-sm);
+  width: 30vw;
+}
+
+#login-nav-section form {
+  width: 30vw;
+  height: 80vh;
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  padding-top: var(--spacing-lg);
+  padding-left: var(--spacing-sm);
+}
+
+#login-nav-section form input {
+  width: 85%;
+  height: 3rem;
+  color: whitesmoke;
+  font-size: 1.15em;
+  text-align: center;
+}
+
+#login-nav-section form input::placeholder {
+  text-align: start;
+  color: rgba(255, 255, 255, .9);
+}
+
+#login-nav-section form button {
+  height: 3rem;
+  width: 60%;
+  margin-top: var(--spacing-sm);
+  margin-left: var(--spacing-med);
+  background-color: black;
+  color: whitesmoke;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ------ */
+.main-bg {
+  width: 75vw;
+  height: 100vh;
+  background-color: white;
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border: white;
+  border-width: 6px;
+  border-style: solid;
+}
+
+#main-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+#main-login input {
+  width: 50%;
+  height: 3rem;
+  color: black;
+  font-size: 1.15em;
+  text-align: center;
+}
+
+#main-login input::placeholder {
+  text-align: start;
+  color: rgba(0, 0, 0, .5);
+}
+
+#main-login h1 {
+  font-size: 2rem;
+  color: var(--spotify-green);
+  padding-top: 6rem;
+}
+
+#main-login button {
+  width: 33%;
+  height: 3rem;
+  background-color: var(--spotify-green);
+  font-size: 1.15em;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: 700;
+  margin-top: var(--spacing-sm);
+}
+
+#link-btn {
+  width: 25%;
+  height: 3rem;
+  background-color: var(--spotify-green);
+  font-size: 1.15em;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: 700;
+  margin-top: var(--spacing-sm);
+}
+
 /* Utility classes */
+.black {
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.green {
+  background-color: var(--spotify-green);
+}
+
 .container {
   width: 100vw;
   height: 90vh;
   max-width: 100%;
   max-height: 100%;
 }
+
 .flex {
   display: flex;
   align-items: center;
@@ -45,55 +224,15 @@ button:hover {
   margin: 2.5%;
 }
 
-/* -------------------------
- Login + Link Spotify Styles
-------------------------- */
-#login-card, #link-spotify-card  {
-  width: 33%;
-  height: 75%;
-  padding: 2.5%;
-  flex-direction: column;
-  justify-content: space-between;
-  background: linear-gradient(to top right, rgba(18, 18, 18, .9), rgba(12, 12, 12, 0.7));
-  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
-  border-radius: 10px;
+.text-input {
+  background: transparent;
+  outline: 0;
+  border-width: 0 0 2.5px;
+  border-color: whitesmoke;
 }
-#login-card h1, #link-spotify-card h1 {
-  color: rgb(30, 215, 96);
-  font-size: 7vh;
-  font-weight: 600;
-}
-#login-inputs {
-  height: 25%;
-  flex-direction: column;
-  gap: 10%;
-}
-#login-inputs input {
-  width: 20vw;
-  height: 10vh;
-  text-align: center;
-  font-size: 2vh;
-  border: none;
-  border-radius: 10px;
-}
-#login-btns {
-  width: 20vw;
-  height: 10vh;
-  justify-content: space-between;
-  gap: 10%;
-}
-#login-btns button {
-  width: 50%;
-  height: 50%;
-  color: white;
-  font-size: 2vh;
-  font-weight: 600;
-  background-color: rgba(30, 215, 96, 1);
-  border: none;
-  border-radius: 20px;
-}
-#login-btns button:hover {
-  background-color: rgba(30, 215, 96, .8);
+
+.text-input:focus {
+  border-color: black;
 }
 
 /* Link Spotify Styles */
@@ -107,68 +246,83 @@ button:hover {
   border: none;
   border-radius: 15px;
 }
+
 #link-spotify-card button:hover {
   background-color: rgba(30, 215, 96, .8);
 }
 
-/* -------------------------------
-Sidebar + Sidebar Component Styles
-------------------------------- */
-#sidebar {
-  justify-content: flex-start;
-  min-width: 25vw;
-  width: 25vw;
-  flex-direction: column;
-  background: linear-gradient(to bottom right, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
-  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
-  border-radius: 10px;
-}
-
 /* Spotify profile styling */
 #profile {
-  padding: 7.5% 5% 15% 5%;
-  gap: 5%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  gap: var(--spacing-xsm);
+  padding: var(--spacing-xsm) var(--spacing-sm);
+  margin-top: calc(6px + var(--spacing-xsm));
+  margin-right: calc(6px + var(--spacing-xsm));
+  border: rgba(0, 0, 0, .2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
+  /* border-bottom-left-radius: 15px;
+  border-top-right-radius: 15px; */
 }
-#profile-pic {
-  width: 25%;
-  border-radius: 100%;
-  border: 1px solid white;
+
+#profile img {
+  border-radius: 50%;
+  width: 2.5rem;
+  height: auto;
+  border: rgba(0, 0, 0, .5);
+  border-width: 1px;
+  border-style: solid;
 }
-#profile-info {
-  flex-direction: column;
-  align-items: flex-start;
-}
-#display-name {
-  font-size: 2.5vh;
-  font-weight: 600;
+
+#profile span {
+  color: rgba(0, 0, 0, .6);
+  font-size: .8rem;
 }
 
 /* SpotiBot sidebar playlist list styling */
-#sidebar h2 {
-  color: rgb(30, 215, 96);
-  padding-bottom: 5%;
+#playlist-nav {
+  width: 80%;
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
 }
-#sidebar li {
-  font-size: 2.25vh;
+
+#playlist-nav h2 {
+  text-align: center;
+  color: black;
 }
-#sidebar li:hover {
-  color: rgb(30, 215, 96);
+
+#playlist-nav ul {
+  padding-left: 2rem;
+  color: black;
 }
-#sidebar-playlists {
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 7.5%;
+
+#playlist-nav li {
+  font-size: 1.1rem;
+  margin: var(--spacing-xsm) 0;
 }
-#add-playlist-btn {
-  min-width: 15vw;
-  min-height: 5vh;
-  font-size: 2vh;
-  font-weight: 600;
-  background-color: rgb(30, 215, 96);
+
+#playlist-nav li:hover {
+  color: whitesmoke;
 }
-#add-playlist-btn:hover {
-  background-color: rgba(30, 215, 96, .8);
+
+/* add playlist */
+#add-playlist {
+  width: 80%;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+#add-playlist button {
+  height: 3rem;
+  width: 50%;
+  background-color: black;
+  color: whitesmoke;
+  font-weight: 700;
 }
 
 /* Add playlist modal */
@@ -179,11 +333,13 @@ Sidebar + Sidebar Component Styles
   flex-direction: column;
   color: black;
 }
+
 #add-playlist-info {
   height: 60vh;
   flex-direction: column;
   gap: 2.5%;
 }
+
 #add-playlist-info input {
   width: 20vw;
   height: 5vh;
@@ -192,6 +348,7 @@ Sidebar + Sidebar Component Styles
   border-radius: 10px;
   border: 1px solid rgba(122, 122, 122, .8);
 }
+
 #add-playlist-info textarea {
   width: 20vw;
   height: 10vh;
@@ -203,113 +360,154 @@ Sidebar + Sidebar Component Styles
   font-size: 2vh;
 }
 
-/* ----------------------------------------------------
-"Main Dash": Selected Playlist + Subreddits List Styles
----------------------------------------------------- */
-#selected-playlist {
-  width: 65vw;
-  padding: 2%;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  background: linear-gradient(to bottom left, rgba(18, 18, 18, 1), rgba(12, 12, 12, 0.8));
-  box-shadow: 6px 6px 20px rgba(122, 122, 122, .8);
-  border-radius: 10px;
-}
-#selected-playlist-header {
-  width: 100%;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 2%;
-  padding-bottom: 2.5%;
-  border-bottom: 1px solid grey;
-}
-#selected-playlist-header img {
-  border: 2px solid white;
-  border-radius: 10px;
-  width: 25vh;
-}
-#selected-playlist-info {
-  padding: 1%;
-  width: 50%;
-  min-height: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
+#playlist-info {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xsm);
 }
 
-/* Playlist "action" buttons styling */
-#action-btns {
-  width: 15vw;
-  height: 100%;
+#playlist-info img {
+  height: min(30vh, 30vw);
+  border-radius: 15px;
+}
+
+#playlist-info-container {
+  display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  gap: var(--spacing-xsm);
+  width: calc(100% - min(30vh, 30vw));
+  color: black;
 }
-#action-btns button {
-  width: 80%;
-  height: 3.5vh;
-  font-weight: 600;
-  font-size: 1.75vh;
+
+#playlist-info-container h1 {
+  font-size: 1.75rem;
 }
-#run-bot {
-  background: linear-gradient(to top right, rgba(138, 95, 245), rgb(30, 215, 96));
+
+#playlist-info-container p {
+  font-size: .9rem;
+  color: rgba(0, 0, 0, .4);
 }
-#add-songs {
-  background-color:rgba(30, 215, 96, .6);
+
+/* bot buttons */
+#bot-button-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-med);
+  margin-top: auto;
 }
-#clear-songs {
-  background-color: rgba(227, 33, 52, .5);
-  width: 10vw;
-  height: 2.5vh;
+
+#bot-button-container button {
+  height: 3rem;
+  padding: 0 var(--spacing-med);
+  font-weight: 700;
+  font-size: .85rem;
+}
+
+#run-bot-btn {
+  color: white;
+  background-color: var(--spotify-green);
+}
+
+#clear-bot-btn {
+  color: white;
+  background-color: darkred;
+}
+
+#add-bot-songs-btn {
+  color: white;
+}
+
+#clear-playlist-btn {
+  background-color: black;
+  color: white;
+}
+
+#clear-playlist-btn:hover {
+  background-color: white;
+  color: red;
+  border-color: red;
+  border: solid;
+  border-width: 1px;
 }
 
 /* Subreddit list styling */
 #subreddits {
-  width: 100%;
-  min-height: 50vh;
+  width: calc(100% - (2 * var(--spacing-xsm)));
+  height: calc(100% - min(30vh, 30vw) - (2.5 * var(--spacing-sm)));
   justify-content: space-between;
-  padding: 2.5% 0%;
+  padding: var(--spacing-sm) 0;
+  margin-top: var(--spacing-sm);
+  margin-left: var(--spacing-xsm);
+  margin-right: var(--spacing-xsm);
+  border-color: rgba(0, 0, 0, .2);
+  /* border-top: solid; */
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 15px;
 }
-#subredits-header {
-  flex-direction: column;
+
+#subreddits h2 {
+  /* padding-left: var(--spacing-sm);
+  text-align: left; */
+  text-align: center;
+  color: black;
 }
-#subredits-header h1 {
-  padding-bottom: 1%;
-}
+
 #subreddit-tile-list {
   width: 100%;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-sm);
 }
+
 .subreddit-tile {
-  height: 7vh;
-  margin: 1%;
+  height: 3rem;
+  margin: 1% .25%;
   padding: 1% 5% 1% 5%;
-  background: linear-gradient(to bottom left, rgba(252, 200, 149, 0.85), rgba(255, 228, 202, 0.8));
+  border-width: 1px;
+  border: solid;
   color: black;
-  border-radius: 5px;
+  font-size: .95rem;
+  border-radius: 15px;
 }
+
 .subreddit-tile:hover {
-  cursor: pointer;
-  background: rgba(227, 33, 52, 1);
+  cursor: not-allowed;
+  color: red;
+  opacity: .65;
 }
-#add-subreddit {
-  width: 100%;
-  gap: 2.5%;
-}
+
 #add-subreddit input {
-  width: 15vw;
-  height: 5vh;
+  width: 33%;
+  height: 3rem;
+  color: black;
+  font-size: 1rem;
   text-align: center;
-  font-size: 2vh;
-  border: none;
-  border-radius: 10px;
+  background: transparent;
+  outline: 0;
+  border-width: 0 0 2.5px;
+  border-color: rgba(0, 0, 0, .2);
 }
+
+#add-subreddit input::placeholder {
+  font-size: 1rem;
+  text-align: start;
+  color: rgba(0, 0, 0, .3);
+}
+
+#add-subreddit input:focus {
+  border-color: var(--reddit-orange);
+}
+
 #add-subbreddit-btn {
-  width: 15vw;
-  height: 5vh;
-  background: rgb(255, 107, 33);
-  font-weight: 600;
-  font-size: 2vh;
+  width: 20%;
+  height: 3rem;
+  text-align: center;
+  color: whitesmoke;
+  font-size: .9rem;
+  font-weight: 700;
+  background-color: var(--reddit-orange);
+  margin-left: var(--spacing-sm);
 }

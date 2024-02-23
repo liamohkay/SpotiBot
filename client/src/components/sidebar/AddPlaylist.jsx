@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Modal from 'react-modal';
 import React, { useState } from 'react';
-import useInput from '/client/src/hooks/useInput.js';
+import useInput from '../../utils/useInput.js';
 import { db } from '/client/src/firebase/firebase.js';
 import { useAuth } from '/client/src/contexts/AuthContext.js';
 import { useSpotify } from '/client/src/contexts/SpotifyContext.js';
@@ -45,8 +45,8 @@ export default function AddPlaylist({ spotifyID }) {
   }
 
   return (
-    <>
-      <button id="add-playlist-btn" onClick={() => setIsOpen(true)}>Add New Playlist</button>
+    <div id="add-playlist">
+      <button onClick={() => setIsOpen(true)}>Add New Playlist</button>
 
       <Modal
         id="add-playlist-modal"
@@ -66,6 +66,6 @@ export default function AddPlaylist({ spotifyID }) {
 
         <button id="add-playlist-btn" onClick={handleSave}>Save Playlist</button>
       </Modal>
-    </>
+    </div>
   );
 }

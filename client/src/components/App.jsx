@@ -1,14 +1,11 @@
-// Libraries + dependencies
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext.js';
 import { SpotifyProvider } from '../contexts/SpotifyContext.js';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-// Components
-import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';
-import LinkSpotify from './LinkSpotify.jsx';
-import PrivateRoute from './PrivateRoute.jsx';
+import Login from '../pages/Login.jsx';
+import Dashboard from '../pages/Dashboard.jsx';
+import LinkSpotify from '../pages/LinkSpotify.jsx';
+import PrivateRoute from '../utils/PrivateRoute.jsx';
 
 export default function App() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSpotify } from '../contexts/SpotifyContext.js';
+import { useSpotify } from '../../contexts/SpotifyContext.js';
 
 export default function ClearSongs() {
   const { selected, getSelectedPlaylist, SpotifyAPI } = useSpotify();
@@ -15,17 +15,24 @@ export default function ClearSongs() {
   const handleClear = () => {
     SpotifyAPI.getPlaylistTracks(selected.id)
       .then(resp => {
+        let multiplier = 0;
         let tracksToDelete = [];
         resp.items.map(item => tracksToDelete.push(item.track.uri));
-        deleteSongs(selected.id, tracksToDelete);
-      })
-      .then(getSelectedPlaylist())
-      .catch(err => console.log(err))
 
-    alert(`🤖 Cleared songs from the playlist "${selected.name}"`);
+        while ((tracksToDelete.length / (100 * multiplier) >= 1)) {
+          let trackSlice = tracksToDelete.slice(100 * multiplier, 100 * (multiplier + 1));
+          deleteSongs(selected.id, trackSlice);
+          multiplier++;
+        }
+      })
+      .then(() => {
+        getSelectedPlaylist();
+        alert(`🤖 Cleared songs from the playlist "${selected.name}"`);
+      })
+      .catch(err => console.log(err))
   }
 
   return (
-    <button id="clear-songs" onClick={handleClear}>Clear Songs</button>
+    <button id="clear-playlist-btn" onClick={handleClear}>Clear Playlist</button>
   );
 }
