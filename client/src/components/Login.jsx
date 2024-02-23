@@ -15,16 +15,24 @@ export default function Login() {
     newPassMatch: ''
   });
 
-  const sendConfirmation = (email) => {
-    axios.post('/confirmationEmail', { email })
-      .then(() => console.log(`Signup confirmation sent to: ${email}.`))
-      .catch(err => console.error(err))
+  const sendConfirmation = async (email) => {
+    try {
+      await axios.post('/confirmationEmail', { email })
+      alert(console.log(`Signup confirmation sent to: ${email}.`));
+    } catch (err) {
+      console.error(err);
+    }
+
+    // axios.post('/confirmationEmail', { email })
+    //   .then(() => console.log(`Signup confirmation sent to: ${email}.`))
+    //   .catch(err => console.error(err))
   }
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
     login(input.email, input.password)
-      .then(() => history.push('/link'))
+      .then(() => sendConfirmation(input.email))
+      // .then(() => history.push('/link'))
       .catch(err => alert(err.message))
   }
 

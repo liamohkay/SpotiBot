@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const request = require('request');
 const querystring = require('querystring');
+const router = require('./router.js');
 require('dotenv').config();
 
 // Global vars
@@ -21,6 +22,7 @@ const app = express()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(express.static(path.join(__dirname, '../client/dist/')))
+  .use('/', router)
 
 // Helper function for state serialization
 var generateRandomString = function(length) {
@@ -52,39 +54,35 @@ app.get('/login', (req, res) => {
 app.get('/callback', (req, res) => {
   let code = req.query.code || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
+  res.clearCookie(stateKey);
+  let authOptions = {
+    json: true,
+    url: 'https://accounts.spotify.com/api/token',
+    headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')) },
+    form: {
+      code: code,
+      redirect_uri: process.env.REDIRECT_URI,
+      grant_type: 'authorization_code'
+    },
+  };
 
-  // if (state === null || state !== storedState) {
-  //   res.redirect('/#' + querystring.stringify({ error: 'state_mismatch' }));
-  // } else {
-    res.clearCookie(stateKey);
-    let authOptions = {
-      json: true,
-      url: 'https://accounts.spotify.com/api/token',
-      headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64')) },
-      form: {
-        code: code,
-        redirect_uri: process.env.REDIRECT_URI,
-        grant_type: 'authorization_code'
-      },
-    };
+  request.post(authOptions, (err, resp, body) => {
+    if (!err && resp.statusCode === 200) {
+      let access_token = body.access_token;
+      let refresh_token = body.refresh_token;
+      let options = {
+        url: 'https://api.spotify.com/v1/me',
+        headers: { 'Authorization': 'Bearer ' + access_token },
+        json: true
+      };
 
-    request.post(authOptions, (err, resp, body) => {
-      if (!err && resp.statusCode === 200) {
-        let access_token = body.access_token;
-        let refresh_token = body.refresh_token;
-        let options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
-
-        // use the access token to access the Spotify Web API
-        // request.get(options, (err, resp, body) => console.log(body));
-        res.redirect('/#' + querystring.stringify({ access_token, refresh_token }));
-      } else {
-        res.redirect('/#' + querystring.stringify({ err: 'invalid_token' }));
-      }
-    });
+      // use the access token to access the Spotify Web API
+      // request.get(options, (err, resp, body) => console.log(body));
+      res.redirect('/#' + querystring.stringify({ access_token, refresh_token }));
+    } else {
+      res.redirect('/#' + querystring.stringify({ err: 'invalid_token' }));
+    }
+  });
 });
 
 // Refresh token endpoint that allows past users to get a fresh token w/o another oauth
@@ -109,47 +107,5 @@ app.get('/refresh_token', (req, res) => {
     }
   });
 });
-
-const nodemailer = require('nodemailer');
-const { google } = require('googleapis');
-let refreshToken = ''
-
-const oAuth2Client = new google.auth.OAuth2(
-  process.env.GMAIL_ID,
-  process.env.GMAIL_SECRET,
-  'https://developers.google.com/oauthplayground'
-)
-oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
-
-app.post('/confirmationEmail', async (req, res) => {
-  try {
-    const accessToken = await oAuth2Client.getAccessToken();
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      dubgger: true,
-      auth: {
-        type: 'OAuth2',
-        user: process.env.GMAIL_EMAIL,
-        clientId: process.env.GMAIL_ID,
-        clientSecret: process.env.GMAIL_SECRET,
-        refreshToken: process.env.REFRESH_TOKEN,
-        accessToken: accessToken
-      }
-    })
-
-    const mailOptions ={
-      from: process.env.GMAIL_EMAIL,
-      to: req.body.email, // this can also be multiple senders
-      subject: 'Welcome to SpotiBot!',
-      html: '<h3>Thank you for signing up for SpotiBot.</3>'
-    }
-
-    const result = await transporter.sendMail(mailOptions);
-    res.status(200).send(`Signup confirmation sent to: ${req.body.email}.`);
-  } catch(err) {
-    res.status(400).send(err);
-    return err;
-  }
-})
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
