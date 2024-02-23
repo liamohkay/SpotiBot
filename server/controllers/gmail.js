@@ -2,7 +2,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 
-// Email templates & text -> email function
+// Email templates & text & email polyfill function
 const emailTemplates = {
   signin: {
     subject: (req) => `${req.body.name} did you just sign into SpotiBot?`,

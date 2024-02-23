@@ -13,13 +13,12 @@ export default function ClearSongs() {
 
   // Gets selected playlist song URIs & then deletes each song
   const handleClear = () => {
-
     SpotifyAPI.getPlaylistTracks(selected.id)
       .then(resp => {
+        let multiplier = 0;
         let tracksToDelete = [];
         resp.items.map(item => tracksToDelete.push(item.track.uri));
 
-        let multiplier = 0;
         while ((tracksToDelete.length / (100 * multiplier) >= 1)) {
           let trackSlice = tracksToDelete.slice(100 * multiplier, 100 * (multiplier + 1));
           deleteSongs(selected.id, trackSlice);

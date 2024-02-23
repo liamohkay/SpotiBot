@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSpotify } from '../../contexts/SpotifyContext.js';
-import reddit from '/server/reddit.js';
+import reddit from '/server/controllers/reddit.js';
 import ClearPlaylist from './ClearPlaylist.jsx';
 
 const RunBot = () => {
@@ -53,10 +53,10 @@ const RunBot = () => {
     selected.subreddits.map(sub => {
       reddit.getTopPosts(sub, subPosts => {
         subPosts.map(post => {
+
           // Search by song title then check against artist name
           SpotifyAPI.searchTracks(post.track, { limit: 50 })
             .then(resp => {
-
               // If there is a match & track is not already in playlist, add to playlist
               let trackResults = resp.tracks.items;
               trackResults.map(track => {
@@ -64,14 +64,11 @@ const RunBot = () => {
                   setTracksToAdd(prev => [...prev, track.uri]);
                 }
               });
-
             })
             .catch(err => console.log(err))
         });
       });
     })
-
-
   }
 
   const handleClearFound = (e) => {
