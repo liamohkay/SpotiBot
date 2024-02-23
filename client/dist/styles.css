@@ -175,6 +175,17 @@ button:hover {
 }
 
 #main-login button {
+  width: 33%;
+  height: 3rem;
+  background-color: var(--spotify-green);
+  font-size: 1.15em;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: 700;
+  margin-top: var(--spacing-sm);
+}
+
+#link-btn {
   width: 25%;
   height: 3rem;
   background-color: var(--spotify-green);

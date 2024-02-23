@@ -15,6 +15,7 @@ export default function Login() {
     newPassMatch: ''
   });
 
+  // Triggers an automated email
   const sendConfirmation = async (email) => {
     try {
       await axios.post('/confirmationEmail', { email })
@@ -22,15 +23,12 @@ export default function Login() {
     } catch (err) {
       console.error(err);
     }
-    // axios.post('/confirmationEmail', { email })
-    //   .then(() => console.log(`Signup confirmation sent to: ${email}.`))
-    //   .catch(err => console.error(err))
   }
 
   // Authenticates existing user w/ firebase
   const handleLogin = () => {
     login(input.email, input.password)
-      // .then(() => history.push('/link'))
+      .then(() => history.push('/link'))
       .then(() => sendConfirmation(input.email))
       .catch(err => alert(err.message))
   }
@@ -41,6 +39,7 @@ export default function Login() {
       alert('Passwords don\'t match');
       return;
     } else {
+      history.push('/link');
       signup(input.newEmail, input.newPass)
         .then(resp => {
           alert(`Account created for ${resp.user.email}.\nPlease link your Spotify account.`);
@@ -82,6 +81,7 @@ export default function Login() {
             <button onClick={handleLogin}>Login</button>
           </form>
         </section>
+
       </div>
 
       <main className="main-bg">
